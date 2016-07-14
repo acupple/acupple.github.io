@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>输出日志到web页面 | Acupple&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="python" />
+    
+    <meta name="description" content="发布工具中需要对应用的启动日志，输出到页面上，方便用户查看。于是写了一个简单的python应用，基于diango。 先看看效果：
+定义一个django view来接收ajax请求：12345678910111213141516171819202122232425262728def index(request):	return render(request, &apos;index.html&apos;)def pul">
+<meta property="og:type" content="article">
+<meta property="og:title" content="输出日志到web页面">
+<meta property="og:url" content="http://yoursite.com/2016/03/27/输出日志到web页面/index.html">
+<meta property="og:site_name" content="Acupple's Blog">
+<meta property="og:description" content="发布工具中需要对应用的启动日志，输出到页面上，方便用户查看。于是写了一个简单的python应用，基于diango。 先看看效果：
+定义一个django view来接收ajax请求：12345678910111213141516171819202122232425262728def index(request):	return render(request, &apos;index.html&apos;)def pul">
+<meta property="og:image" content="http://yoursite.com/../../gallery/logy_1.png">
+<meta property="og:updated_time" content="2016-07-09T10:56:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="输出日志到web页面">
+<meta name="twitter:description" content="发布工具中需要对应用的启动日志，输出到页面上，方便用户查看。于是写了一个简单的python应用，基于diango。 先看看效果：
+定义一个django view来接收ajax请求：12345678910111213141516171819202122232425262728def index(request):	return render(request, &apos;index.html&apos;)def pul">
+<meta name="twitter:image" content="http://yoursite.com/../../gallery/logy_1.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Inicio</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about">Acerca de</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Buscar"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    Sin categoría
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-输出日志到web页面" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        输出日志到web页面
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2016/03/27/输出日志到web页面/" class="article-date">
+    <time datetime="2016-03-27T09:26:08.000Z" itemprop="datePublished">2016-03-27</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>发布工具中需要对应用的启动日志，输出到页面上，方便用户查看。于是写了一个简单的python应用，基于diango。 先看看效果：<br><img src="/../../gallery/logy_1.png" alt="image"></p>
+<p>定义一个django view来接收ajax请求：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></div><div class="line">	<span class="keyword">return</span> render(request, <span class="string">'index.html'</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">pull</span><span class="params">(request)</span>:</span></div><div class="line">	<span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</div><div class="line">		file_path = request.GET.get(<span class="string">'file_path'</span>)</div><div class="line">		<span class="keyword">if</span> <span class="keyword">not</span> file_path <span class="keyword">or</span> len(file_path)==<span class="number">0</span>:</div><div class="line">			<span class="keyword">return</span> HttpResponse(<span class="string">'illegal file_path parameter'</span>)</div><div class="line">		<span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(file_path):</div><div class="line">			<span class="keyword">return</span> HttpResponse(<span class="string">'file path: '</span> + file_path + <span class="string">' does not exists, pls check!'</span>)</div><div class="line">		<span class="keyword">if</span> <span class="keyword">not</span> os.path.isfile(file_path):</div><div class="line">			<span class="keyword">return</span> HttpResponse(<span class="string">'file path: '</span> + file_path + <span class="string">' is not file, pls check!'</span>)</div><div class="line">		begin = request.GET.get(<span class="string">'begin'</span>, <span class="number">1</span>)</div><div class="line">		offset = request.GET.get(<span class="string">'offset'</span>, <span class="number">10</span>)</div><div class="line">		cmd = <span class="string">"sed -n '&#123;0&#125;,&#123;1&#125;p' &#123;2&#125;"</span>.format(str(begin), str(begin + offset), file_path)</div><div class="line">		result = commands.getstatusoutput(cmd)</div><div class="line">		content = result[<span class="number">1</span>]</div><div class="line">		response_data = &#123;&#125;</div><div class="line">		<span class="keyword">if</span> content:</div><div class="line">			response_data[<span class="string">'data'</span>] = content.splitlines()</div><div class="line">			response_data[<span class="string">'length'</span>] = len(response_data[<span class="string">'data'</span>])</div><div class="line">		<span class="keyword">else</span>:</div><div class="line">			response_data[<span class="string">'length'</span>] = <span class="number">0</span></div><div class="line">			</div><div class="line">		<span class="keyword">return</span> HttpResponse(json.dumps(response_data), content_type=<span class="string">"application/json"</span>)</div><div class="line">	<span class="keyword">else</span>:</div><div class="line">		<span class="keyword">return</span> HttpResponse(<span class="string">'illegal http method'</span>)</div></pre></td></tr></table></figure></p>
+<p>前端很简单通过开始行，offset向服务器请求日志数据，并且append到页面就可以了<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Logly<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"/static/js/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"> </span></div><div class="line">	html,body&#123;</div><div class="line">		background:#000; color:#090;</div><div class="line">	&#125; </div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line">$(document).ready(function()&#123;</div><div class="line">	var querystring = location.search.replace( '?', '' ).split( '&amp;' );</div><div class="line">	var queryObj = &#123;&#125;;</div><div class="line">	for ( var i=0; i&lt;querystring.length; i++ ) &#123;</div><div class="line">      var name = querystring[i].split('=')[0];</div><div class="line">      var value = querystring[i].split('=')[1];</div><div class="line">      queryObj[name] = value;</div><div class="line">	&#125;</div><div class="line">	var file_path = queryObj['file_path'];</div><div class="line">	var begin = 1;</div><div class="line">	var offset = 10;</div><div class="line">	if(!file_path)&#123;</div><div class="line">		$('#log').append('&lt;p&gt; file_path parameter is missed. &lt;br /&gt;' +</div><div class="line">		'eg: polls/index?file_path=urlencode(path) &lt;/p&gt;'); </div><div class="line">	&#125; else &#123;</div><div class="line">		var timer = setInterval(function () &#123;</div><div class="line">			var url = 'http://'+location.host + '/polls/pull?file_path=' + file_path + </div><div class="line">			'&amp;begin=' + begin +</div><div class="line">			'&amp;offset=' + offset;</div><div class="line">			$.ajax(&#123;</div><div class="line">				url: url, </div><div class="line">				type: 'GET', </div><div class="line">				success: function(ret)&#123;</div><div class="line">					if(ret==500)&#123;</div><div class="line">						clearInterval(timer);</div><div class="line">					&#125;</div><div class="line">					if(ret.length &gt; 0)&#123;</div><div class="line">						ret.data.forEach(function(line)&#123;</div><div class="line">							$('#log').append(line + '&lt;br /&gt;');</div><div class="line">							begin ++;</div><div class="line">						&#125;);</div><div class="line">	                     window.scrollTo(0,document.body.scrollHeight); </div><div class="line">					 &#125;</div><div class="line">				&#125;, error: function(ret)&#123;</div><div class="line">					$('#log').append( + 'server error !! contact logly admin&lt;br /&gt;');</div><div class="line">					return false; </div><div class="line">				&#125;</div><div class="line">			&#125;);</div><div class="line">		&#125;, 500);</div><div class="line">	&#125;</div><div class="line">&#125;);</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"margin-top:10px;"</span>&gt;</span> </div><div class="line">	<span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">'log'</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span> </div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/acupple/logly" target="_blank" rel="external">Demo源代码</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2016/03/27/输出日志到web页面/" data-title="输出日志到web页面" data-url="http://yoursite.com/2016/03/27/输出日志到web页面/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>seguir:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100001913447948" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/acupple" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/1605653652/info" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="renren" href="http://www.renren.com/222009767" target="_blank">
+                        <i class="icon fa fa-renren"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/04/01/Java-NIO/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">más nuevo</strong>
+        <p class="article-nav-title">
+        
+            Java NIO
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2016/03/25/JVM性能调优实战/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">antiguo</strong>
+        <p class="article-nav-title">JVM性能调优实战</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recientes</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/07/14/Go-Json/" class="title">Go-Json</a></p>
+                            <p class="item-date"><time datetime="2016-07-14T02:15:25.000Z" itemprop="datePublished">2016-07-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/07/11/Go-Vim-IDE/" class="title">Go-Vim-IDE</a></p>
+                            <p class="item-date"><time datetime="2016-07-11T09:50:30.000Z" itemprop="datePublished">2016-07-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/06/03/Go基于Sublime的开发环境搭建/" class="title">Go基于Sublime的开发环境搭建</a></p>
+                            <p class="item-date"><time datetime="2016-06-03T03:29:05.000Z" itemprop="datePublished">2016-06-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/06/02/Go性能优化技巧/" class="title">Go性能优化技巧</a></p>
+                            <p class="item-date"><time datetime="2016-06-02T10:12:09.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/06/02/Goroutine的调度器/" class="title">Goroutine的调度器</a></p>
+                            <p class="item-date"><time datetime="2016-06-02T09:23:40.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archivos</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">etiquetas</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据，分布式/">大数据，分布式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">etiqueta cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/分布式/" style="font-size: 12.5px;">分布式</a> <a href="/tags/大数据/" style="font-size: 17.5px;">大数据</a> <a href="/tags/大数据，分布式/" style="font-size: 10px;">大数据，分布式</a> <a href="/tags/数据库/" style="font-size: 12.5px;">数据库</a> <a href="/tags/机器学习/" style="font-size: 12.5px;">机器学习</a> <a href="/tags/杂/" style="font-size: 12.5px;">杂</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Forest Yuan</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'acupple'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+</body>
+</html>

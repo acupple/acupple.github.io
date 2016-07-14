@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Kafka安装配置 | Acupple&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="大数据" />
+    
+    <meta name="description" content="我们使用3台机器搭建Kafka集群：123192.168.4.142   h1192.168.4.143   h2192.168.4.144   h3
+在安装Kafka集群之前，这里没有使用Kafka自带的Zookeeper，而是独立安装了一个Zookeeper集群，也是使用这3台机器，保证Zookeeper集群正常运行。首先，在h1上准备Kafka安装文件，执行如下命令：12345$&amp;gt; c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kafka安装配置">
+<meta property="og:url" content="http://yoursite.com/2016/03/02/Kafka安装配置/index.html">
+<meta property="og:site_name" content="Acupple's Blog">
+<meta property="og:description" content="我们使用3台机器搭建Kafka集群：123192.168.4.142   h1192.168.4.143   h2192.168.4.144   h3
+在安装Kafka集群之前，这里没有使用Kafka自带的Zookeeper，而是独立安装了一个Zookeeper集群，也是使用这3台机器，保证Zookeeper集群正常运行。首先，在h1上准备Kafka安装文件，执行如下命令：12345$&amp;gt; c">
+<meta property="og:updated_time" content="2016-07-09T10:56:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kafka安装配置">
+<meta name="twitter:description" content="我们使用3台机器搭建Kafka集群：123192.168.4.142   h1192.168.4.143   h2192.168.4.144   h3
+在安装Kafka集群之前，这里没有使用Kafka自带的Zookeeper，而是独立安装了一个Zookeeper集群，也是使用这3台机器，保证Zookeeper集群正常运行。首先，在h1上准备Kafka安装文件，执行如下命令：12345$&amp;gt; c">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Inicio</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about">Acerca de</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Buscar"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    Sin categoría
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-Kafka安装配置" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Kafka安装配置
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2016/03/02/Kafka安装配置/" class="article-date">
+    <time datetime="2016-03-02T03:04:50.000Z" itemprop="datePublished">2016-03-02</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>我们使用3台机器搭建Kafka集群：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">192.168.4.142   h1</div><div class="line">192.168.4.143   h2</div><div class="line">192.168.4.144   h3</div></pre></td></tr></table></figure></p>
+<p>在安装Kafka集群之前，这里没有使用Kafka自带的Zookeeper，而是独立安装了一个Zookeeper集群，也是使用这3台机器，保证Zookeeper集群正常运行。<br>首先，在h1上准备Kafka安装文件，执行如下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$&gt; <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/</div><div class="line">$&gt; wget http://mirror.bit.edu.cn/apache/kafka/0.8.1.1/kafka_2.9.2-0.8.1.1.tgz</div><div class="line">$&gt; tar xvzf kafka_2.9.2-0.8.1.1.tgz</div><div class="line">$&gt; ln <span class="_">-s</span> /usr/<span class="built_in">local</span>/kafka_2.9.2-0.8.1.1 /usr/<span class="built_in">local</span>/kafka</div><div class="line">$&gt; chown -R kafka:kafka /usr/<span class="built_in">local</span>/kafka_2.9.2-0.8.1.1 /usr/<span class="built_in">local</span>/kafka</div></pre></td></tr></table></figure></p>
+<p>修改配置文件/usr/local/kafka/config/server.properties，修改如下内容：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">broker.id=0</div><div class="line">zookeeper.connect=h1:2181,h2:2181,h3:2181/kafka</div></pre></td></tr></table></figure></p>
+<p>这里需要说明的是，默认Kafka会使用ZooKeeper默认的/路径，这样有关Kafka的ZooKeeper配置就会散落在根路径下面，如果你有其他的应用也在使用ZooKeeper集群，查看ZooKeeper中数据可能会不直观，所以强烈建议指定一个chroot路径，直接在zookeeper.connect配置项中指定：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">zookeeper.connect=h1:2181,h2:2181,h3:2181/kafka</div></pre></td></tr></table></figure></p>
+<p>而且，需要手动在ZooKeeper中创建路径/kafka，使用如下命令连接到任意一台ZooKeeper服务器：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$&gt; <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/zookeeper</div><div class="line">$&gt; bin/zkCli.sh</div></pre></td></tr></table></figure></p>
+<p>在ZooKeeper执行如下命令创建chroot路径：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$&gt; create /kafka <span class="string">''</span></div></pre></td></tr></table></figure></p>
+<p>这样，每次连接Kafka集群的时候（使用–zookeeper选项），也必须使用带chroot路径的连接字符串，后面会看到。<br>然后，将配置好的安装文件同步到其他的h2、h3节点上：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$&gt; scp -r /usr/<span class="built_in">local</span>/kafka_2.9.2-0.8.1.1/ h2:/usr/<span class="built_in">local</span>/</div><div class="line">$&gt; scp -r /usr/<span class="built_in">local</span>/kafka_2.9.2-0.8.1.1/ h3:/usr/<span class="built_in">local</span>/</div></pre></td></tr></table></figure></p>
+<p>最后，在h2、h3节点上配置，执行如下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$&gt; <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/</div><div class="line">$&gt; ln <span class="_">-s</span> /usr/<span class="built_in">local</span>/kafka_2.9.2-0.8.1.1 /usr/<span class="built_in">local</span>/kafka</div><div class="line">$&gt; chown -R kafka:kafka /usr/<span class="built_in">local</span>/kafka_2.9.2-0.8.1.1 /usr/<span class="built_in">local</span>/kafka</div></pre></td></tr></table></figure></p>
+<p>并修改配置文件/usr/local/kafka/config/server.properties内容如下所示：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">broker.id=1  <span class="comment"># 在h1修改</span></div><div class="line">broker.id=2  <span class="comment"># 在h2修改</span></div></pre></td></tr></table></figure></p>
+<p>因为Kafka集群需要保证各个Broker的id在整个集群中必须唯一，需要调整这个配置项的值（如果在单机上，可以通过建立多个Broker进程来模拟分布式的Kafka集群，也需要Broker的id唯一，还需要修改一些配置目录的信息）。<br>在集群中的h1、h2、h3这三个节点上分别启动Kafka，分别执行如下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$&gt; bin/kafka-server-start.sh /usr/<span class="built_in">local</span>/kafka/config/server.properties &amp;</div></pre></td></tr></table></figure></p>
+<p>可以通过查看日志，或者检查进程状态，保证Kafka集群启动成功。</p>
+<p>我们创建一个名称为my-replicated-topic5的Topic，5个分区，并且复制因子为3，执行如下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$&gt; bin/kafka-topics.sh --create --zookeeper h1:2181,h2:2181,h3:2181/kafka /</div><div class="line">	--replication-factor 3 --partitions 5 --topic my-replicated-topic5</div></pre></td></tr></table></figure></p>
+<p>查看创建的Topic，执行如下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$&gt; bin/kafka-topics.sh --describe --zookeeper h1:2181,h2:2181,h3:2181/kafka /</div><div class="line">	--topic my-replicated-topic5</div></pre></td></tr></table></figure></p>
+<p>上面Leader、Replicas、Isr的含义如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Partition： 分区</div><div class="line">Leader   ： 负责读写指定分区的节点</div><div class="line">Replicas ： 复制该分区<span class="built_in">log</span>的节点列表</div><div class="line">Isr      ： <span class="string">"in-sync"</span> replicas，当前活跃的副本列表（是一个子集），并且可能成为Leader</div></pre></td></tr></table></figure></p>
+<p>我们可以通过Kafka自带的bin/kafka-console-producer.sh和bin/kafka-console-consumer.sh脚本，来验证演示如果发布消息、消费消息。<br>在一个终端，启动Producer，并向我们上面创建的名称为my-replicated-topic5的Topic中生产消息，执行如下脚本：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$&gt; bin/kafka-console-producer.sh --broker-list h1:9092,h2:9092,h3:9092 /</div><div class="line">	--topic my-replicated-topic5</div></pre></td></tr></table></figure></p>
+<p>在另一个终端，启动Consumer，并订阅我们上面创建的名称为my-replicated-topic5的Topic中生产的消息，执行如下脚本：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$&gt; bin/kafka-console-consumer.sh --zookeeper h1:2181,h2:2181,h3:2181/kafka /</div><div class="line">	--from-beginning --topic my-replicated-topic5</div></pre></td></tr></table></figure></p>
+<p>可以在Producer终端上输入字符串消息行，然后回车，就可以在Consumer终端上看到消费者消费的消息内容。也可以参考Kafka的Producer和Consumer的Java API，通过API编码的方式来实现消息生产和消费的处理逻辑。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2016/03/02/Kafka安装配置/" data-title="Kafka安装配置" data-url="http://yoursite.com/2016/03/02/Kafka安装配置/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>seguir:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100001913447948" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/acupple" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/1605653652/info" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="renren" href="http://www.renren.com/222009767" target="_blank">
+                        <i class="icon fa fa-renren"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/03/02/Storm安装配置/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">más nuevo</strong>
+        <p class="article-nav-title">
+        
+            Storm安装配置
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2016/02/29/Vector-Clock/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">antiguo</strong>
+        <p class="article-nav-title">Vector Clock</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recientes</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/07/14/Go-Json/" class="title">Go-Json</a></p>
+                            <p class="item-date"><time datetime="2016-07-14T02:15:25.000Z" itemprop="datePublished">2016-07-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/07/11/Go-Vim-IDE/" class="title">Go-Vim-IDE</a></p>
+                            <p class="item-date"><time datetime="2016-07-11T09:50:30.000Z" itemprop="datePublished">2016-07-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/06/03/Go基于Sublime的开发环境搭建/" class="title">Go基于Sublime的开发环境搭建</a></p>
+                            <p class="item-date"><time datetime="2016-06-03T03:29:05.000Z" itemprop="datePublished">2016-06-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/06/02/Go性能优化技巧/" class="title">Go性能优化技巧</a></p>
+                            <p class="item-date"><time datetime="2016-06-02T10:12:09.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/06/02/Goroutine的调度器/" class="title">Goroutine的调度器</a></p>
+                            <p class="item-date"><time datetime="2016-06-02T09:23:40.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archivos</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">etiquetas</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据，分布式/">大数据，分布式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">etiqueta cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/分布式/" style="font-size: 12.5px;">分布式</a> <a href="/tags/大数据/" style="font-size: 17.5px;">大数据</a> <a href="/tags/大数据，分布式/" style="font-size: 10px;">大数据，分布式</a> <a href="/tags/数据库/" style="font-size: 12.5px;">数据库</a> <a href="/tags/机器学习/" style="font-size: 12.5px;">机器学习</a> <a href="/tags/杂/" style="font-size: 12.5px;">杂</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Forest Yuan</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'acupple'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+</body>
+</html>

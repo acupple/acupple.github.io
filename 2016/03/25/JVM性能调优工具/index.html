@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>JVM性能调优工具 | Acupple&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Java" />
+    
+    <meta name="description" content="企业级Java应用中经常碰到的问题：
+
+OutOfMemoryError，内存不足
+内存泄露
+线程死锁
+锁争用（Lock Contention）
+Java进程消耗CPU过高
+
+往往大多数人的处理办法只是重启服务，者调大内存，而不会深究问题根源。其实JVM自带了很多调优监控工具，例如jps、jstack、jmap、jhat、jstat、hprof等，下面我们对这些工具做一下详细的整理，以备不时之需。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM性能调优工具">
+<meta property="og:url" content="http://yoursite.com/2016/03/25/JVM性能调优工具/index.html">
+<meta property="og:site_name" content="Acupple's Blog">
+<meta property="og:description" content="企业级Java应用中经常碰到的问题：
+
+OutOfMemoryError，内存不足
+内存泄露
+线程死锁
+锁争用（Lock Contention）
+Java进程消耗CPU过高
+
+往往大多数人的处理办法只是重启服务，者调大内存，而不会深究问题根源。其实JVM自带了很多调优监控工具，例如jps、jstack、jmap、jhat、jstat、hprof等，下面我们对这些工具做一下详细的整理，以备不时之需。">
+<meta property="og:image" content="http://yoursite.com/../../gallery/jvm_1.png">
+<meta property="og:updated_time" content="2016-07-09T10:56:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JVM性能调优工具">
+<meta name="twitter:description" content="企业级Java应用中经常碰到的问题：
+
+OutOfMemoryError，内存不足
+内存泄露
+线程死锁
+锁争用（Lock Contention）
+Java进程消耗CPU过高
+
+往往大多数人的处理办法只是重启服务，者调大内存，而不会深究问题根源。其实JVM自带了很多调优监控工具，例如jps、jstack、jmap、jhat、jstat、hprof等，下面我们对这些工具做一下详细的整理，以备不时之需。">
+<meta name="twitter:image" content="http://yoursite.com/../../gallery/jvm_1.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Inicio</a>
+                                </li>
+                            
+                                        
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about">Acerca de</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Buscar"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    Sin categoría
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-JVM性能调优工具" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        JVM性能调优工具
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2016/03/25/JVM性能调优工具/" class="article-date">
+    <time datetime="2016-03-25T05:28:52.000Z" itemprop="datePublished">2016-03-25</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>企业级Java应用中经常碰到的问题：</p>
+<ol>
+<li>OutOfMemoryError，内存不足</li>
+<li>内存泄露</li>
+<li>线程死锁</li>
+<li>锁争用（Lock Contention）</li>
+<li>Java进程消耗CPU过高</li>
+</ol>
+<p>往往大多数人的处理办法只是重启服务，者调大内存，而不会深究问题根源。其实JVM自带了很多调优监控工具，例如jps、jstack、jmap、jhat、jstat、hprof等，下面我们对这些工具做一下详细的整理，以备不时之需。</p>
+<h2 id="jps-Java-Virtual-Machine-Process-Status-Tool"><a href="#jps-Java-Virtual-Machine-Process-Status-Tool" class="headerlink" title="jps(Java Virtual Machine Process Status Tool)"></a>jps(Java Virtual Machine Process Status Tool)</h2><p>从字面意思可以看出这是一个用于输出VM中运行的进程状态信息，语法格式如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jps [options] [hostid]</div></pre></td></tr></table></figure></p>
+<p>如果不指定hostid就默认为当前主机或服务器, 命令行参数选项说明如下：</p>
+<blockquote>
+<p><strong>-q</strong> 不输出类名、Jar名和传入main方法的参数<br><strong>-m</strong> 输出传入main方法的参数<br><strong>-l</strong> 输出main类或Jar的全限名<br><strong>-v</strong> 输出传入JVM的参数</p>
+</blockquote>
+<p>比如下面：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt; jps -mlv</div><div class="line">1203 org.apache.zookeeper.server.quorum.QuorumPeerMain </div><div class="line">   /usr/<span class="built_in">local</span>/etc/zookeeper/zoo.cfg </div><div class="line">   -Dzookeeper.log.dir=. </div><div class="line">   -Dzookeeper.root.logger=INFO,CONSOLE </div><div class="line">   -Dcom.sun.management.jmxremote </div><div class="line">   -Dcom.sun.management.jmxremote.local.only=<span class="literal">false</span></div></pre></td></tr></table></figure></p>
+<p>java main方法：org.apache.zookeeper.server.quorum.QuorumPeerMain<br>main方法的参数：/usr/local/etc/zookeeper/zoo.cfg，明显是个配置文件<br>jvm参数：-Dzookeeper.log.dir=. -Dzookeeper.root.logger=INFO,CONSOLE -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.local.only=false</p>
+<h2 id="jstack"><a href="#jstack" class="headerlink" title="jstack"></a>jstack</h2><p>jstack主要用来查看某个Java进程内的线程堆栈信息。语法格式如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">jstack [option] pid</div><div class="line">jstack [option] executable core</div><div class="line">jstack [option] [server_id@]&lt;remote server IP or hostname&gt;</div></pre></td></tr></table></figure></p>
+<p>命令行参数选项说明如下：</p>
+<blockquote>
+<p><strong>-F</strong>  to force a thread dump. Use when jstack <pid> does not respond (process is hung)<br><strong>-l</strong> long listings，Prints additional information about locks<br><strong>-m</strong> mixed mode，to print both java and native frames<br>jstack可以定位到线程堆栈，根据堆栈信息我们可以定位到具体代码，所以它在JVM性能调优中使用得非常多。下面我们来一个实例找出某个Java进程中最耗费CPU的Java线程并定位堆栈信息，用到的命令有ps、top、printf、jstack、grep。</pid></p>
+</blockquote>
+<p>首先找出Java进程ID，服务器上的Java应用名称为tomcat_9000：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; ps -ef|grep tomcat_9000 <span class="comment">##也可以使用上面介绍的jps命令来查看</span></div><div class="line">&gt; root  21120   1  0 Mar24 ?    00:01:33 /usr/bin/java...........</div></pre></td></tr></table></figure></p>
+<p>得到进程ID为1203，第二步找出该进程内最耗费CPU的线程，可以使用<br>1）ps -Lfp pid<br>2）ps -mp pid -o THREAD, tid, time<br>3）top -Hp pid<br>用第三个，输出如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">top - 11:44:22 up 280 days,  6:51,  1 user,  load average: 0.05, 0.09, 0.08</div><div class="line">Tasks:  40 total,   0 running,  40 sleeping,   0 stopped,   0 zombie</div><div class="line">Cpu(s):  4.6%us,  3.3%sy,  0.0%ni, 91.9%id,  0.0%wa,  0.0%hi,  0.1%si,  0.0%st</div><div class="line">Mem:  16332304k total, 16087428k used,   244876k free,   161628k buffers</div><div class="line">Swap:  2097144k total,    67620k used,  2029524k free,  4264820k cached</div><div class="line"></div><div class="line">  PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND</div><div class="line">21166 root      20   0 6381m 529m  10m S  0.3  3.3   0:03.64 java  <span class="comment">##这个时间最长</span></div><div class="line">21120 root      20   0 6381m 529m  10m S  0.0  3.3   0:00.00 java</div><div class="line">21123 root      20   0 6381m 529m  10m S  0.0  3.3   0:00.85 java</div><div class="line">.........</div></pre></td></tr></table></figure></p>
+<p>TIME列就是各个Java线程耗费的CPU时间，CPU时间最长的是线程ID为21742的线程，用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">printf</span> <span class="string">"%x\n"</span> 21166</div><div class="line">&gt; 52ae <span class="comment">##得到21166的十六进制值为52ae</span></div></pre></td></tr></table></figure></p>
+<p>下一步终于轮到jstack上场了，它用来输出进程21120的堆栈信息，然后根据线程ID的十六进制值grep，如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; jstack 21120 | grep 52ae</div><div class="line">&gt; <span class="string">"pool-1-thread-2"</span> prio=10 tid=0x00007f5520a8e000 nid=0x52ae </div><div class="line">          waiting on condition [0x00007f55678db000]</div></pre></td></tr></table></figure></p>
+<p>可以看到CPU消耗在pool-1-thread-2这个类的waiting一个资源，然后再根据这个信息找相关的代码进行定位<br><strong>我们实际开发当中最好是为自己用到的线程都起一个名字，这样方便问题定位。</strong></p>
+<h2 id="jmap（Memory-Map）和jhat（Java-Heap-Analysis-Tool）"><a href="#jmap（Memory-Map）和jhat（Java-Heap-Analysis-Tool）" class="headerlink" title="jmap（Memory Map）和jhat（Java Heap Analysis Tool）"></a>jmap（Memory Map）和jhat（Java Heap Analysis Tool）</h2><p>jmap用来查看堆内存使用状况，一般结合jhat使用。jmap语法格式如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">jmap [option] pid</div><div class="line">jmap [option] executable core</div><div class="line">jmap [option] [server-id@]remote-hostname-or-ip</div></pre></td></tr></table></figure></p>
+<p>如果运行在64位JVM上，可能需要指定-J-d64命令选项参数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jmap -permstat pid</div></pre></td></tr></table></figure></p>
+<p>打印进程的类加载器和类加载器加载的持久代对象信息，输出：类加载器名称、对象是否存活（不可靠）、对象地址、父类加载器、已加载的类大小等信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">Attaching to process ID 21120, please wait...</div><div class="line">Debugger attached successfully.</div><div class="line">Server compiler detected.</div><div class="line">JVM version is 24.65-b04</div><div class="line">finding class loader instances ..done.</div><div class="line">computing per loader <span class="built_in">stat</span> ..done.</div><div class="line">please wait.. computing liveness.liveness analysis may be inaccurate ...</div><div class="line">class_loader    classes bytes   parent_loader   alive?  <span class="built_in">type</span></div><div class="line"></div><div class="line">&lt;bootstrap&gt;     2709    15916216          null          live    &lt;internal&gt;</div><div class="line">0x00000007cf4c71b8      1       1888    0x00000007094d4dd0      dead    sun/reflect/DelegatingClassLoader@0x0000000701a4<span class="built_in">fc</span>00</div><div class="line">0x00000007cf4c6e78      1       3048    0x00000007094d4dd0      dead    sun/reflect/DelegatingClassLoader@0x0000000701a4<span class="built_in">fc</span>00</div><div class="line">0x0000000709746150      1       3032    0x00000007094d4e90      dead    sun/reflect/DelegatingClassLoader@0x0000000701a4<span class="built_in">fc</span>00</div><div class="line">0x00000007cf4c63b8      1       3160    0x00000007094d4dd0      dead    sun/reflect/DelegatingClassLoader@0x0000000701a4<span class="built_in">fc</span>00</div><div class="line">0x00000007cf4c7c78      1       1888    0x00000007094d4dd0      dead    sun/reflect/DelegatingClassLoader@0x0000000701a4<span class="built_in">fc</span>00</div><div class="line">0x00000007cebf33f8      843     5023416 0x00000007094829a0      dead    com/github/ompc/greys/agent/AgentLauncher<span class="variable">$1</span>@0x0000000703f6a428</div><div class="line">0x00000007cf4c67f8      1       1888    0x00000007094d4dd0      dead    sun/reflect/DelegatingClassLoader@0x0000000701a4<span class="built_in">fc</span>00</div><div class="line">0x00000007cf4c7838      1       3056    0x00000007094d4dd0      dead    sun/reflect/DelegatingClassLoader@0x0000000701a4<span class="built_in">fc</span>00</div><div class="line">0x00000007cf4c75f8      1       1888    0x00000007094d4dd0      dead    sun/reflect/DelegatingClassLoader@0x0000000701a4<span class="built_in">fc</span>00</div><div class="line">............</div></pre></td></tr></table></figure></p>
+<p>使用jmap -heap pid查看进程堆内存使用情况，包括使用的GC算法、堆配置参数和各代中堆内存使用情况<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">&gt; jmap -heap 21120</div><div class="line">Attaching to process ID 21120, please wait...</div><div class="line">Debugger attached successfully.</div><div class="line">Server compiler detected.</div><div class="line">JVM version is 24.65-b04</div><div class="line"></div><div class="line">using thread-local object allocation.</div><div class="line">Parallel GC with 4 thread(s)</div><div class="line"></div><div class="line">Heap Configuration:</div><div class="line">   M<span class="keyword">in</span>HeapFreeRatio = 0</div><div class="line">   MaxHeapFreeRatio = 100</div><div class="line">   MaxHeapSize      = 4181721088 (3988.0MB)</div><div class="line">   NewSize          = 1310720 (1.25MB)</div><div class="line">   MaxNewSize       = 17592186044415 MB</div><div class="line">   OldSize          = 5439488 (5.1875MB)</div><div class="line">   NewRatio         = 2</div><div class="line">   SurvivorRatio    = 8</div><div class="line">   PermSize         = 21757952 (20.75MB)</div><div class="line">   MaxPermSize      = 85983232 (82.0MB)</div><div class="line">   G1HeapRegionSize = 0 (0.0MB)</div><div class="line"></div><div class="line">Heap Usage:</div><div class="line">PS Young Generation</div><div class="line">Eden Space:</div><div class="line">   capacity = 529006592 (504.5MB)</div><div class="line">   used     = 144885120 (138.1732177734375MB)</div><div class="line">   free     = 384121472 (366.3267822265625MB)</div><div class="line">   27.388150202861745% used</div><div class="line">From Space:</div><div class="line">   capacity = 36700160 (35.0MB)</div><div class="line">   used     = 29430008 (28.06664276123047MB)</div><div class="line">   free     = 7270152 (6.933357238769531MB)</div><div class="line">   80.19040788922992% used</div><div class="line">To Space:</div><div class="line">   capacity = 38273024 (36.5MB)</div><div class="line">   used     = 0 (0.0MB)</div><div class="line">   free     = 38273024 (36.5MB)</div><div class="line">   0.0% used</div><div class="line">PS Old Generation</div><div class="line">   capacity = 174063616 (166.0MB)</div><div class="line">   used     = 52265328 (49.84410095214844MB)</div><div class="line">   free     = 121798288 (116.15589904785156MB)</div><div class="line">   30.026566838643635% used</div><div class="line">PS Perm Generation</div><div class="line">   capacity = 48758784 (46.5MB)</div><div class="line">   used     = 48530080 (46.281890869140625MB)</div><div class="line">   free     = 228704 (0.218109130859375MB)</div><div class="line">   99.53094810567876% used</div><div class="line"></div><div class="line">28979 interned Strings occupying 3495552 bytes.</div></pre></td></tr></table></figure></p>
+<p>使用jmap -histo[:live] pid查看堆内存中的对象数目、大小统计直方图，如果带上live则只统计活对象<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">&gt;jmap -histo:live 21120 | more</div><div class="line">[root@hadoop-slave2 ~]<span class="comment"># jmap -histo:live 21120 | more</span></div><div class="line"></div><div class="line"> num     <span class="comment">#instances         #bytes  class name</span></div><div class="line">----------------------------------------------</div><div class="line">   1:         85719       12566608  &lt;constMethodKlass&gt;</div><div class="line">   2:         85719       10984000  &lt;methodKlass&gt;</div><div class="line">   3:         81753       10101688  [C</div><div class="line">   4:         24330        9440816  [B</div><div class="line">   5:          7688        9084536  &lt;constantPoolKlass&gt;</div><div class="line">   6:          7688        5545568  &lt;instanceKlassKlass&gt;</div><div class="line">   7:          6456        5112896  &lt;constantPoolCacheKlass&gt;</div><div class="line">   8:         80168        1924032  java.lang.String</div><div class="line">   9:          2826        1487288  &lt;methodDataKlass&gt;</div><div class="line">  10:          8338        1005248  java.lang.Class</div><div class="line">  11:         24326         778432  java.util.HashMap<span class="variable">$Entry</span></div><div class="line">  12:          9065         725200  java.lang.reflect.Method</div><div class="line">  13:         11042         663144  [S</div><div class="line">  14:         12478         649856  [[I</div><div class="line">  15:         17517         560544  java.util.concurrent.ConcurrentHashMap<span class="variable">$HashEntry</span></div><div class="line">  16:          3317         486688  [Ljava.util.HashMap<span class="variable">$Entry</span>;</div><div class="line">  17:         11360         454400  java.util.LinkedHashMap<span class="variable">$Entry</span></div><div class="line">  18:           633         344352  &lt;objArrayKlassKlass&gt;</div><div class="line">  19:          6276         313664  [Ljava.lang.Object;</div><div class="line">  20:          5230         251040  org.apache.catalina.loader.ResourceEntry</div><div class="line">  21:          3684         235776  java.net.URL</div><div class="line">  22:          4166         233296  org.apache.naming.resources.CacheEntry</div><div class="line">  23:          1367         171576  [Ljava.util.concurrent.ConcurrentHashMap<span class="variable">$HashEntry</span>;</div><div class="line">  24:          2992         167552  java.util.LinkedHashMap</div><div class="line">  25:          4159         166360  java.lang.ref.SoftReference</div><div class="line">  26:          1262         161712  [I</div><div class="line">  27:          4761         152352  java.lang.ref.WeakReference</div><div class="line">  ...................</div></pre></td></tr></table></figure></p>
+<p>class name是对象类型，说明如下:</p>
+<blockquote>
+<p><strong>B</strong>  byte<br><strong>C</strong>  char<br><strong>D</strong>  double<br><strong>F</strong>  float<br><strong>I</strong>  int<br><strong>J</strong>  long<br><strong>Z</strong>  boolean<br><strong>[</strong>  数组，如[I表示int[]<br><strong>[L+类名</strong> 其他对象</p>
+</blockquote>
+<p>还有一个很常用的情况是：用jmap把进程内存使用情况dump到文件中，再用jhat分析查看。jmap进行dump命令格式如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jmap -dump:format=b,file=dumpFileName pid</div></pre></td></tr></table></figure></p>
+<p>我一样地对上面进程ID为21120进行Dump：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; jmap -dump:format=b,file=/tmp/dump.dat 21120     </div><div class="line">Dumping heap to /tmp/dump.dat ...</div><div class="line">Heap dump file created</div></pre></td></tr></table></figure></p>
+<p>dump出来的文件可以用MAT、VisualVM等工具查看，这里用jhat查看：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&gt; jhat -port 9998 /tmp/dump.dat</div><div class="line">Dumping heap to /tmp/dump.dat ...</div><div class="line">Heap dump file created</div><div class="line">[root@hadoop-slave2 ~]<span class="comment"># jhat -port 9998 /tmp/dump.dat</span></div><div class="line">Reading from /tmp/dump.dat...</div><div class="line">Dump file created Fri Mar 25 12:55:56 CST 2016</div><div class="line">Snapshot <span class="built_in">read</span>, resolving...</div><div class="line">Resolving 425879 objects...</div><div class="line">Chasing references, expect 85 dots.....................................................................................</div><div class="line">Eliminating duplicate references.....................................................................................</div><div class="line">Snapshot resolved.</div><div class="line">Started HTTP server on port 9998</div><div class="line">Server is ready.</div></pre></td></tr></table></figure></p>
+<p>注意如果Dump文件太大，可能需要加上-J-Xmx512m这种参数指定最大堆内存，即jhat -J-Xmx512m -port 9998 /tmp/dump.dat。然后就可以在浏览器中输入主机地址:9998查看了<br><img src="/../../gallery/jvm_1.png" alt="image"></p>
+<h2 id="jstat（JVM统计监测工具）"><a href="#jstat（JVM统计监测工具）" class="headerlink" title="jstat（JVM统计监测工具）"></a>jstat（JVM统计监测工具）</h2><p>语法格式如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jstat [ generalOption | outputOptions vmid [interval[s|ms] [count]] ]</div></pre></td></tr></table></figure></p>
+<p>vmid是Java虚拟机ID，在Linux/Unix系统上一般就是进程ID。interval是采样时间间隔。count是采样数目。比如下面输出的是GC信息，采样时间间隔为250ms，采样数为4<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; jstat -gc 21120 250 4</div><div class="line"> S0C    S1C    S0U    S1U      EC       EU        OC         OU       PC     PU    YGC     YGCT    FGC    FGCT     GCT</div><div class="line">36864.0 37376.0  0.0    0.0   516608.0  7578.5   110592.0   28695.4   83968.0 47088.6      9    0.585   1      0.173    0.758</div><div class="line">36864.0 37376.0  0.0    0.0   516608.0  7578.5   110592.0   28695.4   83968.0 47088.6      9    0.585   1      0.173    0.758</div><div class="line">36864.0 37376.0  0.0    0.0   516608.0  7578.5   110592.0   28695.4   83968.0 47088.6      9    0.585   1      0.173    0.758</div><div class="line">36864.0 37376.0  0.0    0.0   516608.0  7578.5   110592.0   28695.4   83968.0 47088.6      9    0.585   1      0.173    0.758</div></pre></td></tr></table></figure></p>
+<p>要明白上面各列的意义，先看JVM堆内存布局：<br><img src="/../../gallery/jvm_2.jpg" alt="image"><br>可以看出：</p>
+<blockquote>
+<p>堆内存 = 年轻代 + 年老代 + 永久代<br>年轻代 = Eden区 + 两个Survivor区（From和To）</p>
+</blockquote>
+<p>现在来解释各列含义：</p>
+<blockquote>
+<p>S0C、S1C、S0U、S1U：Survivor 0/1区容量（Capacity）和使用量（Used）<br>EC、EU：Eden区容量和使用量<br>OC、OU：年老代容量和使用量<br>PC、PU：永久代容量和使用量<br>YGC、YGT：年轻代GC次数和GC耗时<br>FGC、FGCT：Full GC次数和Full GC耗时<br>GCT：GC总耗时</p>
+</blockquote>
+<h2 id="hprof（Heap-CPU-Profiling-Tool）"><a href="#hprof（Heap-CPU-Profiling-Tool）" class="headerlink" title="hprof（Heap/CPU Profiling Tool）"></a>hprof（Heap/CPU Profiling Tool）</h2><p>hprof能够展现CPU使用率，统计堆内存使用情况。语法格式如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">java -agentlib:hprof[=options] ToBeProfiledClass</div><div class="line">java -Xrunprof[:options] ToBeProfiledClass</div><div class="line">javac -J-agentlib:hprof[=options] ToBeProfiledClass</div></pre></td></tr></table></figure></p>
+<p>来几个官方指南上的实例。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">CPU Usage Sampling Profiling(cpu=samples)的例子：</div><div class="line">java -agentlib:hprof=cpu=samples,interval=20,depth=3 Hello</div><div class="line">  上面每隔20毫秒采样CPU消耗信息，堆栈深度为3，生成的profile文件名称是java.hprof.txt，在当前目录。 </div><div class="line">  CPU Usage Times Profiling(cpu=<span class="built_in">times</span>)的例子，它相对于CPU Usage Sampling Profile能够获得更加细粒度的CPU消耗信息，能够细到每个方法调用的开始和结束，它的实现使用了字节码注入技术（BCI）：</div><div class="line">javac -J-agentlib:hprof=cpu=<span class="built_in">times</span> Hello.java</div><div class="line">  Heap Allocation Profiling(heap=sites)的例子：</div><div class="line">javac -J-agentlib:hprof=heap=sites Hello.java</div><div class="line">  Heap Dump(heap=dump)的例子，它比上面的Heap Allocation Profiling能生成更详细的Heap Dump信息：</div><div class="line">javac -J-agentlib:hprof=heap=dump Hello.java</div><div class="line">  虽然在JVM启动参数中加入-Xrunprof:heap=sites参数可以生成CPU/Heap Profile文件，但对JVM性能影响非常大，不建议在线上服务器环境使用。</div></pre></td></tr></table></figure></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2016/03/25/JVM性能调优工具/" data-title="JVM性能调优工具" data-url="http://yoursite.com/2016/03/25/JVM性能调优工具/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>seguir:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100001913447948" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/acupple" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/1605653652/info" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="renren" href="http://www.renren.com/222009767" target="_blank">
+                        <i class="icon fa fa-renren"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/03/25/JVM性能调优实战/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">más nuevo</strong>
+        <p class="article-nav-title">
+        
+            JVM性能调优实战
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2016/03/24/Spring-Boot-性能优化/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">antiguo</strong>
+        <p class="article-nav-title">Spring Boot 性能优化</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recientes</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/07/14/Go-Json/" class="title">Go-Json</a></p>
+                            <p class="item-date"><time datetime="2016-07-14T02:15:25.000Z" itemprop="datePublished">2016-07-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/07/11/Go-Vim-IDE/" class="title">Go-Vim-IDE</a></p>
+                            <p class="item-date"><time datetime="2016-07-11T09:50:30.000Z" itemprop="datePublished">2016-07-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/06/03/Go基于Sublime的开发环境搭建/" class="title">Go基于Sublime的开发环境搭建</a></p>
+                            <p class="item-date"><time datetime="2016-06-03T03:29:05.000Z" itemprop="datePublished">2016-06-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/06/02/Go性能优化技巧/" class="title">Go性能优化技巧</a></p>
+                            <p class="item-date"><time datetime="2016-06-02T10:12:09.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/06/02/Goroutine的调度器/" class="title">Goroutine的调度器</a></p>
+                            <p class="item-date"><time datetime="2016-06-02T09:23:40.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archivos</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">etiquetas</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据，分布式/">大数据，分布式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">etiqueta cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/分布式/" style="font-size: 12.5px;">分布式</a> <a href="/tags/大数据/" style="font-size: 17.5px;">大数据</a> <a href="/tags/大数据，分布式/" style="font-size: 10px;">大数据，分布式</a> <a href="/tags/数据库/" style="font-size: 12.5px;">数据库</a> <a href="/tags/机器学习/" style="font-size: 12.5px;">机器学习</a> <a href="/tags/杂/" style="font-size: 12.5px;">杂</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 Forest Yuan</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'acupple'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+</body>
+</html>
