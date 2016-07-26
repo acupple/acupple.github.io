@@ -3,21 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>cloudera-scm-server dead but pid file exists | Acupple&#39;s Blog</title>
+    <title>存储密码 | Acupple&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="大数据" />
+        <meta name="keywords" content="Go" />
     
-    <meta name="description" content="问题: 系统磁盘或者内存问题导致cloudera server挂掉，启动异常。进程已死，pid文件存在。1234# service cloudera-scm-server start$&amp;gt; Starting cloudera-scm-server:                              [  OK  ]# service cloudera-scm-server status">
+    <meta name="description" content="作为一个Web应用开发者，在选择密码存储方案时, 容易掉入哪些陷阱, 以及如何避免这些陷阱?
+普通方案目前用的最多的密码存储方案是将明文密码做单向哈希后存储，单向哈希算法有一个特征：无法通过哈希后的摘要(digest)恢复原始数据，这也是“单向”二字的来源。常用的单向哈希算法包括SHA-256, SHA-1, MD5等。Go语言对这三种加密算法的实现如下所示：1234567891011121314">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cloudera-scm-server dead but pid file exists">
-<meta property="og:url" content="http://yoursite.com/2016/03/14/cloudera-scm-server-dead-but-pid-file-exists/index.html">
+<meta property="og:title" content="存储密码">
+<meta property="og:url" content="http://yoursite.com/2016/07/26/存储密码/index.html">
 <meta property="og:site_name" content="Acupple's Blog">
-<meta property="og:description" content="问题: 系统磁盘或者内存问题导致cloudera server挂掉，启动异常。进程已死，pid文件存在。1234# service cloudera-scm-server start$&amp;gt; Starting cloudera-scm-server:                              [  OK  ]# service cloudera-scm-server status">
-<meta property="og:updated_time" content="2016-07-09T10:56:21.000Z">
+<meta property="og:description" content="作为一个Web应用开发者，在选择密码存储方案时, 容易掉入哪些陷阱, 以及如何避免这些陷阱?
+普通方案目前用的最多的密码存储方案是将明文密码做单向哈希后存储，单向哈希算法有一个特征：无法通过哈希后的摘要(digest)恢复原始数据，这也是“单向”二字的来源。常用的单向哈希算法包括SHA-256, SHA-1, MD5等。Go语言对这三种加密算法的实现如下所示：1234567891011121314">
+<meta property="og:updated_time" content="2016-07-26T01:52:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cloudera-scm-server dead but pid file exists">
-<meta name="twitter:description" content="问题: 系统磁盘或者内存问题导致cloudera server挂掉，启动异常。进程已死，pid文件存在。1234# service cloudera-scm-server start$&amp;gt; Starting cloudera-scm-server:                              [  OK  ]# service cloudera-scm-server status">
+<meta name="twitter:title" content="存储密码">
+<meta name="twitter:description" content="作为一个Web应用开发者，在选择密码存储方案时, 容易掉入哪些陷阱, 以及如何避免这些陷阱?
+普通方案目前用的最多的密码存储方案是将明文密码做单向哈希后存储，单向哈希算法有一个特征：无法通过哈希后的摘要(digest)恢复原始数据，这也是“单向”二字的来源。常用的单向哈希算法包括SHA-256, SHA-1, MD5等。Go语言对这三种加密算法的实现如下所示：1234567891011121314">
     
 
     
@@ -95,30 +98,48 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-cloudera-scm-server-dead-but-pid-file-exists" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-存储密码" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        cloudera-scm-server dead but pid file exists
+        存储密码
         </h1>
     
 
             </header>
         
         <div class="article-subtitle">
-            <a href="/2016/03/14/cloudera-scm-server-dead-but-pid-file-exists/" class="article-date">
-    <time datetime="2016-03-14T05:46:34.000Z" itemprop="datePublished">2016-03-14</time>
+            <a href="/2016/07/26/存储密码/" class="article-date">
+    <time datetime="2016-07-26T01:47:17.000Z" itemprop="datePublished">2016-07-26</time>
 </a>
             
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/">Go</a></li></ul>
 
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p>问题: 系统磁盘或者内存问题导致cloudera server挂掉，启动异常。进程已死，pid文件存在。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># service cloudera-scm-server start</span></div><div class="line">$&gt; Starting cloudera-scm-server:                              [  OK  ]</div><div class="line"><span class="comment"># service cloudera-scm-server status</span></div><div class="line">$&gt; cloudera-scm-server dead but pid file exists</div></pre></td></tr></table></figure></p>
-<p>解决办法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$&gt; service cloudera-scm-server stop</div><div class="line">$&gt; service cloudera-scm-server-db stop </div><div class="line">$&gt; rm /var/run/cloudera-scm-server.pid</div><div class="line">$&gt; service cloudera-scm-server-db start</div><div class="line">$&gt; service cloudera-scm-server start</div></pre></td></tr></table></figure></p>
+            <p>作为一个Web应用开发者，在选择密码存储方案时, 容易掉入哪些陷阱, 以及如何避免这些陷阱?</p>
+<h3 id="普通方案"><a href="#普通方案" class="headerlink" title="普通方案"></a>普通方案</h3><p>目前用的最多的密码存储方案是将明文密码做单向哈希后存储，单向哈希算法有一个特征：无法通过哈希后的摘要(digest)恢复原始数据，这也是“单向”二字的来源。常用的单向哈希算法包括SHA-256, SHA-1, MD5等。<br>Go语言对这三种加密算法的实现如下所示：<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//import "crypto/sha256"</span></div><div class="line">h := sha256.New()</div><div class="line">io.WriteString(h, <span class="string">"His money is twice tainted: 'taint yours and 'taint mine."</span>)</div><div class="line">fmt.Printf(<span class="string">"% x"</span>, h.Sum(<span class="literal">nil</span>))</div><div class="line"></div><div class="line"><span class="comment">//import "crypto/sha1"</span></div><div class="line">h := sha1.New()</div><div class="line">io.WriteString(h, <span class="string">"His money is twice tainted: 'taint yours and 'taint mine."</span>)</div><div class="line">fmt.Printf(<span class="string">"% x"</span>, h.Sum(<span class="literal">nil</span>))</div><div class="line"></div><div class="line"><span class="comment">//import "crypto/md5"</span></div><div class="line">h := md5.New()</div><div class="line">io.WriteString(h, <span class="string">"需要加密的密码"</span>)</div><div class="line">fmt.Printf(<span class="string">"%x"</span>, h.Sum(<span class="literal">nil</span>))</div></pre></td></tr></table></figure></p>
+<p>单向哈希有两个特性：</p>
+<ol>
+<li>同一个密码进行单向哈希，得到的总是唯一确定的摘要。</li>
+<li>计算速度快。随着技术进步，一秒钟能够完成数十亿次单向哈希计算。</li>
+</ol>
+<p>结合上面两个特点，考虑到多数人所使用的密码为常见的组合，攻击者可以将所有密码的常见组合进行单向哈希，得到一个摘要组合, 然后与数据库中的摘要进行比对即可获得对应的密码。这个摘要组合也被称为rainbow table。<br>因此通过单向加密之后存储的数据，和明文存储没有多大区别。因此，一旦网站的数据库泄露，所有用户的密码本身就大白于天下。</p>
+<h3 id="进阶方案"><a href="#进阶方案" class="headerlink" title="进阶方案"></a>进阶方案</h3><p>通过上面介绍我们知道黑客可以用rainbow table来破解哈希后的密码，很大程度上是因为加密时使用的哈希算法是公开的。如果黑客不知道加密的哈希算法是什么，那他也就无从下手了。</p>
+<p>一个直接的解决办法是，自己设计一个哈希算法。然而，一个好的哈希算法是很难设计的——既要避免碰撞，又不能有明显的规律，做到这两点要比想象中的要困难很多。因此实际应用中更多的是利用已有的哈希算法进行多次哈希。</p>
+<p>但是单纯的多次哈希，依然阻挡不住黑客。两次 MD5、三次 MD5之类的方法，我们能想到，黑客自然也能想到。特别是对于一些开源代码，这样哈希更是相当于直接把算法告诉了黑客。</p>
+<p>没有攻不破的盾，但也没有折不断的矛。现在安全性比较好的网站，都会用一种叫做“加盐”的方式来存储密码，也就是常说的 “salt”。他们通常的做法是，先将用户输入的密码进行一次MD5（或其它哈希算法）加密；将得到的 MD5 值前后加上一些只有管理员自己知道的随机串，再进行一次MD5加密。这个随机串中可以包括某些固定的串，也可以包括用户名（用来保证每个用户加密使用的密钥都不一样）。</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//import "crypto/md5"</span></div><div class="line"><span class="comment">//假设用户名abc，密码123456</span></div><div class="line">h := md5.New()</div><div class="line">io.WriteString(h, <span class="string">"需要加密的密码"</span>)</div><div class="line"></div><div class="line"><span class="comment">//pwmd5等于e10adc3949ba59abbe56e057f20f883e</span></div><div class="line">pwmd5 :=fmt.Sprintf(<span class="string">"%x"</span>, h.Sum(<span class="literal">nil</span>))</div><div class="line"></div><div class="line"><span class="comment">//指定两个 salt： salt1 = @#$%   salt2 = ^&amp;*()</span></div><div class="line">salt1 := <span class="string">"@#$%"</span></div><div class="line">salt2 := <span class="string">"^&amp;*()"</span></div><div class="line"></div><div class="line"><span class="comment">//salt1+用户名+salt2+MD5拼接</span></div><div class="line">io.WriteString(h, salt1)</div><div class="line">io.WriteString(h, <span class="string">"abc"</span>)</div><div class="line">io.WriteString(h, salt2)</div><div class="line">io.WriteString(h, pwmd5)</div><div class="line"></div><div class="line">last :=fmt.Sprintf(<span class="string">"%x"</span>, h.Sum(<span class="literal">nil</span>))</div></pre></td></tr></table></figure>
+<p>在两个salt没有泄露的情况下，黑客如果拿到的是最后这个加密串，就几乎不可能推算出原始的密码是什么了。</p>
+<h3 id="专家方案"><a href="#专家方案" class="headerlink" title="专家方案"></a>专家方案</h3><p>上面的进阶方案在几年前也许是足够安全的方案，因为攻击者没有足够的资源建立这么多的rainbow table。 但是，时至今日，因为并行计算能力的提升，这种攻击已经完全可行。</p>
+<p>怎么解决这个问题呢？只要时间与资源允许，没有破译不了的密码，所以方案是:故意增加密码计算所需耗费的资源和时间，使得任何人都不可获得足够的资源建立所需的rainbow table。</p>
+<p>这类方案有一个特点，算法中都有个因子，用于指明计算密码摘要所需要的资源和时间，也就是计算强度。计算强度越大，攻击者建立rainbow table越困难，以至于不可继续。</p>
+<p>这里推荐scrypt方案，scrypt是由著名的FreeBSD黑客Colin Percival为他的备份服务Tarsnap开发的。</p>
+<p>目前Go语言里面支持的库<a href="http://code.google.com/p/go/source/browse?repo=crypto#hg%2Fscrypt" target="_blank" rel="external">http://code.google.com/p/go/source/browse?repo=crypto#hg%2Fscrypt</a><br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dk := scrypt.Key([]<span class="keyword">byte</span>(<span class="string">"some password"</span>), []<span class="keyword">byte</span>(salt), <span class="number">16384</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">32</span>)</div></pre></td></tr></table></figure></p>
+<p>通过上面的的方法可以获取唯一的相应的密码值，这是目前为止最难破解的。</p>
 
         </div>
         <footer class="article-footer">
@@ -168,7 +189,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2016/03/14/cloudera-scm-server-dead-but-pid-file-exists/" data-title="cloudera-scm-server dead but pid file exists" data-url="http://yoursite.com/2016/03/14/cloudera-scm-server-dead-but-pid-file-exists/"></div>
+    <div class="ds-thread" data-thread-key="2016/07/26/存储密码/" data-title="存储密码" data-url="http://yoursite.com/2016/07/26/存储密码/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
@@ -256,20 +277,10 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         
 <nav id="article-nav">
     
-        <a href="/2016/03/16/cloudera相关说明/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            cloudera相关说明
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2016/03/02/Storm安装配置/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/07/14/Go-Json/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">Storm安装配置</p>
+        <p class="article-nav-title">Go-Json</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
