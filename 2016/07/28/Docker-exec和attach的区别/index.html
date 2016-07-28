@@ -3,24 +3,33 @@
 <head>
     <meta charset="utf-8">
     
-    <title>git使用 | Acupple&#39;s Blog</title>
+    <title>Docker exec和attach的区别 | Acupple&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="Java" />
+        <meta name="keywords" content="Go" />
     
-    <meta name="description" content="查看远程分支加上-a参数可以查看远程分支，远程分支会用红色表示出来（如果你开了颜色支持的话）：
-12345678910$ git branch -a  master  remote  tungway  v1.52* zrong  remotes/origin/master  remotes/origin/tungway  remotes/origin/v1.52  remotes/origin/z">
+    <meta name="description" content="exec 可以开启多个终端实例， exec -i  /bin/bash，由此可见exec其实是在运行中的容器中执行一个命令，比如/bin/bash 来达到交互的目的。
+
+The docker exec command runs a new command in a running container
+
+attach 开启一个和正在运行的进程交互的终端，如果该进程结束，原docker contai">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git使用">
-<meta property="og:url" content="http://yoursite.com/2016/04/26/git使用/index.html">
+<meta property="og:title" content="Docker exec和attach的区别">
+<meta property="og:url" content="http://yoursite.com/2016/07/28/Docker-exec和attach的区别/index.html">
 <meta property="og:site_name" content="Acupple's Blog">
-<meta property="og:description" content="查看远程分支加上-a参数可以查看远程分支，远程分支会用红色表示出来（如果你开了颜色支持的话）：
-12345678910$ git branch -a  master  remote  tungway  v1.52* zrong  remotes/origin/master  remotes/origin/tungway  remotes/origin/v1.52  remotes/origin/z">
-<meta property="og:updated_time" content="2016-07-09T10:56:21.000Z">
+<meta property="og:description" content="exec 可以开启多个终端实例， exec -i  /bin/bash，由此可见exec其实是在运行中的容器中执行一个命令，比如/bin/bash 来达到交互的目的。
+
+The docker exec command runs a new command in a running container
+
+attach 开启一个和正在运行的进程交互的终端，如果该进程结束，原docker contai">
+<meta property="og:updated_time" content="2016-07-28T03:36:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git使用">
-<meta name="twitter:description" content="查看远程分支加上-a参数可以查看远程分支，远程分支会用红色表示出来（如果你开了颜色支持的话）：
-12345678910$ git branch -a  master  remote  tungway  v1.52* zrong  remotes/origin/master  remotes/origin/tungway  remotes/origin/v1.52  remotes/origin/z">
+<meta name="twitter:title" content="Docker exec和attach的区别">
+<meta name="twitter:description" content="exec 可以开启多个终端实例， exec -i  /bin/bash，由此可见exec其实是在运行中的容器中执行一个命令，比如/bin/bash 来达到交互的目的。
+
+The docker exec command runs a new command in a running container
+
+attach 开启一个和正在运行的进程交互的终端，如果该进程结束，原docker contai">
     
 
     
@@ -98,71 +107,43 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-git使用" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-Docker-exec和attach的区别" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        git使用
+        Docker exec和attach的区别
         </h1>
     
 
             </header>
         
         <div class="article-subtitle">
-            <a href="/2016/04/26/git使用/" class="article-date">
-    <time datetime="2016-04-26T09:46:46.000Z" itemprop="datePublished">2016-04-26</time>
+            <a href="/2016/07/28/Docker-exec和attach的区别/" class="article-date">
+    <time datetime="2016-07-28T03:35:51.000Z" itemprop="datePublished">2016-07-28</time>
 </a>
             
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/">Go</a></li></ul>
 
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <h2 id="查看远程分支"><a href="#查看远程分支" class="headerlink" title="查看远程分支"></a>查看远程分支</h2><p>加上-a参数可以查看远程分支，远程分支会用红色表示出来（如果你开了颜色支持的话）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ git branch <span class="_">-a</span></div><div class="line">  master</div><div class="line">  remote</div><div class="line">  tungway</div><div class="line">  v1.52</div><div class="line">* zrong</div><div class="line">  remotes/origin/master</div><div class="line">  remotes/origin/tungway</div><div class="line">  remotes/origin/v1.52</div><div class="line">  remotes/origin/zrong</div></pre></td></tr></table></figure>
-<h2 id="删除远程分支和tag"><a href="#删除远程分支和tag" class="headerlink" title="删除远程分支和tag"></a>删除远程分支和tag</h2><p>在Git v1.7.0 之后，可以使用这种语法删除远程分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push origin --delete &lt;branchName&gt;</div></pre></td></tr></table></figure>
-<p>删除tag这么用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin --delete tag &lt;tagname&gt;</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>否则，可以使用这种语法，推送一个空分支到远程分支，其实就相当于删除远程分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin :&lt;branchName&gt;</div></pre></td></tr></table></figure>
-<p>这是删除tag的方法，推送一个空tag到远程tag：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git tag <span class="_">-d</span> &lt;tagname&gt;</div><div class="line">git push origin :refs/tags/&lt;tagname&gt;</div></pre></td></tr></table></figure>
-<p>两种语法作用完全相同。</p>
-<h2 id="删除不存在对应远程分支的本地分支"><a href="#删除不存在对应远程分支的本地分支" class="headerlink" title="删除不存在对应远程分支的本地分支"></a>删除不存在对应远程分支的本地分支</h2><p>假设这样一种情况：</p>
-<ol>
-<li>我创建了本地分支b1并pull到远程分支 <code>origin/b1</code>；</li>
-<li>其他人在本地使用fetch或pull创建了本地的b1分支；</li>
-<li>我删除了 <code>origin/b1</code> 远程分支；</li>
-<li>其他人再次执行fetch或者pull并不会删除这个他们本地的 <code>b1</code> 分支，运行 <code>git branch -a</code> 也不能看出这个branch被删除了，如何处理？</li>
+            <ol>
+<li>exec 可以开启多个终端实例， exec -i <container_name or="" id=""> /bin/bash，由此可见exec其实是在运行中的容器中执行一个命令，比如/bin/bash 来达到交互的目的。</container_name></li>
 </ol>
-<p>使用下面的代码查看b1的状态：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ git remote show origin</div><div class="line">* remote origin</div><div class="line">  Fetch URL: git@github.com:xxx/xxx.git</div><div class="line">  Push  URL: git@github.com:xxx/xxx.git</div><div class="line">  HEAD branch: master</div><div class="line">  Remote branches:</div><div class="line">    master                 tracked</div><div class="line">    refs/remotes/origin/b1 stale (use <span class="string">'git remote prune'</span> to remove)</div><div class="line">  Local branch configured <span class="keyword">for</span> <span class="string">'git pull'</span>:</div><div class="line">    master merges with remote master</div><div class="line">  Local ref configured <span class="keyword">for</span> <span class="string">'git push'</span>:</div><div class="line">    master pushes to master (up to date)</div></pre></td></tr></table></figure>
-<p>这时候能够看到b1是stale的，使用 <code>git remote prune origin</code> 可以将其从本地版本库中去除。</p>
-<p>更简单的方法是使用这个命令，它在fetch之后删除掉没有与远程分支对应的本地分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git fetch -p</div></pre></td></tr></table></figure>
-<h2 id="重命名远程分支"><a href="#重命名远程分支" class="headerlink" title="重命名远程分支"></a>重命名远程分支</h2><p>在git中重命名远程分支，其实就是先删除远程分支，然后重命名本地分支，再重新提交一个远程分支。</p>
-<p>例如下面的例子中，我需要把 devel 分支重命名为 develop 分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ git branch -av</div><div class="line">* devel                             752bb84 Merge pull request <span class="comment">#158 from Gwill/devel</span></div><div class="line">  master                            53b27b8 Merge pull request <span class="comment">#138 from tdlrobin/master</span></div><div class="line">  zrong                             2ae98d8 modify CCFileUtils, <span class="built_in">export</span> getFileData</div><div class="line">  remotes/origin/HEAD               -&gt; origin/master</div><div class="line">  remotes/origin/add_build_script   d4a8c4f Merge branch <span class="string">'master'</span> into add_build_script</div><div class="line">  remotes/origin/devel              752bb84 Merge pull request <span class="comment">#158 from Gwill/devel</span></div><div class="line">  remotes/origin/devel_qt51         62208f1 update .gitignore</div><div class="line">  remotes/origin/master             53b27b8 Merge pull request <span class="comment">#138 from tdlrobin/master</span></div><div class="line">  remotes/origin/zrong              2ae98d8 modify CCFileUtils, <span class="built_in">export</span> getFileData</div></pre></td></tr></table></figure>
-<p>删除远程分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git push --delete origin devel</div><div class="line">To git@github.com:zrong/quick-cocos2d-x.git</div><div class="line"> - [deleted]         devel</div></pre></td></tr></table></figure>
-<p>重命名本地分支： </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -m devel develop</div></pre></td></tr></table></figure>
-<p>推送本地分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ git push origin develop</div><div class="line">Counting objects: 92, done.</div><div class="line">Delta compression using up to 4 threads.</div><div class="line">Compressing objects: 100% (48/48), done.</div><div class="line">Writing objects: 100% (58/58), 1.38 MiB, done.</div><div class="line">Total 58 (delta 34), reused 12 (delta 5)</div><div class="line">To git@github.com:zrong/quick-cocos2d-x.git</div><div class="line"> * [new branch]      develop -&gt; develop</div></pre></td></tr></table></figure>
-<p>然而，在 github 上操作的时候，我在删除远程分支时碰到这个错误：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ git push --delete origin devel</div><div class="line">remote: error: refusing to delete the current branch: refs/heads/devel</div><div class="line">To git@github.com:zrong/quick-cocos2d-x.git</div><div class="line"> ! [remote rejected] devel (deletion of the current branch prohibited)</div><div class="line">error: failed to push some refs to <span class="string">'git@github.com:zrong/quick-cocos2d-x.git'</span></div></pre></td></tr></table></figure>
-<p>这是由于在 github 中，devel 是项目的默认分支。要解决此问题，这样操作：</p>
+<p>The docker exec command runs a new command in a running container</p>
 <ol>
-<li>进入 github 中该项目的 Settings 页面；</li>
-<li>设置 Default Branch 为其他的分支（例如 master）；</li>
-<li>重新执行删除远程分支命令。</li>
+<li>attach 开启一个和正在运行的进程交互的终端，如果该进程结束，原docker container的进程也会结束。attach只可以用在以 /bin/bash 命令启动的容器， 比如 docker run ubuntu /bin/bash</li>
 </ol>
-<h2 id="把本地tag推送到远程"><a href="#把本地tag推送到远程" class="headerlink" title="把本地tag推送到远程"></a>把本地tag推送到远程</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push --tags</div></pre></td></tr></table></figure>
-<h2 id="获取远程tag"><a href="#获取远程tag" class="headerlink" title="获取远程tag"></a>获取远程tag</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git fetch origin tag &lt;tagname&gt;</div></pre></td></tr></table></figure>
+<p>The docker attach command allows you to attach to a running container using the container’s ID or name, either to view its ongoing output or to control it interactively.</p>
+<p>You can attach to the same contained process multiple times simultaneously, screen sharing style, or quickly view the progress of your detached process.</p>
+<p>To stop a container, use CTRL-c. This key sequence sends SIGKILL to the container. If –sig-proxy is true (the default),CTRL-c sends a SIGINT to the container. You can detach from a container and leave it running using the CTRL-p CTRL-q key sequence.</p>
+<p>因此实质上两个命令不是同一个东西，只是对于以 /bin/bash 命令启动的容器，二者可以达到相同的效果</p>
+<p><a href="http://stackoverflow.com/questions/30960686/difference-between-docker-attach-and-docker-exec" target="_blank" rel="external">http://stackoverflow.com/questions/30960686/difference-between-docker-attach-and-docker-exec</a><br><a href="http://askubuntu.com/questions/505506/how-to-get-bash-or-ssh-into-a-running-container-in-background-mode/507009#507009" target="_blank" rel="external">http://askubuntu.com/questions/505506/how-to-get-bash-or-ssh-into-a-running-container-in-background-mode/507009#507009</a></p>
+<p>(docker &gt;= 1.3) If we use docker attach, we can use only one instance of shell.<br>So if we want open new terminal with new instance of container’s shell, we just need run docker exec</p>
+<p>if the docker container was started using /bin/bash command, you can access it using attach, if not then you need to execute the command to create a bash instance inside the container using exec.</p>
+
         </div>
         <footer class="article-footer">
             
@@ -211,7 +192,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2016/04/26/git使用/" data-title="git使用" data-url="http://yoursite.com/2016/04/26/git使用/"></div>
+    <div class="ds-thread" data-thread-key="2016/07/28/Docker-exec和attach的区别/" data-title="Docker exec和attach的区别" data-url="http://yoursite.com/2016/07/28/Docker-exec和attach的区别/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
@@ -299,20 +280,10 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         
 <nav id="article-nav">
     
-        <a href="/2016/04/29/SOA的基本概念和原理/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            SOA的基本概念和原理
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2016/04/20/Kafka为什么如此的快/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/07/28/如何进入正在执行的-docker-container/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">Kafka为什么如此的快</p>
+        <p class="article-nav-title">如何进入正在执行的 docker container</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     

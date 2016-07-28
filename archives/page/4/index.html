@@ -112,6 +112,106 @@
             <p class="category">
             
             </p>
+            <p class="date"><time datetime="2016-03-16T14:54:07.000Z" itemprop="datePublished">2016-03-16</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2016/03/16/CDH-5-X-CentOS安装/">CDH_5.X_CentOS安装</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            概述Cloudera企业级数据中心的安装主要分为4个步骤：
+
+集群服务器配置，包括安装操作系统、关闭防火墙、同步服务器时钟等；
+安装Cloudera管理器；
+安装CDH集群；
+集群完整性检查，包括HDFS文件系统、MapReduce、Hive等是否可以正常运行。
+
+准备工作
+集群规模5个节点
+1234567Cloudera管理器节点:    172.31.46.113CDH节点:    172.3
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <p class="category">
+            
+            </p>
+            <p class="date"><time datetime="2016-03-16T14:47:54.000Z" itemprop="datePublished">2016-03-16</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2016/03/16/cloudera相关说明/">cloudera相关说明</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            相关目录
+/var/log/cloudera-scm-installer : 安装日志目录。
+/var/log/* : 相关日志文件（相关服务的及CM的）。
+/usr/share/cmf/ : 程序安装目录。
+/usr/lib64/cmf/ : Agent程序代码。
+/var/lib/cloudera-scm-server-db/data : 内嵌数据库目录。
+/usr/bin/postgres 
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <p class="category">
+            
+            </p>
+            <p class="date"><time datetime="2016-03-14T05:46:34.000Z" itemprop="datePublished">2016-03-14</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2016/03/14/cloudera-scm-server-dead-but-pid-file-exists/">cloudera-scm-server dead but pid file exists</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            问题: 系统磁盘或者内存问题导致cloudera server挂掉，启动异常。进程已死，pid文件存在。1234# service cloudera-scm-server start$&gt; Starting cloudera-scm-server:                              [  OK  ]# service cloudera-scm-server status
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <p class="category">
+            
+            </p>
             <p class="date"><time datetime="2016-03-02T03:27:46.000Z" itemprop="datePublished">2016-03-02</time></p>
         </div>
         
@@ -128,10 +228,14 @@
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -156,14 +260,10 @@
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -188,10 +288,14 @@
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -217,14 +321,10 @@
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -255,10 +355,14 @@
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -284,14 +388,10 @@
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -312,100 +412,6 @@
         <p class="article-excerpt">
             
 首先要排查网络问题和防火墙的问题这个是必须的， 你要是MySQL的服务器都连不上，那还访问什么？ 怎么检查呢？ping 192.168.0.11，如果ping 的通的话， 再去检查一下 3306端口是不是被防火墙给挡掉了，telnet 192.168.0.11 3306 或者干脆把防火墙关掉，service iptables stop (Redhat) 或 ufw disable(ubuntu)
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-02-25T07:24:06.000Z" itemprop="datePublished">2016-02-25</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/02/25/LMAX-Distruptor/">LMAX Distruptor</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            LAMAX Distruptor是一个高性能，低延迟的producer-consumer框架。到底有多吊呢，可以参考Github上给出的性能测试结果：https://github.com/LMAX-Exchange/disruptor/wiki/Performance-Results
-其核心就是RingBuffer这个东东, 感兴趣的同学可以参考下面的链接了解更多:http://mechaniti
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-02-25T05:31:18.000Z" itemprop="datePublished">2016-02-25</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/02/25/P-Unit结合JUnit做并发性能测试/">P-Unit结合JUnit做并发性能测试</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            JUnit大家一定都很熟悉了，这里就不做多的介绍。我们重点说一下p-unit的应用。p-unit是一款开源的测试框架，支持在多线程中跑同样的测试用例.比如你有如下JUnit的测试代码:12345678910public class sampleTest &#123;    @Test    public void test1() &#123;      //some logic and asser
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-02-24T16:14:52.000Z" itemprop="datePublished">2016-02-25</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/02/25/Hexo + Github搭建自己的博客/">Hexo + Github搭建自己的博客</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            之前试过wordpress，博客园等，都觉得不是很爽
-
-wordpress.com国内被墙，wordpress.org又需要自己部署
-博客园个人感觉又比较丑。。。。
-其次基于程序猿喜欢折腾的本性，hexo + github感觉更高大上一些，其次可以方便的在github上放一些自己的代码，作为以后做项目的一些参考。
-
-前期准备
-安装git client 1brew install git
-创建Gih
         </p>
     </div>
 </article>
@@ -479,6 +485,33 @@ wordpress.com国内被墙，wordpress.org又需要自己部署
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/07/28/Docker-exec和attach的区别/" class="title">Docker exec和attach的区别</a></p>
+                            <p class="item-date"><time datetime="2016-07-28T03:35:51.000Z" itemprop="datePublished">2016-07-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/07/28/如何进入正在执行的-docker-container/" class="title">如何进入正在执行的 docker container</a></p>
+                            <p class="item-date"><time datetime="2016-07-28T03:29:39.000Z" itemprop="datePublished">2016-07-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/07/28/Docker-基本命令/" class="title">Docker 基本命令</a></p>
+                            <p class="item-date"><time datetime="2016-07-28T03:26:05.000Z" itemprop="datePublished">2016-07-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
                             <p class="item-title"><a href="/2016/07/26/存储密码/" class="title">存储密码</a></p>
                             <p class="item-date"><time datetime="2016-07-26T01:47:17.000Z" itemprop="datePublished">2016-07-26</time></p>
                         </div>
@@ -490,33 +523,6 @@ wordpress.com国内被墙，wordpress.org又需要自己部署
                             <p class="item-category"></p>
                             <p class="item-title"><a href="/2016/07/14/Go-Json/" class="title">Go-Json</a></p>
                             <p class="item-date"><time datetime="2016-07-14T02:15:25.000Z" itemprop="datePublished">2016-07-14</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/07/11/Go-Vim-IDE/" class="title">Go-Vim-IDE</a></p>
-                            <p class="item-date"><time datetime="2016-07-11T09:50:30.000Z" itemprop="datePublished">2016-07-11</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/06/03/Go基于Sublime的开发环境搭建/" class="title">Go基于Sublime的开发环境搭建</a></p>
-                            <p class="item-date"><time datetime="2016-06-03T03:29:05.000Z" itemprop="datePublished">2016-06-03</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/06/02/Go性能优化技巧/" class="title">Go性能优化技巧</a></p>
-                            <p class="item-date"><time datetime="2016-06-02T10:12:09.000Z" itemprop="datePublished">2016-06-02</time></p>
                         </div>
                     </li>
                 
@@ -532,7 +538,7 @@ wordpress.com国内被墙，wordpress.org又需要自己部署
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">9</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">9</span></li></ul>
         </div>
     </div>
 
@@ -542,7 +548,7 @@ wordpress.com国内被墙，wordpress.org又需要自己部署
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据，分布式/">大数据，分布式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a><span class="tag-list-count">2</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据，分布式/">大数据，分布式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a><span class="tag-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -552,7 +558,7 @@ wordpress.com国内被墙，wordpress.org又需要自己部署
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/分布式/" style="font-size: 12.5px;">分布式</a> <a href="/tags/大数据/" style="font-size: 17.5px;">大数据</a> <a href="/tags/大数据，分布式/" style="font-size: 10px;">大数据，分布式</a> <a href="/tags/数据库/" style="font-size: 12.5px;">数据库</a> <a href="/tags/机器学习/" style="font-size: 12.5px;">机器学习</a> <a href="/tags/杂/" style="font-size: 12.5px;">杂</a>
+            <a href="/tags/Go/" style="font-size: 17.5px;">Go</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/分布式/" style="font-size: 12.5px;">分布式</a> <a href="/tags/大数据/" style="font-size: 15px;">大数据</a> <a href="/tags/大数据，分布式/" style="font-size: 10px;">大数据，分布式</a> <a href="/tags/数据库/" style="font-size: 12.5px;">数据库</a> <a href="/tags/机器学习/" style="font-size: 12.5px;">机器学习</a> <a href="/tags/杂/" style="font-size: 12.5px;">杂</a>
         </div>
     </div>
 

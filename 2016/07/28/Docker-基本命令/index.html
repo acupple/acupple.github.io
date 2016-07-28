@@ -3,24 +3,30 @@
 <head>
     <meta charset="utf-8">
     
-    <title>git使用 | Acupple&#39;s Blog</title>
+    <title>Docker 基本命令 | Acupple&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="Java" />
+        <meta name="keywords" content="Go" />
     
-    <meta name="description" content="查看远程分支加上-a参数可以查看远程分支，远程分支会用红色表示出来（如果你开了颜色支持的话）：
-12345678910$ git branch -a  master  remote  tungway  v1.52* zrong  remotes/origin/master  remotes/origin/tungway  remotes/origin/v1.52  remotes/origin/z">
+    <meta name="description" content="首先，让我们通过下面的命令来检查Docker的安装是否正确：1~$ docker info
+如果没有找到这条命令，则表示Docker安装错误。
+到这一步Docker里还没有镜像或是容器。所以，让我们通过使用命令预先构建的镜像来创建来一个：1~$ docker pull ubuntu
+下一步我们将运行一个“Hello World”的例子，我们暂且叫它“Hello Docker”吧。12~$ dock">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git使用">
-<meta property="og:url" content="http://yoursite.com/2016/04/26/git使用/index.html">
+<meta property="og:title" content="Docker 基本命令">
+<meta property="og:url" content="http://yoursite.com/2016/07/28/Docker-基本命令/index.html">
 <meta property="og:site_name" content="Acupple's Blog">
-<meta property="og:description" content="查看远程分支加上-a参数可以查看远程分支，远程分支会用红色表示出来（如果你开了颜色支持的话）：
-12345678910$ git branch -a  master  remote  tungway  v1.52* zrong  remotes/origin/master  remotes/origin/tungway  remotes/origin/v1.52  remotes/origin/z">
-<meta property="og:updated_time" content="2016-07-09T10:56:21.000Z">
+<meta property="og:description" content="首先，让我们通过下面的命令来检查Docker的安装是否正确：1~$ docker info
+如果没有找到这条命令，则表示Docker安装错误。
+到这一步Docker里还没有镜像或是容器。所以，让我们通过使用命令预先构建的镜像来创建来一个：1~$ docker pull ubuntu
+下一步我们将运行一个“Hello World”的例子，我们暂且叫它“Hello Docker”吧。12~$ dock">
+<meta property="og:updated_time" content="2016-07-28T03:27:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git使用">
-<meta name="twitter:description" content="查看远程分支加上-a参数可以查看远程分支，远程分支会用红色表示出来（如果你开了颜色支持的话）：
-12345678910$ git branch -a  master  remote  tungway  v1.52* zrong  remotes/origin/master  remotes/origin/tungway  remotes/origin/v1.52  remotes/origin/z">
+<meta name="twitter:title" content="Docker 基本命令">
+<meta name="twitter:description" content="首先，让我们通过下面的命令来检查Docker的安装是否正确：1~$ docker info
+如果没有找到这条命令，则表示Docker安装错误。
+到这一步Docker里还没有镜像或是容器。所以，让我们通过使用命令预先构建的镜像来创建来一个：1~$ docker pull ubuntu
+下一步我们将运行一个“Hello World”的例子，我们暂且叫它“Hello Docker”吧。12~$ dock">
     
 
     
@@ -98,71 +104,46 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-git使用" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-Docker-基本命令" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        git使用
+        Docker 基本命令
         </h1>
     
 
             </header>
         
         <div class="article-subtitle">
-            <a href="/2016/04/26/git使用/" class="article-date">
-    <time datetime="2016-04-26T09:46:46.000Z" itemprop="datePublished">2016-04-26</time>
+            <a href="/2016/07/28/Docker-基本命令/" class="article-date">
+    <time datetime="2016-07-28T03:26:05.000Z" itemprop="datePublished">2016-07-28</time>
 </a>
             
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/">Go</a></li></ul>
 
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <h2 id="查看远程分支"><a href="#查看远程分支" class="headerlink" title="查看远程分支"></a>查看远程分支</h2><p>加上-a参数可以查看远程分支，远程分支会用红色表示出来（如果你开了颜色支持的话）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ git branch <span class="_">-a</span></div><div class="line">  master</div><div class="line">  remote</div><div class="line">  tungway</div><div class="line">  v1.52</div><div class="line">* zrong</div><div class="line">  remotes/origin/master</div><div class="line">  remotes/origin/tungway</div><div class="line">  remotes/origin/v1.52</div><div class="line">  remotes/origin/zrong</div></pre></td></tr></table></figure>
-<h2 id="删除远程分支和tag"><a href="#删除远程分支和tag" class="headerlink" title="删除远程分支和tag"></a>删除远程分支和tag</h2><p>在Git v1.7.0 之后，可以使用这种语法删除远程分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push origin --delete &lt;branchName&gt;</div></pre></td></tr></table></figure>
-<p>删除tag这么用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin --delete tag &lt;tagname&gt;</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>否则，可以使用这种语法，推送一个空分支到远程分支，其实就相当于删除远程分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin :&lt;branchName&gt;</div></pre></td></tr></table></figure>
-<p>这是删除tag的方法，推送一个空tag到远程tag：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git tag <span class="_">-d</span> &lt;tagname&gt;</div><div class="line">git push origin :refs/tags/&lt;tagname&gt;</div></pre></td></tr></table></figure>
-<p>两种语法作用完全相同。</p>
-<h2 id="删除不存在对应远程分支的本地分支"><a href="#删除不存在对应远程分支的本地分支" class="headerlink" title="删除不存在对应远程分支的本地分支"></a>删除不存在对应远程分支的本地分支</h2><p>假设这样一种情况：</p>
-<ol>
-<li>我创建了本地分支b1并pull到远程分支 <code>origin/b1</code>；</li>
-<li>其他人在本地使用fetch或pull创建了本地的b1分支；</li>
-<li>我删除了 <code>origin/b1</code> 远程分支；</li>
-<li>其他人再次执行fetch或者pull并不会删除这个他们本地的 <code>b1</code> 分支，运行 <code>git branch -a</code> 也不能看出这个branch被删除了，如何处理？</li>
-</ol>
-<p>使用下面的代码查看b1的状态：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ git remote show origin</div><div class="line">* remote origin</div><div class="line">  Fetch URL: git@github.com:xxx/xxx.git</div><div class="line">  Push  URL: git@github.com:xxx/xxx.git</div><div class="line">  HEAD branch: master</div><div class="line">  Remote branches:</div><div class="line">    master                 tracked</div><div class="line">    refs/remotes/origin/b1 stale (use <span class="string">'git remote prune'</span> to remove)</div><div class="line">  Local branch configured <span class="keyword">for</span> <span class="string">'git pull'</span>:</div><div class="line">    master merges with remote master</div><div class="line">  Local ref configured <span class="keyword">for</span> <span class="string">'git push'</span>:</div><div class="line">    master pushes to master (up to date)</div></pre></td></tr></table></figure>
-<p>这时候能够看到b1是stale的，使用 <code>git remote prune origin</code> 可以将其从本地版本库中去除。</p>
-<p>更简单的方法是使用这个命令，它在fetch之后删除掉没有与远程分支对应的本地分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git fetch -p</div></pre></td></tr></table></figure>
-<h2 id="重命名远程分支"><a href="#重命名远程分支" class="headerlink" title="重命名远程分支"></a>重命名远程分支</h2><p>在git中重命名远程分支，其实就是先删除远程分支，然后重命名本地分支，再重新提交一个远程分支。</p>
-<p>例如下面的例子中，我需要把 devel 分支重命名为 develop 分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ git branch -av</div><div class="line">* devel                             752bb84 Merge pull request <span class="comment">#158 from Gwill/devel</span></div><div class="line">  master                            53b27b8 Merge pull request <span class="comment">#138 from tdlrobin/master</span></div><div class="line">  zrong                             2ae98d8 modify CCFileUtils, <span class="built_in">export</span> getFileData</div><div class="line">  remotes/origin/HEAD               -&gt; origin/master</div><div class="line">  remotes/origin/add_build_script   d4a8c4f Merge branch <span class="string">'master'</span> into add_build_script</div><div class="line">  remotes/origin/devel              752bb84 Merge pull request <span class="comment">#158 from Gwill/devel</span></div><div class="line">  remotes/origin/devel_qt51         62208f1 update .gitignore</div><div class="line">  remotes/origin/master             53b27b8 Merge pull request <span class="comment">#138 from tdlrobin/master</span></div><div class="line">  remotes/origin/zrong              2ae98d8 modify CCFileUtils, <span class="built_in">export</span> getFileData</div></pre></td></tr></table></figure>
-<p>删除远程分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git push --delete origin devel</div><div class="line">To git@github.com:zrong/quick-cocos2d-x.git</div><div class="line"> - [deleted]         devel</div></pre></td></tr></table></figure>
-<p>重命名本地分支： </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -m devel develop</div></pre></td></tr></table></figure>
-<p>推送本地分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ git push origin develop</div><div class="line">Counting objects: 92, done.</div><div class="line">Delta compression using up to 4 threads.</div><div class="line">Compressing objects: 100% (48/48), done.</div><div class="line">Writing objects: 100% (58/58), 1.38 MiB, done.</div><div class="line">Total 58 (delta 34), reused 12 (delta 5)</div><div class="line">To git@github.com:zrong/quick-cocos2d-x.git</div><div class="line"> * [new branch]      develop -&gt; develop</div></pre></td></tr></table></figure>
-<p>然而，在 github 上操作的时候，我在删除远程分支时碰到这个错误：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ git push --delete origin devel</div><div class="line">remote: error: refusing to delete the current branch: refs/heads/devel</div><div class="line">To git@github.com:zrong/quick-cocos2d-x.git</div><div class="line"> ! [remote rejected] devel (deletion of the current branch prohibited)</div><div class="line">error: failed to push some refs to <span class="string">'git@github.com:zrong/quick-cocos2d-x.git'</span></div></pre></td></tr></table></figure>
-<p>这是由于在 github 中，devel 是项目的默认分支。要解决此问题，这样操作：</p>
-<ol>
-<li>进入 github 中该项目的 Settings 页面；</li>
-<li>设置 Default Branch 为其他的分支（例如 master）；</li>
-<li>重新执行删除远程分支命令。</li>
-</ol>
-<h2 id="把本地tag推送到远程"><a href="#把本地tag推送到远程" class="headerlink" title="把本地tag推送到远程"></a>把本地tag推送到远程</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push --tags</div></pre></td></tr></table></figure>
-<h2 id="获取远程tag"><a href="#获取远程tag" class="headerlink" title="获取远程tag"></a>获取远程tag</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git fetch origin tag &lt;tagname&gt;</div></pre></td></tr></table></figure>
+            <p>首先，让我们通过下面的命令来检查Docker的安装是否正确：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~$ docker info</div></pre></td></tr></table></figure></p>
+<p>如果没有找到这条命令，则表示Docker安装错误。</p>
+<p>到这一步Docker里还没有镜像或是容器。所以，让我们通过使用命令预先构建的镜像来创建来一个：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~$ docker pull ubuntu</div></pre></td></tr></table></figure></p>
+<p>下一步我们将运行一个“Hello World”的例子，我们暂且叫它“Hello Docker”吧。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">~$ docker run ubuntu /bin/echo Hello Docker</div><div class="line">Hello Docker</div></pre></td></tr></table></figure></p>
+<p>现在，让我们以后台进程的方式运行hello docker：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">~$ sample_job=$(docker run -d ubuntu /bin/sh -c &quot;while true; do echo Docker; sleep 1; done&quot;)</div><div class="line">~$ docker logs $sample_job</div><div class="line">Docker</div><div class="line">Docker</div><div class="line">Docker</div></pre></td></tr></table></figure></p>
+<p>sample_job命令会隔一秒打印一次Docker，使用docker logs可以查看输出的结果。如果没有给这个job起名字，那这个job就会被分配一个id，以后使用命令例如docker logs查看日志就会变得比较麻烦。</p>
+<p>所有Docker命令可以用以下命令查看：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">~$ docker --help</div><div class="line">~$ docker run --help</div></pre></td></tr></table></figure></p>
+<p>名为sample_job的容器，可以使用以下命令来停止：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~$ docker stop $sample_job</div></pre></td></tr></table></figure></p>
+<p>使用以下命令可以重新启动该容器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~$ docker restart $sample_job</div></pre></td></tr></table></figure></p>
+<p>如果要完全移除容器，需要先将该容器停止，然后才能移除。像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">~$ docker stop $sample_job</div><div class="line">~$ docker rm $sample_job</div></pre></td></tr></table></figure></p>
+<p>将容器的状态保存为镜像，使用以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~$ docker commit $sample_job joooob</div></pre></td></tr></table></figure></p>
+<p>注意，镜像名称只能取字符[a-z]和数字[0-9]。</p>
+<p>现在，你就可以使用以下命令查看所有镜像的列表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~$ docker images</div></pre></td></tr></table></figure></p>
+<p>在registry中的镜像可以使用以下命令查找到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~$ docker search (image-name)</div></pre></td></tr></table></figure></p>
+<p>查看镜像的历史版本可以执行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~$ docker history (user)/(repo-name)</div></pre></td></tr></table></figure></p>
+<p>最后，使用以下命令将镜像推送到registry：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~$ docker push (user)/(repo-name)</div></pre></td></tr></table></figure></p>
+<p>非常重要的一点是，我们必须要知道存储库不是根存储库，它应该使用此格式(user)/(repo_name)。</p>
+
         </div>
         <footer class="article-footer">
             
@@ -211,7 +192,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2016/04/26/git使用/" data-title="git使用" data-url="http://yoursite.com/2016/04/26/git使用/"></div>
+    <div class="ds-thread" data-thread-key="2016/07/28/Docker-基本命令/" data-title="Docker 基本命令" data-url="http://yoursite.com/2016/07/28/Docker-基本命令/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
@@ -299,20 +280,20 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         
 <nav id="article-nav">
     
-        <a href="/2016/04/29/SOA的基本概念和原理/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2016/07/28/如何进入正在执行的-docker-container/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
-            SOA的基本概念和原理
+            如何进入正在执行的 docker container
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
     
-        <a href="/2016/04/20/Kafka为什么如此的快/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/07/26/存储密码/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">Kafka为什么如此的快</p>
+        <p class="article-nav-title">存储密码</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     

@@ -3,24 +3,30 @@
 <head>
     <meta charset="utf-8">
     
-    <title>git使用 | Acupple&#39;s Blog</title>
+    <title>如何进入正在执行的 docker container | Acupple&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="Java" />
+        <meta name="keywords" content="Go" />
     
-    <meta name="description" content="查看远程分支加上-a参数可以查看远程分支，远程分支会用红色表示出来（如果你开了颜色支持的话）：
-12345678910$ git branch -a  master  remote  tungway  v1.52* zrong  remotes/origin/master  remotes/origin/tungway  remotes/origin/v1.52  remotes/origin/z">
+    <meta name="description" content="当一个container起来之后，我们有时候希望能进入container内部去看看，比如查查日志，执行些操作等。目前有几种方式可以实现：
+1. docker attach这个是官方提供的一种方法。
+测试，首先启动一个container:12$ docker run -i -t ubuntu bashroot@4556f5ad6067:/#
+不要退出，打开另一个终端：123456$ docker p">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git使用">
-<meta property="og:url" content="http://yoursite.com/2016/04/26/git使用/index.html">
+<meta property="og:title" content="如何进入正在执行的 docker container">
+<meta property="og:url" content="http://yoursite.com/2016/07/28/如何进入正在执行的-docker-container/index.html">
 <meta property="og:site_name" content="Acupple's Blog">
-<meta property="og:description" content="查看远程分支加上-a参数可以查看远程分支，远程分支会用红色表示出来（如果你开了颜色支持的话）：
-12345678910$ git branch -a  master  remote  tungway  v1.52* zrong  remotes/origin/master  remotes/origin/tungway  remotes/origin/v1.52  remotes/origin/z">
-<meta property="og:updated_time" content="2016-07-09T10:56:21.000Z">
+<meta property="og:description" content="当一个container起来之后，我们有时候希望能进入container内部去看看，比如查查日志，执行些操作等。目前有几种方式可以实现：
+1. docker attach这个是官方提供的一种方法。
+测试，首先启动一个container:12$ docker run -i -t ubuntu bashroot@4556f5ad6067:/#
+不要退出，打开另一个终端：123456$ docker p">
+<meta property="og:updated_time" content="2016-07-28T03:35:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git使用">
-<meta name="twitter:description" content="查看远程分支加上-a参数可以查看远程分支，远程分支会用红色表示出来（如果你开了颜色支持的话）：
-12345678910$ git branch -a  master  remote  tungway  v1.52* zrong  remotes/origin/master  remotes/origin/tungway  remotes/origin/v1.52  remotes/origin/z">
+<meta name="twitter:title" content="如何进入正在执行的 docker container">
+<meta name="twitter:description" content="当一个container起来之后，我们有时候希望能进入container内部去看看，比如查查日志，执行些操作等。目前有几种方式可以实现：
+1. docker attach这个是官方提供的一种方法。
+测试，首先启动一个container:12$ docker run -i -t ubuntu bashroot@4556f5ad6067:/#
+不要退出，打开另一个终端：123456$ docker p">
     
 
     
@@ -98,71 +104,59 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-git使用" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-如何进入正在执行的-docker-container" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        git使用
+        如何进入正在执行的 docker container
         </h1>
     
 
             </header>
         
         <div class="article-subtitle">
-            <a href="/2016/04/26/git使用/" class="article-date">
-    <time datetime="2016-04-26T09:46:46.000Z" itemprop="datePublished">2016-04-26</time>
+            <a href="/2016/07/28/如何进入正在执行的-docker-container/" class="article-date">
+    <time datetime="2016-07-28T03:29:39.000Z" itemprop="datePublished">2016-07-28</time>
 </a>
             
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/">Go</a></li></ul>
 
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <h2 id="查看远程分支"><a href="#查看远程分支" class="headerlink" title="查看远程分支"></a>查看远程分支</h2><p>加上-a参数可以查看远程分支，远程分支会用红色表示出来（如果你开了颜色支持的话）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ git branch <span class="_">-a</span></div><div class="line">  master</div><div class="line">  remote</div><div class="line">  tungway</div><div class="line">  v1.52</div><div class="line">* zrong</div><div class="line">  remotes/origin/master</div><div class="line">  remotes/origin/tungway</div><div class="line">  remotes/origin/v1.52</div><div class="line">  remotes/origin/zrong</div></pre></td></tr></table></figure>
-<h2 id="删除远程分支和tag"><a href="#删除远程分支和tag" class="headerlink" title="删除远程分支和tag"></a>删除远程分支和tag</h2><p>在Git v1.7.0 之后，可以使用这种语法删除远程分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push origin --delete &lt;branchName&gt;</div></pre></td></tr></table></figure>
-<p>删除tag这么用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin --delete tag &lt;tagname&gt;</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>否则，可以使用这种语法，推送一个空分支到远程分支，其实就相当于删除远程分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin :&lt;branchName&gt;</div></pre></td></tr></table></figure>
-<p>这是删除tag的方法，推送一个空tag到远程tag：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git tag <span class="_">-d</span> &lt;tagname&gt;</div><div class="line">git push origin :refs/tags/&lt;tagname&gt;</div></pre></td></tr></table></figure>
-<p>两种语法作用完全相同。</p>
-<h2 id="删除不存在对应远程分支的本地分支"><a href="#删除不存在对应远程分支的本地分支" class="headerlink" title="删除不存在对应远程分支的本地分支"></a>删除不存在对应远程分支的本地分支</h2><p>假设这样一种情况：</p>
-<ol>
-<li>我创建了本地分支b1并pull到远程分支 <code>origin/b1</code>；</li>
-<li>其他人在本地使用fetch或pull创建了本地的b1分支；</li>
-<li>我删除了 <code>origin/b1</code> 远程分支；</li>
-<li>其他人再次执行fetch或者pull并不会删除这个他们本地的 <code>b1</code> 分支，运行 <code>git branch -a</code> 也不能看出这个branch被删除了，如何处理？</li>
-</ol>
-<p>使用下面的代码查看b1的状态：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ git remote show origin</div><div class="line">* remote origin</div><div class="line">  Fetch URL: git@github.com:xxx/xxx.git</div><div class="line">  Push  URL: git@github.com:xxx/xxx.git</div><div class="line">  HEAD branch: master</div><div class="line">  Remote branches:</div><div class="line">    master                 tracked</div><div class="line">    refs/remotes/origin/b1 stale (use <span class="string">'git remote prune'</span> to remove)</div><div class="line">  Local branch configured <span class="keyword">for</span> <span class="string">'git pull'</span>:</div><div class="line">    master merges with remote master</div><div class="line">  Local ref configured <span class="keyword">for</span> <span class="string">'git push'</span>:</div><div class="line">    master pushes to master (up to date)</div></pre></td></tr></table></figure>
-<p>这时候能够看到b1是stale的，使用 <code>git remote prune origin</code> 可以将其从本地版本库中去除。</p>
-<p>更简单的方法是使用这个命令，它在fetch之后删除掉没有与远程分支对应的本地分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git fetch -p</div></pre></td></tr></table></figure>
-<h2 id="重命名远程分支"><a href="#重命名远程分支" class="headerlink" title="重命名远程分支"></a>重命名远程分支</h2><p>在git中重命名远程分支，其实就是先删除远程分支，然后重命名本地分支，再重新提交一个远程分支。</p>
-<p>例如下面的例子中，我需要把 devel 分支重命名为 develop 分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ git branch -av</div><div class="line">* devel                             752bb84 Merge pull request <span class="comment">#158 from Gwill/devel</span></div><div class="line">  master                            53b27b8 Merge pull request <span class="comment">#138 from tdlrobin/master</span></div><div class="line">  zrong                             2ae98d8 modify CCFileUtils, <span class="built_in">export</span> getFileData</div><div class="line">  remotes/origin/HEAD               -&gt; origin/master</div><div class="line">  remotes/origin/add_build_script   d4a8c4f Merge branch <span class="string">'master'</span> into add_build_script</div><div class="line">  remotes/origin/devel              752bb84 Merge pull request <span class="comment">#158 from Gwill/devel</span></div><div class="line">  remotes/origin/devel_qt51         62208f1 update .gitignore</div><div class="line">  remotes/origin/master             53b27b8 Merge pull request <span class="comment">#138 from tdlrobin/master</span></div><div class="line">  remotes/origin/zrong              2ae98d8 modify CCFileUtils, <span class="built_in">export</span> getFileData</div></pre></td></tr></table></figure>
-<p>删除远程分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git push --delete origin devel</div><div class="line">To git@github.com:zrong/quick-cocos2d-x.git</div><div class="line"> - [deleted]         devel</div></pre></td></tr></table></figure>
-<p>重命名本地分支： </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -m devel develop</div></pre></td></tr></table></figure>
-<p>推送本地分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ git push origin develop</div><div class="line">Counting objects: 92, done.</div><div class="line">Delta compression using up to 4 threads.</div><div class="line">Compressing objects: 100% (48/48), done.</div><div class="line">Writing objects: 100% (58/58), 1.38 MiB, done.</div><div class="line">Total 58 (delta 34), reused 12 (delta 5)</div><div class="line">To git@github.com:zrong/quick-cocos2d-x.git</div><div class="line"> * [new branch]      develop -&gt; develop</div></pre></td></tr></table></figure>
-<p>然而，在 github 上操作的时候，我在删除远程分支时碰到这个错误：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ git push --delete origin devel</div><div class="line">remote: error: refusing to delete the current branch: refs/heads/devel</div><div class="line">To git@github.com:zrong/quick-cocos2d-x.git</div><div class="line"> ! [remote rejected] devel (deletion of the current branch prohibited)</div><div class="line">error: failed to push some refs to <span class="string">'git@github.com:zrong/quick-cocos2d-x.git'</span></div></pre></td></tr></table></figure>
-<p>这是由于在 github 中，devel 是项目的默认分支。要解决此问题，这样操作：</p>
-<ol>
-<li>进入 github 中该项目的 Settings 页面；</li>
-<li>设置 Default Branch 为其他的分支（例如 master）；</li>
-<li>重新执行删除远程分支命令。</li>
-</ol>
-<h2 id="把本地tag推送到远程"><a href="#把本地tag推送到远程" class="headerlink" title="把本地tag推送到远程"></a>把本地tag推送到远程</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push --tags</div></pre></td></tr></table></figure>
-<h2 id="获取远程tag"><a href="#获取远程tag" class="headerlink" title="获取远程tag"></a>获取远程tag</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git fetch origin tag &lt;tagname&gt;</div></pre></td></tr></table></figure>
+            <p>当一个container起来之后，我们有时候希望能进入container内部去看看，比如查查日志，执行些操作等。目前有几种方式可以实现：</p>
+<h2 id="1-docker-attach"><a href="#1-docker-attach" class="headerlink" title="1. docker attach"></a>1. docker attach</h2><p>这个是官方提供的一种方法。</p>
+<p>测试，首先启动一个container:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ docker run -i -t ubuntu bash</div><div class="line">root@4556f5ad6067:/#</div></pre></td></tr></table></figure></p>
+<p>不要退出，打开另一个终端：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ docker ps</div><div class="line">CONTAINER ID    IMAGE         COMMAND   CREATED         STATUS         PORTS       NAMES</div><div class="line">4556f5ad6067    ubuntu:14.04  &quot;bash&quot;    45 seconds ago  Up 43 seconds              jolly_ardinghelli</div><div class="line"></div><div class="line">$ docker attach 4556f5ad6067</div><div class="line">root@4556f5ad6067:/#</div></pre></td></tr></table></figure></p>
+<p>这样就连接进去了。这时候如果我们输入一些命令，就能看到在两个终端都有显示和输出。这种方式有比较大的局限性，如果知道了entrypoint或者有程序正在执行，通过docker attach进入之后是不能执行操作的，一个终端退出之后整个container就终止了。不推荐使用这种方式。</p>
+<h2 id="2-lxc-attach"><a href="#2-lxc-attach" class="headerlink" title="2. lxc-attach"></a>2. lxc-attach</h2><p>如果使用这种方式，首先要保证docker是以lxc方式启动的，具体可以这样做：</p>
+<ul>
+<li><p>修改/etc/default/docker增加DOCKER_OPTS=”-e lxc”</p>
+</li>
+<li><p>重启docker服务sudo service docker restart</p>
+</li>
+</ul>
+<p>启动container的方式和之前一样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ docker run -i -t ubuntu bash</div><div class="line">root@e7f01f0ff598:/#</div></pre></td></tr></table></figure></p>
+<p>进入container可以这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ docker ps</div><div class="line">CONTAINER ID        IMAGE              COMMAND            CREATED            STATUS              PORTS              NAMES</div><div class="line">e7f01f0ff598        ubuntu:14.04        &quot;bash&quot;              17 seconds ago      Up 15 seconds                          grave_jones</div><div class="line"></div><div class="line">$ ps aux | grep e7f01f0ff598</div><div class="line">root    23691  0.0  0.0  43140  1876 pts/9    Ss  21:47  0:00 lxc-start -n e7f01f0ff598c80d70a996135c98fbaeddc6daa61436bbbfa735233e8b6f8ebe -f /var/lib/docker/containers/e7f01f0ff598c80d70a996135c98fbaeddc6daa61436bbbfa735233e8b6f8ebe/config.lxc -- /.dockerinit -g 172.17.42.1 -i 172.17.0.3/16 -mtu 1500 -- bash</div><div class="line">ma6174  23756  0.0  0.0  13428  928 pts/12  S+  21:47  0:00 grep --color=auto e7f01f0ff598</div><div class="line"></div><div class="line">$ sudo lxc-attach -n e7f01f0ff598c80d70a996135c98fbaeddc6daa61436bbbfa735233e8b6f8ebe</div><div class="line">root@e7f01f0ff598:/#</div></pre></td></tr></table></figure></p>
+<p>这种方式还是很方便的。前提是需要重启docker服务以lxc的方式执行，进入container之后会有一个终端可以执行命令，不影响正在执行的程序。</p>
+<h2 id="3-nsenter"><a href="#3-nsenter" class="headerlink" title="3. nsenter"></a>3. nsenter</h2><p>如果docker不是以lxc方式启动的，这时候还想进入一个正在执行的container的话，可以考虑使用nsenter</p>
+<p>这个程序的安装方式很独特，使用docker进行安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter</div></pre></td></tr></table></figure></p>
+<p>使用方法也很简单，首先你要进入的container的PID：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ PID=$(docker inspect --format &#123;&#123;.State.Pid&#125;&#125; &lt;container_name_or_ID&gt;)</div></pre></td></tr></table></figure></p>
+<p>然后就可以用这个命令进入container了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nsenter --target $PID --mount --uts --ipc --net --pid</div></pre></td></tr></table></figure></p>
+<p>为了使用方便可以写一个脚本自动完成：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cat /bin/docker_enter</div><div class="line">#!/bin/bash</div><div class="line">sudo nsenter --target `docker inspect --format &#123;&#123;.State.Pid&#125;&#125; $1` --mount --uts --ipc --net --pid bash</div></pre></td></tr></table></figure></p>
+<p>这样每次要进入某个container只需要执行docker_enter <container_name_or_id>就可以了。</container_name_or_id></p>
+<h2 id="4-SSH"><a href="#4-SSH" class="headerlink" title="4. SSH"></a>4. SSH</h2><p>这个原理也很简单，在container里面启动ssh服务，然后通过ssh的方式去登陆到container里面，不推荐这种方式，主要是配置ssh登陆比较繁琐，开启ssh服务也会耗费资源，完全没有必要。</p>
+<p>～～～～～～～～～～～～～～～华丽的分割线～～～～～～～～～～～～～～～</p>
+<p>docker 1.2.0发布，带来一个比较实用的特性的是支持restart参数，可以在docker run的时候指定：</p>
+<p>  –restart=””              Restart policy to apply when a container exits (no, on-failure, always)</p>
+<p>有这个参数就比较方便了，比如container里面的服务因为某些原因退出了，之前只能通过外部程序去重新启动container，有了这参数之后可以放container自动重启，当然也可以设置失败重试次数，通过on-failure:5这种方式来指定失败后最多尝试重启5次。</p>
+<p>官方的两个例子：</p>
+<p>docker run –restart=always redis</p>
+<p>docker run –restart=on-failure:5 redis</p>
+<p>其他新特性参考：<a href="https://blog.docker.com/2014/08/announcing-docker-1-2-0/" target="_blank" rel="external">https://blog.docker.com/2014/08/announcing-docker-1-2-0/</a></p>
+
         </div>
         <footer class="article-footer">
             
@@ -211,7 +205,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2016/04/26/git使用/" data-title="git使用" data-url="http://yoursite.com/2016/04/26/git使用/"></div>
+    <div class="ds-thread" data-thread-key="2016/07/28/如何进入正在执行的-docker-container/" data-title="如何进入正在执行的 docker container" data-url="http://yoursite.com/2016/07/28/如何进入正在执行的-docker-container/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
@@ -299,20 +293,20 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         
 <nav id="article-nav">
     
-        <a href="/2016/04/29/SOA的基本概念和原理/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2016/07/28/Docker-exec和attach的区别/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
-            SOA的基本概念和原理
+            Docker exec和attach的区别
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
     
-        <a href="/2016/04/20/Kafka为什么如此的快/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/07/28/Docker-基本命令/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">Kafka为什么如此的快</p>
+        <p class="article-nav-title">Docker 基本命令</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
