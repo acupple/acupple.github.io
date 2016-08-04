@@ -3,29 +3,15 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Kafka为什么如此的快 | Acupple&#39;s Blog</title>
+    <title>Archivo: 2016/8 | Acupple&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="大数据，分布式" />
-    
-    <meta name="description" content="Kafka是分布式的消息系统，需要处理海量的消息，Kafka的设计初衷是把所有消息都写入速度低容量大的硬盘，以此来换取更强的存储能力，但是实际上，使用硬盘并没有带来过性能的损失，这究竟为何？
-Kafka主要使用以下几种方式实现了超高吞吐率的
-顺序读写Kafka的消息是不断追加到文件中的，这个特性使它可以充分利用磁盘的顺序读写能力。顺序读写降低了硬盘磁头的寻道时间，只需要很少的扇区旋转时间，所以速度">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Kafka为什么如此的快">
-<meta property="og:url" content="http://yoursite.com/2016/04/20/Kafka为什么如此的快/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Acupple's Blog">
+<meta property="og:url" content="http://yoursite.com/archives/2016/08/index.html">
 <meta property="og:site_name" content="Acupple's Blog">
-<meta property="og:description" content="Kafka是分布式的消息系统，需要处理海量的消息，Kafka的设计初衷是把所有消息都写入速度低容量大的硬盘，以此来换取更强的存储能力，但是实际上，使用硬盘并没有带来过性能的损失，这究竟为何？
-Kafka主要使用以下几种方式实现了超高吞吐率的
-顺序读写Kafka的消息是不断追加到文件中的，这个特性使它可以充分利用磁盘的顺序读写能力。顺序读写降低了硬盘磁头的寻道时间，只需要很少的扇区旋转时间，所以速度">
-<meta property="og:image" content="http://yoursite.com/../../gallery/zero-copy.jpg">
-<meta property="og:updated_time" content="2016-07-09T10:56:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kafka为什么如此的快">
-<meta name="twitter:description" content="Kafka是分布式的消息系统，需要处理海量的消息，Kafka的设计初衷是把所有消息都写入速度低容量大的硬盘，以此来换取更强的存储能力，但是实际上，使用硬盘并没有带来过性能的损失，这究竟为何？
-Kafka主要使用以下几种方式实现了超高吞吐率的
-顺序读写Kafka的消息是不断追加到文件中的，这个特性使它可以充分利用磁盘的顺序读写能力。顺序读写降低了硬盘磁头的寻道时间，只需要很少的扇区旋转时间，所以速度">
-<meta name="twitter:image" content="http://yoursite.com/../../gallery/zero-copy.jpg">
+<meta name="twitter:title" content="Acupple's Blog">
     
 
     
@@ -99,130 +85,56 @@ Kafka主要使用以下几种方式实现了超高吞吐率的
                         <div class="main-body-header">
     <h1 class="header">
     
-    Sin categoría
+    <i class="icon fa fa-archive"></i>Archivo: 2016/8
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-Kafka为什么如此的快" class="article article-single article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
+                            
+
+    
+    
         
-            <header class="article-header">
-                
+        
+        <section class="archives-wrap">
+            <div class="archive-year-wrap">
+                <a href="/archives/2016" class="archive-year"><i class="icon fa fa-calendar-o"></i>2016</a>
+            </div>
+            <div class="archives">
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <p class="category">
+            
+            </p>
+            <p class="date"><time datetime="2016-08-04T08:49:44.000Z" itemprop="datePublished">2016-08-04</time></p>
+        </div>
+        
     
         <h1 class="article-title" itemprop="name">
-        Kafka为什么如此的快
+        <a href="/2016/08/04/Go高性能编程技巧/">Go高性能编程技巧</a>
         </h1>
     
 
-            </header>
-        
-        <div class="article-subtitle">
-            <a href="/2016/04/20/Kafka为什么如此的快/" class="article-date">
-    <time datetime="2016-04-20T02:01:45.000Z" itemprop="datePublished">2016-04-20</time>
-</a>
-            
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据，分布式/">大数据，分布式</a></li></ul>
-
-        </div>
-        <div class="article-entry" itemprop="articleBody">
-            <p>Kafka是分布式的消息系统，需要处理海量的消息，Kafka的设计初衷是把所有消息都写入速度<br>低容量大的硬盘，以此来换取更强的存储能力，但是实际上，使用硬盘并没有带来<br>过性能的损失，这究竟为何？</p>
-<p>Kafka主要使用以下几种方式实现了超高吞吐率的</p>
-<h2 id="顺序读写"><a href="#顺序读写" class="headerlink" title="顺序读写"></a>顺序读写</h2><p>Kafka的消息是不断追加到文件中的，这个特性使它可以充分利用磁盘的顺序读写能力。<br>顺序读写降低了硬盘磁头的寻道时间，只需要很少的扇区旋转时间，所以速度远快于<br>随机读写。Kafka官方给出的测试数据(Raid-5, 7200rpm)<br>顺序I/O: 600MB/s<br>随机I/O: 100KB/s</p>
-<h2 id="零拷贝"><a href="#零拷贝" class="headerlink" title="零拷贝"></a>零拷贝</h2><p>先简单的了解下文件系统的操作流程，例如一个程序要把文件内容发送到网络。<br>这个过程发生在用户空间，文件和网络socket属于硬件资源，两者之间有一个<br>内核空间，在操作系统内部，整个过程为:<br><img src="/../../gallery/zero-copy.jpg" alt="image"><br>在Linux Kernal 2.2之后出现了一种叫做“零拷贝(zero-copy)”系统调用机制，<br>就是跳过“用户缓冲区”的拷贝，建立一个磁盘空间和内存空间的直接映射，数据不再复制到“用户态缓冲区”<br>系统上下文切换减少2次，可以提升一倍性能<br><img src="/../../gallery/user-space.jpg" alt="image"></p>
-<h2 id="文件分段"><a href="#文件分段" class="headerlink" title="文件分段"></a>文件分段</h2><p>Kafka的队列topic被分为了多个区partition, 每个partition又分为了多个segment，<br>所以一个队列中的消息实际上是保存在N多个片段文件中<br><img src="/../../gallery/file-seperate.jpg" alt="image"><br>通过分段的方式，每次文件操作都是对一个小文件的操作，非常轻便，同时也增加了并行处理能力</p>
-<h2 id="批量发送"><a href="#批量发送" class="headerlink" title="批量发送"></a>批量发送</h2><p>Kafka允许进行批量消息发送，先将消息缓存在内存中，然后一次请求批量发送出去，<br>比如可以指定缓存的消息达到某个量的时候发送，或者缓存了固定的时间后发送<br>这种策略大大减少了服务器端的I/O次数</p>
-<h2 id="数据压缩"><a href="#数据压缩" class="headerlink" title="数据压缩"></a>数据压缩</h2><p>Kafka还支持消息压缩，Producer可以通过GZIP或者Snappy格式对消息集合进行压缩，<br>从而减少网络传输的压力</p>
-<p>其实这些优化都是比较常用的手段，在自己的分布式应用中可以借鉴12</p>
-
-        </div>
-        <footer class="article-footer">
-            
-
-    <div class="bdsharebuttonbox">
-    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
-    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
-    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
-    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
-    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
-    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
-</div>
-<script>
-window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-<style>
-    .bdshare_popup_box {
-        border-radius: 4px;
-        border: #e1e1e1 solid 1px;
-    }
-    .bdshare-button-style0-16 a,
-    .bdshare-button-style0-16 .bds_more {
-        padding-left: 20px;
-        margin: 6px 10px 6px 0;
-    }
-    .bdshare_dialog_list a,
-    .bdshare_popup_list a,
-    .bdshare_popup_bottom a {
-        font-family: 'Microsoft Yahei';
-    }
-    .bdshare_popup_top {
-        display: none;
-    }
-    .bdshare_popup_bottom {
-        height: auto;
-        padding: 5px;
-    }
-</style>
-
-
-
-        </footer>
+        <p class="article-excerpt">
+            原文: http://studygolang.com/articles/6859
+ChannelsChannel在Go语言中受到了很多的关注，因为它是一个方便的并发工具，但是了解它对性能的影响也很重要。在大多数场景下它的性能已经“足够好”了，但是在某些延时敏感的场景中，它可能会成为瓶颈。Channel并不是什么黑魔法。在Channel的底层实现中，使用的还是锁。在没有锁竞争的单线程应用中，它能工作
+        </p>
     </div>
 </article>
-
-    <section id="comments">
     
-        
-    <div class="ds-thread" data-thread-key="2016/04/20/Kafka为什么如此的快/" data-title="Kafka为什么如此的快" data-url="http://yoursite.com/2016/04/20/Kafka为什么如此的快/"></div>
-    <style>
-        #ds-thread #ds-reset .ds-textarea-wrapper {
-            background: none;
-        }
-        #ds-reset .ds-avatar img {
-            box-shadow: none;
-        }
-        #ds-reset .ds-gradient-bg {
-            background: #f7f7f7;
-        }
-        #ds-thread #ds-reset li.ds-tab a {
-            border-radius: 3px;
-        }
-        #ds-thread #ds-reset .ds-post-button {
-            color: white;
-            border: none;
-            box-shadow: none;
-            background: #d32;
-            text-shadow: none;
-            font-weight: normal;
-            font-family: 'Microsoft Yahei';
-        }
-        #ds-thread #ds-reset .ds-post-button:hover {
-            color: white;
-            background: #DE594C;
-        }
-        #ds-thread #ds-reset .ds-post-button:active {
-            background: #d32;
-        }
-        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
-            color: white;
-            background: #d32;
-            box-shadow: none;
-            text-shadow: none;
-            font-weight: normal;
-        }
-    </style>
-
+        </div>
     
-    </section>
+
+
+    </div></section>
+
+
 
                         </div>
                     </section>
@@ -266,29 +178,6 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
             
         </ul>
     </div>
-    
-        
-<nav id="article-nav">
-    
-        <a href="/2016/04/26/git使用/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">más nuevo</strong>
-        <p class="article-nav-title">
-        
-            git使用
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
-    
-    
-        <a href="/2016/04/08/Kakfa使用技巧/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">antiguo</strong>
-        <p class="article-nav-title">Kakfa Consumer使用技巧</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
-    
-</nav>
-
     
     <div class="widgets-container">
         
