@@ -3,21 +3,35 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Go性能优化技巧 | Acupple&#39;s Blog</title>
+    <title>谷歌两步验证 | Acupple&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="Go" />
+        <meta name="keywords" content="杂" />
     
-    <meta name="description" content="字符串(string)和字节数组（slice, [ ]byte）转换时需付出 “沉重” 代价。在对性能有要求或者操作频繁的地方使用如下形式:123456789101112import (	&quot;strings&quot;	&quot;unsafe&quot;)func str2bytes(s string) []byte &amp;#123;	x:= (*[2]uintprt)(unsafe.Pointer(&amp;amp;s))	h:= [3">
+    <meta name="description" content="谷歌验证(Google two-factor Authenticator)通常来讲，身份验证系统都实现了基于时间的一次性密码算法，即著名的TOTP(Time-Based One-Time Password)。该算法由三部分组成：
+一个共享密钥（一系列二进制数据）一个基于当前时间的输入一个签名函数
+共享秘钥用户需要开启Google Authenticator服务时：
+
+服务器随机生成一个类似于『DP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Go性能优化技巧">
-<meta property="og:url" content="http://yoursite.com/2016/06/02/Go性能优化技巧/index.html">
+<meta property="og:title" content="谷歌两步验证">
+<meta property="og:url" content="http://yoursite.com/2016/08/05/谷歌两步验证/index.html">
 <meta property="og:site_name" content="Acupple's Blog">
-<meta property="og:description" content="字符串(string)和字节数组（slice, [ ]byte）转换时需付出 “沉重” 代价。在对性能有要求或者操作频繁的地方使用如下形式:123456789101112import (	&quot;strings&quot;	&quot;unsafe&quot;)func str2bytes(s string) []byte &amp;#123;	x:= (*[2]uintprt)(unsafe.Pointer(&amp;amp;s))	h:= [3">
-<meta property="og:updated_time" content="2016-07-09T10:56:21.000Z">
+<meta property="og:description" content="谷歌验证(Google two-factor Authenticator)通常来讲，身份验证系统都实现了基于时间的一次性密码算法，即著名的TOTP(Time-Based One-Time Password)。该算法由三部分组成：
+一个共享密钥（一系列二进制数据）一个基于当前时间的输入一个签名函数
+共享秘钥用户需要开启Google Authenticator服务时：
+
+服务器随机生成一个类似于『DP">
+<meta property="og:image" content="http://yoursite.com/../../gallery/two-factor.jpg">
+<meta property="og:updated_time" content="2016-08-05T08:43:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Go性能优化技巧">
-<meta name="twitter:description" content="字符串(string)和字节数组（slice, [ ]byte）转换时需付出 “沉重” 代价。在对性能有要求或者操作频繁的地方使用如下形式:123456789101112import (	&quot;strings&quot;	&quot;unsafe&quot;)func str2bytes(s string) []byte &amp;#123;	x:= (*[2]uintprt)(unsafe.Pointer(&amp;amp;s))	h:= [3">
+<meta name="twitter:title" content="谷歌两步验证">
+<meta name="twitter:description" content="谷歌验证(Google two-factor Authenticator)通常来讲，身份验证系统都实现了基于时间的一次性密码算法，即著名的TOTP(Time-Based One-Time Password)。该算法由三部分组成：
+一个共享密钥（一系列二进制数据）一个基于当前时间的输入一个签名函数
+共享秘钥用户需要开启Google Authenticator服务时：
+
+服务器随机生成一个类似于『DP">
+<meta name="twitter:image" content="http://yoursite.com/../../gallery/two-factor.jpg">
     
 
     
@@ -95,47 +109,43 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-Go性能优化技巧" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-谷歌两步验证" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Go性能优化技巧
+        谷歌两步验证
         </h1>
     
 
             </header>
         
         <div class="article-subtitle">
-            <a href="/2016/06/02/Go性能优化技巧/" class="article-date">
-    <time datetime="2016-06-02T10:12:09.000Z" itemprop="datePublished">2016-06-02</time>
+            <a href="/2016/08/05/谷歌两步验证/" class="article-date">
+    <time datetime="2016-08-05T08:42:54.000Z" itemprop="datePublished">2016-08-05</time>
 </a>
             
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/">Go</a></li></ul>
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂/">杂</a></li></ul>
 
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <h2 id="字符串-string-和字节数组（slice-byte）转换时需付出-“沉重”-代价。"><a href="#字符串-string-和字节数组（slice-byte）转换时需付出-“沉重”-代价。" class="headerlink" title="字符串(string)和字节数组（slice, [ ]byte）转换时需付出 “沉重” 代价。"></a>字符串(string)和字节数组（slice, [ ]byte）转换时需付出 “沉重” 代价。</h2><p>在对性能有要求或者操作频繁的地方使用如下形式:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"strings"</span></div><div class="line">	<span class="string">"unsafe"</span></div><div class="line">)</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">str2bytes</span><span class="params">(s <span class="keyword">string</span>)</span> []<span class="title">byte</span></span> &#123;</div><div class="line">	x:= (*[<span class="number">2</span>]uintprt)(unsafe.Pointer(&amp;s))</div><div class="line">	h:= [<span class="number">3</span>]uintprt&#123;x[<span class="number">0</span>],x[<span class="number">1</span>],x[<span class="number">1</span>]&#125;</div><div class="line">	<span class="keyword">return</span> *(*[]<span class="keyword">byte</span>)(unsafe.Pointer(&amp;h))</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">bytes2str</span><span class="params">(b[] <span class="keyword">byte</span>)</span> <span class="title">string</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> *(*<span class="keyword">string</span>)(unsafe.Pointer(&amp;b))</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>参考：<a href="http://studygolang.com/topics/1615" target="_blank" rel="external">http://studygolang.com/topics/1615</a></p>
-<h2 id="array-vs-slice"><a href="#array-vs-slice" class="headerlink" title="array vs slice"></a>array vs slice</h2><p>Go array 以 pass-by-value 方式传递, 整个 array 函数完全在栈上完成，而 slice 函数则需执行 makeslice，继而在堆上分配内存, 对于大的对象，建议使用slice 代替 array，而短小的对象，复制成本远小于在堆上分配和回收操作，因此建议用array。</p>
-<p>参考: <a href="http://studygolang.com/topics/1679" target="_blank" rel="external">http://studygolang.com/topics/1679</a></p>
-<h2 id="map优化"><a href="#map优化" class="headerlink" title="map优化"></a>map优化</h2><ol>
-<li>预设足够的容量空间<br>map 会按需扩张，但须付出数据拷贝和重新哈希成本。如有可能，应尽可能预设足够容量空间，避免此类行为发生。</li>
-<li>直接存储<br>对于小对象，直接将数据交由 map 保存，远比用指针高效。这不但减少了堆内存分配，关键还在于垃圾回收器不会扫描非指针类型 key/value 对象。</li>
-<li>空间收缩<br>map 不会收缩 “不再使用” 的空间。就算把所有键值删除，它依然保留内存空间以待后用。可以：</li>
-</ol>
-<ul>
-<li>mapVar = nil</li>
-<li>使用新的map替换原来的</li>
-</ul>
+            <p>谷歌验证(Google two-factor Authenticator)通常来讲，身份验证系统都实现了基于时间的一次性密码算法，即著名的TOTP(Time-Based One-Time Password)。该算法由三部分组成：</p>
+<p>一个共享密钥（一系列二进制数据）<br>一个基于当前时间的输入<br>一个签名函数</p>
+<h2 id="共享秘钥"><a href="#共享秘钥" class="headerlink" title="共享秘钥"></a>共享秘钥</h2><p>用户需要开启Google Authenticator服务时：</p>
 <ol>
-<li>int key 要比 string key 更快<br>参考: <a href="http://studygolang.com/topics/1682" target="_blank" rel="external">http://studygolang.com/topics/1682</a></li>
+<li>服务器随机生成一个类似于『DPI45HKISEXU6HG7』的密钥，并且把这个密钥保存在数据库中。</li>
+<li>在页面上显示一个二维码，内容是一个URI地址（otpauth://totp/账号?secret=密钥），如『otpauth://totp/kisexu@gmail.com?secret=DPI45HCEBCJK6HG7』，下图：<br><img src="/../../gallery/two-factor.jpg" alt="image"></li>
+<li>客户端扫描二维码，把密钥『DPI45HKISEXU6HG7』保存在客户端。</li>
 </ol>
-<h2 id="滥用defer，可能会造成资源泄露，需注意！"><a href="#滥用defer，可能会造成资源泄露，需注意！" class="headerlink" title="滥用defer，可能会造成资源泄露，需注意！"></a>滥用defer，可能会造成资源泄露，需注意！</h2><p>参考：<a href="http://studygolang.com/topics/1685" target="_blank" rel="external">http://studygolang.com/topics/1685</a></p>
-<h2 id="闭包，会变成额外成本在运行期由-CPU、runtime-负担。甚至因不合理使用，造成性能问题"><a href="#闭包，会变成额外成本在运行期由-CPU、runtime-负担。甚至因不合理使用，造成性能问题" class="headerlink" title="闭包，会变成额外成本在运行期由 CPU、runtime 负担。甚至因不合理使用，造成性能问题"></a>闭包，会变成额外成本在运行期由 CPU、runtime 负担。甚至因不合理使用，造成性能问题</h2><p>参考：<a href="http://studygolang.com/topics/1690" target="_blank" rel="external">http://studygolang.com/topics/1690</a></p>
-<h2 id="总结：-个人认为这些性能的问题，大部分情况下不需要做过份的追求，只是在某些特殊的场景下，比如频繁调用，对性能有很高的要求时，可以参考一二！！！"><a href="#总结：-个人认为这些性能的问题，大部分情况下不需要做过份的追求，只是在某些特殊的场景下，比如频繁调用，对性能有很高的要求时，可以参考一二！！！" class="headerlink" title="总结： 个人认为这些性能的问题，大部分情况下不需要做过份的追求，只是在某些特殊的场景下，比如频繁调用，对性能有很高的要求时，可以参考一二！！！"></a>总结： 个人认为这些性能的问题，大部分情况下不需要做过份的追求，只是在某些特殊的场景下，比如频繁调用，对性能有很高的要求时，可以参考一二！！！</h2>
+<h2 id="基于当前时间的输入"><a href="#基于当前时间的输入" class="headerlink" title="基于当前时间的输入"></a>基于当前时间的输入</h2><p>这个输入是基于用户手机时间产生的，一旦用户完成第一步的密钥共享，就和身份验证服务器没有关系了。<br>但是这里比较重要的是用户手机时间要准确，因为从算法原理来讲，身份验证服务器会基于同样的时间来重复进行用户手机的运算。<br>用户需要登陆时: </p>
+<ol>
+<li>客户端每30秒使用密钥『DPI45HKISEXU6HG7』和时间戳通过一种『算法』生成一个6位数字的一次性密码，如『684060』。如下图android版界面：<br><img src="/../../gallery/two-factor-code.jpg" alt="image"><br>2.用户登陆时输入一次性密码『684060』。</li>
+</ol>
+<h2 id="签名函数"><a href="#签名函数" class="headerlink" title="签名函数"></a>签名函数</h2><p>谷歌的签名函数使用了HMAC-SHA1。<br>HMAC即基于哈希的消息验证码，提供了一种算法，可以用比较安全的单向哈希函数（如SHA1）来产生签名。<br>这就是验证算法的原理所在：只有共享密钥拥有者和服务器才能够根据同样的输入（基于时间的）得到同样的输出签名。伪代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hmac = SHA1(secret + SHA1(secret + input))</div></pre></td></tr></table></figure></p>
+<p>服务器端使用保存在数据库中的密钥『DPI45HKISEXU6HG7』和时间戳通过同一种『算法』生成一个6位数字的一次性密码<br>如果算法相同、密钥相同，又是同一个时间（时间戳相同），那么客户端和服务器计算出的一次性密码是一样的。服务器验证时如果一样，就登录成功了。</p>
+
         </div>
         <footer class="article-footer">
             
@@ -184,7 +194,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2016/06/02/Go性能优化技巧/" data-title="Go性能优化技巧" data-url="http://yoursite.com/2016/06/02/Go性能优化技巧/"></div>
+    <div class="ds-thread" data-thread-key="2016/08/05/谷歌两步验证/" data-title="谷歌两步验证" data-url="http://yoursite.com/2016/08/05/谷歌两步验证/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
@@ -272,20 +282,10 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         
 <nav id="article-nav">
     
-        <a href="/2016/06/03/Go基于Sublime的开发环境搭建/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">más nuevo</strong>
-        <p class="article-nav-title">
-        
-            Go基于Sublime的开发环境搭建
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2016/06/02/Goroutine的调度器/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/08/04/Go高性能编程技巧/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">antiguo</strong>
-        <p class="article-nav-title">Goroutine的调度器</p>
+        <p class="article-nav-title">Go高性能编程技巧</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
