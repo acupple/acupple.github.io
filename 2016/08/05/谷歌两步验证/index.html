@@ -22,8 +22,8 @@
 共享秘钥用户需要开启Google Authenticator服务时：
 
 服务器随机生成一个类似于『DP">
-<meta property="og:image" content="http://yoursite.com/../../gallery/two-factor.jpg">
-<meta property="og:updated_time" content="2016-08-05T08:43:55.000Z">
+<meta property="og:image" content="http://yoursite.com/../../gallery/two-factor.png">
+<meta property="og:updated_time" content="2016-08-05T08:46:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谷歌两步验证">
 <meta name="twitter:description" content="谷歌验证(Google two-factor Authenticator)通常来讲，身份验证系统都实现了基于时间的一次性密码算法，即著名的TOTP(Time-Based One-Time Password)。该算法由三部分组成：
@@ -31,7 +31,7 @@
 共享秘钥用户需要开启Google Authenticator服务时：
 
 服务器随机生成一个类似于『DP">
-<meta name="twitter:image" content="http://yoursite.com/../../gallery/two-factor.jpg">
+<meta name="twitter:image" content="http://yoursite.com/../../gallery/two-factor.png">
     
 
     
@@ -75,20 +75,20 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Inicio</a>
+                                    <a class="main-nav-list-link" href="/">Accueil</a>
                                 </li>
                             
                                         
                                     
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about">Acerca de</a>
+                                    <a class="main-nav-list-link" href="/about">À propos</a>
                                 </li>
                             
                         </ul>
                         <nav id="sub-nav">
                             <div id="search-form-wrap">
 
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Buscar"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Rechercher"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
 
 </div>
                         </nav>
@@ -105,7 +105,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    Sin categoría
+    Aucune catégorie
     </h1>
 </div>
                         <div class="main-body-content">
@@ -136,12 +136,12 @@
 <h2 id="共享秘钥"><a href="#共享秘钥" class="headerlink" title="共享秘钥"></a>共享秘钥</h2><p>用户需要开启Google Authenticator服务时：</p>
 <ol>
 <li>服务器随机生成一个类似于『DPI45HKISEXU6HG7』的密钥，并且把这个密钥保存在数据库中。</li>
-<li>在页面上显示一个二维码，内容是一个URI地址（otpauth://totp/账号?secret=密钥），如『otpauth://totp/kisexu@gmail.com?secret=DPI45HCEBCJK6HG7』，下图：<br><img src="/../../gallery/two-factor.jpg" alt="image"></li>
+<li>在页面上显示一个二维码，内容是一个URI地址（otpauth://totp/账号?secret=密钥），如『otpauth://totp/kisexu@gmail.com?secret=DPI45HCEBCJK6HG7』，下图：<br><img src="/../../gallery/two-factor.png" alt="image"></li>
 <li>客户端扫描二维码，把密钥『DPI45HKISEXU6HG7』保存在客户端。</li>
 </ol>
 <h2 id="基于当前时间的输入"><a href="#基于当前时间的输入" class="headerlink" title="基于当前时间的输入"></a>基于当前时间的输入</h2><p>这个输入是基于用户手机时间产生的，一旦用户完成第一步的密钥共享，就和身份验证服务器没有关系了。<br>但是这里比较重要的是用户手机时间要准确，因为从算法原理来讲，身份验证服务器会基于同样的时间来重复进行用户手机的运算。<br>用户需要登陆时: </p>
 <ol>
-<li>客户端每30秒使用密钥『DPI45HKISEXU6HG7』和时间戳通过一种『算法』生成一个6位数字的一次性密码，如『684060』。如下图android版界面：<br><img src="/../../gallery/two-factor-code.jpg" alt="image"><br>2.用户登陆时输入一次性密码『684060』。</li>
+<li>客户端每30秒使用密钥『DPI45HKISEXU6HG7』和时间戳通过一种『算法』生成一个6位数字的一次性密码，如『684060』。如下图android版界面：<br><img src="/../../gallery/two-factor-code.png" alt="image"><br>2.用户登陆时输入一次性密码『684060』。</li>
 </ol>
 <h2 id="签名函数"><a href="#签名函数" class="headerlink" title="签名函数"></a>签名函数</h2><p>谷歌的签名函数使用了HMAC-SHA1。<br>HMAC即基于哈希的消息验证码，提供了一种算法，可以用比较安全的单向哈希函数（如SHA1）来产生签名。<br>这就是验证算法的原理所在：只有共享密钥拥有者和服务器才能够根据同样的输入（基于时间的）得到同样的输出签名。伪代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hmac = SHA1(secret + SHA1(secret + input))</div></pre></td></tr></table></figure></p>
 <p>服务器端使用保存在数据库中的密钥『DPI45HKISEXU6HG7』和时间戳通过同一种『算法』生成一个6位数字的一次性密码<br>如果算法相同、密钥相同，又是同一个时间（时间戳相同），那么客户端和服务器计算出的一次性密码是一样的。服务器验证时如果一样，就登录成功了。</p>
@@ -241,7 +241,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>seguir:</p>
+        <p>suivre:</p>
         <ul class="social-links">
             
                 
@@ -284,7 +284,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     
     
         <a href="/2016/08/04/Go高性能编程技巧/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">antiguo</strong>
+        <strong class="article-nav-caption">- récent</strong>
         <p class="article-nav-title">Go高性能编程技巧</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
@@ -297,7 +297,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
             
                 
     <div class="widget-wrap">
-        <h3 class="widget-title">recientes</h3>
+        <h3 class="widget-title">récents</h3>
         <div class="widget">
             <ul id="recent-post" class="no-thumbnail">
                 
@@ -356,7 +356,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">archivos</h3>
+        <h3 class="widget-title">archives</h3>
         <div class="widget">
             <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">9</span></li></ul>
         </div>
@@ -366,7 +366,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">etiquetas</h3>
+        <h3 class="widget-title">tags</h3>
         <div class="widget">
             <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据，分布式/">大数据，分布式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a><span class="tag-list-count">3</span></li></ul>
         </div>
@@ -376,7 +376,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
             
                 
     <div class="widget-wrap widget-float">
-        <h3 class="widget-title">etiqueta cloud</h3>
+        <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
             <a href="/tags/Go/" style="font-size: 18px;">Go</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/分布式/" style="font-size: 12px;">分布式</a> <a href="/tags/大数据/" style="font-size: 16px;">大数据</a> <a href="/tags/大数据，分布式/" style="font-size: 10px;">大数据，分布式</a> <a href="/tags/数据库/" style="font-size: 12px;">数据库</a> <a href="/tags/机器学习/" style="font-size: 12px;">机器学习</a> <a href="/tags/杂/" style="font-size: 14px;">杂</a>
         </div>
@@ -386,7 +386,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">links</h3>
+        <h3 class="widget-title">liens</h3>
         <div class="widget">
             <ul>
                 
