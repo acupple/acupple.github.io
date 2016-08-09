@@ -55,20 +55,20 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Accueil</a>
+                                    <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
                                         
                                     
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about">À propos</a>
+                                    <a class="main-nav-list-link" href="/about">About</a>
                                 </li>
                             
                         </ul>
                         <nav id="sub-nav">
                             <div id="search-form-wrap">
 
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Rechercher"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
 
 </div>
                         </nav>
@@ -85,7 +85,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <em class="page-title-link" data-url="home">Accueil</em>
+    <em class="page-title-link" data-url="home">Home</em>
     </h1>
 </div>
                         <div class="main-body-content">
@@ -112,6 +112,35 @@
             <p class="category">
             
             </p>
+            <p class="date"><time datetime="2016-04-08T03:18:40.000Z" itemprop="datePublished">2016-04-08</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2016/04/08/Kakfa使用技巧/">Kakfa Consumer使用技巧</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            high-level consumer一种high-level版本，比较简单不用关心offset, 会自动的读zookeeper中该Consumer group的last offset不过要注意一些注意事项，对于多个partition和多个consumer 
+
+如果consumer比partition多，是浪费，因为kafka的设计是在一个partition上是不允许并发的，所以consumer数
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <p class="category">
+            
+            </p>
             <p class="date"><time datetime="2016-04-06T03:21:15.000Z" itemprop="datePublished">2016-04-06</time></p>
         </div>
         
@@ -129,10 +158,14 @@
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -158,14 +191,10 @@ Channels and Buffers: 和标准的基于字节流或者字符流的标准IO API�
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -190,10 +219,14 @@ Channels and Buffers: 和标准的基于字节流或者字符流的标准IO API�
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -217,14 +250,10 @@ Channels and Buffers: 和标准的基于字节流或者字符流的标准IO API�
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -256,10 +285,14 @@ Java进程消耗CPU过高
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -283,14 +316,10 @@ Java进程消耗CPU过高
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -325,10 +354,14 @@ Java进程消耗CPU过高
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -353,14 +386,10 @@ Java进程消耗CPU过高
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -389,34 +418,6 @@ Java进程消耗CPU过高
     </div>
 </article>
     
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-03-22T06:02:10.000Z" itemprop="datePublished">2016-03-22</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/03/22/jenkins-rebuild-endless问题/">jenkins_rebuild_endless问题</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            问题描述： 当git的branch配置成”*/dev”的时候， 构建的时候会出现多个后续版本1215:03:54 Multiple candidate revisions15:03:54 Scheduling another build to catch up with Test_Git
-然后就会无限的自动重复构建。问题分析：从构建日志中可以看到：12&gt; /usr/local/bin/git
-        </p>
-    </div>
-</article>
-    
         </div>
     
 
@@ -425,7 +426,7 @@ Java进程消耗CPU过高
 
 
     <nav id="page-nav">
-        <span class="pages">Page 3 sur 5</span>
+        <span class="pages">Page 3 of 5</span>
         <a class="extend prev" rel="prev" href="/page/2/">&laquo;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">&raquo;</a>
     </nav>
 
@@ -435,7 +436,7 @@ Java进程消耗CPU过高
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>suivre:</p>
+        <p>follow:</p>
         <ul class="social-links">
             
                 
@@ -478,9 +479,18 @@ Java进程消耗CPU过高
             
                 
     <div class="widget-wrap">
-        <h3 class="widget-title">récents</h3>
+        <h3 class="widget-title">recents</h3>
         <div class="widget">
             <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/09/MongoDB两阶段提交实现事务/" class="title">MongoDB两阶段提交实现事务</a></p>
+                            <p class="item-date"><time datetime="2016-08-09T08:27:05.000Z" itemprop="datePublished">2016-08-09</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -518,15 +528,6 @@ Java进程消耗CPU过高
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/07/28/Docker-基本命令/" class="title">Docker 基本命令</a></p>
-                            <p class="item-date"><time datetime="2016-07-28T03:26:05.000Z" itemprop="datePublished">2016-07-28</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -539,7 +540,7 @@ Java进程消耗CPU过高
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">9</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">9</span></li></ul>
         </div>
     </div>
 
@@ -549,7 +550,7 @@ Java进程消耗CPU过高
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据，分布式/">大数据，分布式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a><span class="tag-list-count">3</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据，分布式/">大数据，分布式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a><span class="tag-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -559,7 +560,7 @@ Java进程消耗CPU过高
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Go/" style="font-size: 18px;">Go</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/分布式/" style="font-size: 12px;">分布式</a> <a href="/tags/大数据/" style="font-size: 16px;">大数据</a> <a href="/tags/大数据，分布式/" style="font-size: 10px;">大数据，分布式</a> <a href="/tags/数据库/" style="font-size: 12px;">数据库</a> <a href="/tags/机器学习/" style="font-size: 12px;">机器学习</a> <a href="/tags/杂/" style="font-size: 14px;">杂</a>
+            <a href="/tags/Go/" style="font-size: 18px;">Go</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/分布式/" style="font-size: 12px;">分布式</a> <a href="/tags/大数据/" style="font-size: 16px;">大数据</a> <a href="/tags/大数据，分布式/" style="font-size: 10px;">大数据，分布式</a> <a href="/tags/数据库/" style="font-size: 14px;">数据库</a> <a href="/tags/机器学习/" style="font-size: 12px;">机器学习</a> <a href="/tags/杂/" style="font-size: 14px;">杂</a>
         </div>
     </div>
 
@@ -567,7 +568,7 @@ Java进程消耗CPU过高
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">liens</h3>
+        <h3 class="widget-title">links</h3>
         <div class="widget">
             <ul>
                 
