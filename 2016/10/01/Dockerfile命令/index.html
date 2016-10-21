@@ -3,15 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Archive: 2016 | Acupple&#39;s Blog</title>
+    <title>Dockerfile命令 | Acupple&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Acupple's Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2016/page/4/index.html">
+        <meta name="keywords" content="Docker" />
+    
+    <meta name="description" content="CMDCMD命令用于指定一个容器启动时要运行的命令，和RUN指令有点类似。不过RUM命令是指镜像被构建时要运行的指令，而CMD是指容器被启动时要运行的命令。这和docker run命令启动的时候指定的运行命令非常类似，并且docker run命令启动时指定的运行命令会覆盖CMD命令。例如Dockerfile中的如下CMD命令:1CMD [&amp;quot;/bin/bash&amp;quot;]
+如果以下面的方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dockerfile命令">
+<meta property="og:url" content="http://yoursite.com/2016/10/01/Dockerfile命令/index.html">
 <meta property="og:site_name" content="Acupple's Blog">
+<meta property="og:description" content="CMDCMD命令用于指定一个容器启动时要运行的命令，和RUN指令有点类似。不过RUM命令是指镜像被构建时要运行的指令，而CMD是指容器被启动时要运行的命令。这和docker run命令启动的时候指定的运行命令非常类似，并且docker run命令启动时指定的运行命令会覆盖CMD命令。例如Dockerfile中的如下CMD命令:1CMD [&amp;quot;/bin/bash&amp;quot;]
+如果以下面的方">
+<meta property="og:updated_time" content="2016-10-01T11:17:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Acupple's Blog">
+<meta name="twitter:title" content="Dockerfile命令">
+<meta name="twitter:description" content="CMDCMD命令用于指定一个容器启动时要运行的命令，和RUN指令有点类似。不过RUM命令是指镜像被构建时要运行的指令，而CMD是指容器被启动时要运行的命令。这和docker run命令启动的时候指定的运行命令非常类似，并且docker run命令启动时指定的运行命令会覆盖CMD命令。例如Dockerfile中的如下CMD命令:1CMD [&amp;quot;/bin/bash&amp;quot;]
+如果以下面的方">
     
 
     
@@ -85,358 +94,142 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-archive"></i>Archive: 2016
+    Aucune catégorie
     </h1>
 </div>
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-Dockerfile命令" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2016" class="archive-year"><i class="icon fa fa-calendar-o"></i>2016</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-03-23T08:19:53.000Z" itemprop="datePublished">2016-03-23</time></p>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2016/03/23/HBase常用命令/">HBase常用命令</a>
+        Dockerfile命令
         </h1>
     
 
-        <p class="article-excerpt">
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2016/10/01/Dockerfile命令/" class="article-date">
+    <time datetime="2016-10-01T09:46:50.000Z" itemprop="datePublished">2016-10-01</time>
+</a>
             
-进入Hbase Shell
-1$HBASE_HOME/bin/hbase shell
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
 
-查看表
-1hbase(main)&gt; list
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h2><p>CMD命令用于指定一个容器启动时要运行的命令，和RUN指令有点类似。<br>不过RUM命令是指镜像被构建时要运行的指令，而CMD是指容器被启动时要运行的命令。<br>这和docker run命令启动的时候指定的运行命令非常类似，并且docker run命令启动时指定的运行命令会覆盖CMD命令。<br>例如Dockerfile中的如下CMD命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CMD [&quot;/bin/bash&quot;]</div></pre></td></tr></table></figure></p>
+<p>如果以下面的方式运行容器:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker run -i -t ubuntu /bin/ps</div></pre></td></tr></table></figure></p>
+<p>则会覆盖CMD中的命令。</p>
+<h2 id="ENTRYPOINT"><a href="#ENTRYPOINT" class="headerlink" title="ENTRYPOINT"></a>ENTRYPOINT</h2><p>ENTRYPOINT指令与CMD指令类似，也容易和CMD命令混淆。ENTRYPOINT命令不容易在启动容器时被覆盖，而是将docker run命令中指定的任何参数当做参数再次传递给ENTRYPOINT指令中的命令。<br>例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ENTRYPOINT [&quot;/usr/sbin/nginx&quot;]</div><div class="line">...</div><div class="line"></div><div class="line">$ docker run -i -t ubuntu_nginx -g &quot;daemon off;&quot;</div></pre></td></tr></table></figure></p>
+<p>相当于运行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">root@e643e6218589:# /usr/sbin/nginx -g &quot;daemon off&quot;</div></pre></td></tr></table></figure></p>
+<p>我们也可以组合使用ENTRYPOINT和CMD命令来完成一些巧妙的工作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ENTRYPOINT [&quot;/usr/sbin/nginx&quot;]</div><div class="line">CMD [&quot;-h&quot;]</div></pre></td></tr></table></figure></p>
+<p>我们启动一个容器的时候不指定任何参数，则-h会被传递给ENTRYPORINT命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">root@e643e6218589:# /usr/sbin/nginx -h</div></pre></td></tr></table></figure></p>
+<h2 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h2><p>WORKDIR指令用来创建一个新容器的时候，在容器内部设置一个工作目录。<br>ENTRYPOINT和/或者CMD指定的程序都会在这个目录下执行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">WORKDIR /opt/webapp/db</div><div class="line">RUN bundle install</div><div class="line">WORKDIR /opt/webapp</div><div class="line">ENTRYPOINT [&quot;rackup&quot;]</div></pre></td></tr></table></figure></p>
+<p>这里我们将工作目录切换到/opt/webapp/db后运行bunle install命令，之后又将工作目录设置为/opt/webapp，最后启动ENTRYPORINT中指定的rackup命令。</p>
+<h2 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a>ENV</h2><p>ENV用来在构建镜像的时候设置环境变量，当然这些环境变量在docker run的时候可以用-e 参数来修改。</p>
+<h2 id="USER"><a href="#USER" class="headerlink" title="USER"></a>USER</h2><p>指定该镜像以什么样的UID或者GID去运行容器。</p>
+<h2 id="VOLUME"><a href="#VOLUME" class="headerlink" title="VOLUME"></a>VOLUME</h2><p>VOLUME用于向基于镜像创建的容器中添加卷，可以简单的理解为linux中的数据盘挂载，只是这里添加的是一个宿主机目录。<br>用于对容器中的数据进行持久化。</p>
+<ol>
+<li>卷可以在容器间共享和重用</li>
+<li>对卷的修改是立时生效的</li>
+<li>删除容器时，容器中的数据不会丢失，但是删除镜像时，容器的数据会被一起删除。这个时候VOLUME添加的卷会保留。<h2 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h2>ADD指令将构建环境下的文件和目录复制到镜像中。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ADD software.lic /opt/application/software.lic</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>不能对构建目录之外的文件进行ADD操作。另外ADD处理本地归档文件(tar, zip)的时候，如果归档文件ADD到一个目录，docker会自动解压。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ADD lastest.tar.gz /var/www/wordpress</div></pre></td></tr></table></figure></p>
+<h2 id="COPY"><a href="#COPY" class="headerlink" title="COPY"></a>COPY</h2><p>COPY非常类似ADD命令，他们的根本不同是COPY指关心在够将上下文中复制本地文件，而不会做文件提取和解压。同样不能copy构建目录之外的任何文件。</p>
 
-查看表结构
-123# 语法：describe &lt;table&gt;# 例如：查看表t1的结构hbase(main)&gt; describe 't1'
+        </div>
+        <footer class="article-footer">
+            
 
-创建表结构
-123# 语法：create &lt;table&gt;, &#123;NAME =
-        </p>
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+
+        </footer>
     </div>
 </article>
-    
 
+    <section id="comments">
     
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
         
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-03-22T10:10:30.000Z" itemprop="datePublished">2016-03-22</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/03/22/ThreadLocal使用介绍/">ThreadLocal使用介绍</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            如何使用ThreadLocal在系统中任意一个适合的位置定义个ThreadLocal变量，可以定义为public static类型（直接new出来一个ThreadLocal对象），要向里面放入数据就使用set(Object)，要获取数据就用get()操作，删除元素就用remove()，其余的方法是非public的方法，不推荐使用。
-下面是一个简单例子（代码片段1）：1234567891011121
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-03-22T09:42:31.000Z" itemprop="datePublished">2016-03-22</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/03/22/volitile/">volitile关键字</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            volatile关键字的两层语义一旦一个共享变量（类的成员变量、类的静态成员变量）被volatile修饰之后，那么就具备了两层语义
-
-保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。
-禁止进行指令重排序。
-
-先看一段代码，假如线程1先执行，线程2后执行：12345678//线程1boolean stop = false;while(!st
-        </p>
-    </div>
-</article>
-    
+    <div class="ds-thread" data-thread-key="2016/10/01/Dockerfile命令/" data-title="Dockerfile命令" data-url="http://yoursite.com/2016/10/01/Dockerfile命令/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
 
     
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-03-22T06:02:10.000Z" itemprop="datePublished">2016-03-22</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/03/22/jenkins-rebuild-endless问题/">jenkins_rebuild_endless问题</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            问题描述： 当git的branch配置成”*/dev”的时候， 构建的时候会出现多个后续版本1215:03:54 Multiple candidate revisions15:03:54 Scheduling another build to catch up with Test_Git
-然后就会无限的自动重复构建。问题分析：从构建日志中可以看到：12&gt; /usr/local/bin/git
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-03-19T13:28:55.000Z" itemprop="datePublished">2016-03-19</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/03/19/Java内存管理机制笔记/">Java内存管理机制笔记</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            JVM内存区域
-程序计数器： 线程私有，存放当前线程所执行的字节码的行号，通过改变这个计数器的值来选取下一条需要执行的字节码命令。线程挂起恢复也需要通过该计数器恢复执行位置。
-JVM栈: 线程私有，与线程的生命周期相同。每个方法执行的同时都会创建一个栈帧，存放局部变量，对象引用，方法出口等。
-Java堆: 所以线程共享，几乎所有的对象实例都存在这里(有些产量，例如String会放在方法区的常量池中
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-03-17T06:31:44.000Z" itemprop="datePublished">2016-03-17</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/03/17/ES优化/">ES优化</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            内存和打开的文件数如果你的elasticsearch运行在专用服务器上，经验值是分配一半内存给elasticsearch。另一半用于系统缓存，这东西也很重要的。
-你可以通过修改ES_HEAP_SIZE环境变量来改变这个设定。在启动elasticsearch之前把这个变量改到你的预期值。
-另一个选择上球该elasticsearch的ES_JAVA_OPTS变量，这个变量是在启动脚本(elastics
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-03-16T14:54:07.000Z" itemprop="datePublished">2016-03-16</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/03/16/CDH-5-X-CentOS安装/">CDH_5.X_CentOS安装</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            概述Cloudera企业级数据中心的安装主要分为4个步骤：
-
-集群服务器配置，包括安装操作系统、关闭防火墙、同步服务器时钟等；
-安装Cloudera管理器；
-安装CDH集群；
-集群完整性检查，包括HDFS文件系统、MapReduce、Hive等是否可以正常运行。
-
-准备工作
-集群规模5个节点
-1234567Cloudera管理器节点:    172.31.46.113CDH节点:    172.3
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-03-16T14:47:54.000Z" itemprop="datePublished">2016-03-16</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/03/16/cloudera相关说明/">cloudera相关说明</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            相关目录
-/var/log/cloudera-scm-installer : 安装日志目录。
-/var/log/* : 相关日志文件（相关服务的及CM的）。
-/usr/share/cmf/ : 程序安装目录。
-/usr/lib64/cmf/ : Agent程序代码。
-/var/lib/cloudera-scm-server-db/data : 内嵌数据库目录。
-/usr/bin/postgres 
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-03-14T05:46:34.000Z" itemprop="datePublished">2016-03-14</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/03/14/cloudera-scm-server-dead-but-pid-file-exists/">cloudera-scm-server dead but pid file exists</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            问题: 系统磁盘或者内存问题导致cloudera server挂掉，启动异常。进程已死，pid文件存在。1234# service cloudera-scm-server start$&gt; Starting cloudera-scm-server:                              [  OK  ]# service cloudera-scm-server status
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-03-02T03:27:46.000Z" itemprop="datePublished">2016-03-02</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/03/02/Storm安装配置/">Storm安装配置</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            我们使用3台机器搭建Storm集群:123192.168.4.142   h1192.168.4.143   h2192.168.4.144   h3
-首先要保证zookeeper集群正常运行，假设zk也同样部署在h1, h2, h3机器上，端口为为默认的2181。然后，在h1节点上，执行如下命令安装：12345$&gt; cd /usr/local/$&gt; wget http://mirro
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-
-    </div></section>
-
-
-    <nav id="page-nav">
-        <span class="pages">Page 4 sur 5</span>
-        <a class="extend prev" rel="prev" href="/archives/2016/page/3/">&laquo;</a><a class="page-number" href="/archives/2016/">1</a><a class="page-number" href="/archives/2016/page/2/">2</a><a class="page-number" href="/archives/2016/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2016/page/5/">5</a><a class="extend next" rel="next" href="/archives/2016/page/5/">&raquo;</a>
-    </nav>
-
+    </section>
 
                         </div>
                     </section>
@@ -480,6 +273,29 @@ Java堆: 所以线程共享，几乎所有的对象实例都存在这里(有些�
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/10/21/Shipyard-Docker-management/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">+ récent</strong>
+        <p class="article-nav-title">
+        
+            Shipyard Docker management
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2016/09/22/Golang-基于reflect和tag自动填充struct数据/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">- récent</strong>
+        <p class="article-nav-title">Golang-基于reflect和tag自动填充struct数据</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         

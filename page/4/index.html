@@ -55,20 +55,20 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Inicio</a>
+                                    <a class="main-nav-list-link" href="/">Accueil</a>
                                 </li>
                             
                                         
                                     
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about">Acerca de</a>
+                                    <a class="main-nav-list-link" href="/about">À propos</a>
                                 </li>
                             
                         </ul>
                         <nav id="sub-nav">
                             <div id="search-form-wrap">
 
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Buscar"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Rechercher"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
 
 </div>
                         </nav>
@@ -85,7 +85,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <em class="page-title-link" data-url="home">Inicio</em>
+    <em class="page-title-link" data-url="home">Accueil</em>
     </h1>
 </div>
                         <div class="main-body-content">
@@ -100,6 +100,76 @@
                 <a href="/archives/2016" class="archive-year"><i class="icon fa fa-calendar-o"></i>2016</a>
             </div>
             <div class="archives">
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <p class="category">
+            
+            </p>
+            <p class="date"><time datetime="2016-03-23T08:19:53.000Z" itemprop="datePublished">2016-03-23</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2016/03/23/HBase常用命令/">HBase常用命令</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            
+进入Hbase Shell
+1$HBASE_HOME/bin/hbase shell
+
+查看表
+1hbase(main)&gt; list
+
+查看表结构
+123# 语法：describe &lt;table&gt;# 例如：查看表t1的结构hbase(main)&gt; describe 't1'
+
+创建表结构
+123# 语法：create &lt;table&gt;, &#123;NAME =
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <p class="category">
+            
+            </p>
+            <p class="date"><time datetime="2016-03-22T10:10:30.000Z" itemprop="datePublished">2016-03-22</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2016/03/22/ThreadLocal使用介绍/">ThreadLocal使用介绍</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            如何使用ThreadLocal在系统中任意一个适合的位置定义个ThreadLocal变量，可以定义为public static类型（直接new出来一个ThreadLocal对象），要向里面放入数据就使用set(Object)，要获取数据就用get()操作，删除元素就用remove()，其余的方法是非public的方法，不推荐使用。
+下面是一个简单例子（代码片段1）：1234567891011121
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
     
     
     
@@ -358,72 +428,12 @@ Java堆: 所以线程共享，几乎所有的对象实例都存在这里(有些�
         </div>
     
 
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-03-02T03:04:50.000Z" itemprop="datePublished">2016-03-02</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/03/02/Kafka安装配置/">Kafka安装配置</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            我们使用3台机器搭建Kafka集群：123192.168.4.142   h1192.168.4.143   h2192.168.4.144   h3
-在安装Kafka集群之前，这里没有使用Kafka自带的Zookeeper，而是独立安装了一个Zookeeper集群，也是使用这3台机器，保证Zookeeper集群正常运行。首先，在h1上准备Kafka安装文件，执行如下命令：12345$&gt; c
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-02-29T07:32:02.000Z" itemprop="datePublished">2016-02-29</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/02/29/Vector-Clock/">Vector Clock</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            在一些分布式数据库中，如Dynamo，Project Voldemort，为了控制同一record的不同版本，常常会使用Vector Clock这样的概念。
-向量时钟(vector clock)实际上是一个(node,counter)对列表(即(节点，计数器)列表)。 矢量锁是与每个对象的每个版本相关联。通过审查其向量时钟，我们可以判断一个对象的两个版本是平行分枝或有因果顺序。如果第一个时钟对象上
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
 
     </div></section>
 
 
     <nav id="page-nav">
-        <span class="pages">Página 4 de 5</span>
+        <span class="pages">Page 4 sur 5</span>
         <a class="extend prev" rel="prev" href="/page/3/">&laquo;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">&raquo;</a>
     </nav>
 
@@ -433,7 +443,7 @@ Java堆: 所以线程共享，几乎所有的对象实例都存在这里(有些�
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>seguir:</p>
+        <p>suivre:</p>
         <ul class="social-links">
             
                 
@@ -476,9 +486,27 @@ Java堆: 所以线程共享，几乎所有的对象实例都存在这里(有些�
             
                 
     <div class="widget-wrap">
-        <h3 class="widget-title">recientes</h3>
+        <h3 class="widget-title">récents</h3>
         <div class="widget">
             <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/10/21/Shipyard-Docker-management/" class="title">Shipyard Docker management</a></p>
+                            <p class="item-date"><time datetime="2016-10-21T09:28:07.000Z" itemprop="datePublished">2016-10-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/10/01/Dockerfile命令/" class="title">Dockerfile命令</a></p>
+                            <p class="item-date"><time datetime="2016-10-01T09:46:50.000Z" itemprop="datePublished">2016-10-01</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -507,24 +535,6 @@ Java堆: 所以线程共享，几乎所有的对象实例都存在这里(有些�
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/08/04/Go高性能编程技巧/" class="title">Go高性能编程技巧</a></p>
-                            <p class="item-date"><time datetime="2016-08-04T08:49:44.000Z" itemprop="datePublished">2016-08-04</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/07/28/Docker-exec和attach的区别/" class="title">Docker exec和attach的区别</a></p>
-                            <p class="item-date"><time datetime="2016-07-28T03:35:51.000Z" itemprop="datePublished">2016-07-28</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -535,9 +545,9 @@ Java堆: 所以线程共享，几乎所有的对象实例都存在这里(有些�
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">archivos</h3>
+        <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">9</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">9</span></li></ul>
         </div>
     </div>
 
@@ -545,9 +555,9 @@ Java堆: 所以线程共享，几乎所有的对象实例都存在这里(有些�
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">etiquetas</h3>
+        <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据，分布式/">大数据，分布式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a><span class="tag-list-count">3</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据，分布式/">大数据，分布式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a><span class="tag-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -555,9 +565,9 @@ Java堆: 所以线程共享，几乎所有的对象实例都存在这里(有些�
             
                 
     <div class="widget-wrap widget-float">
-        <h3 class="widget-title">etiqueta cloud</h3>
+        <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Go/" style="font-size: 18px;">Go</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/分布式/" style="font-size: 12px;">分布式</a> <a href="/tags/大数据/" style="font-size: 16px;">大数据</a> <a href="/tags/大数据，分布式/" style="font-size: 10px;">大数据，分布式</a> <a href="/tags/数据库/" style="font-size: 14px;">数据库</a> <a href="/tags/机器学习/" style="font-size: 12px;">机器学习</a> <a href="/tags/杂/" style="font-size: 14px;">杂</a>
+            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Go/" style="font-size: 18px;">Go</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/分布式/" style="font-size: 12px;">分布式</a> <a href="/tags/大数据/" style="font-size: 16px;">大数据</a> <a href="/tags/大数据，分布式/" style="font-size: 10px;">大数据，分布式</a> <a href="/tags/数据库/" style="font-size: 14px;">数据库</a> <a href="/tags/机器学习/" style="font-size: 12px;">机器学习</a> <a href="/tags/杂/" style="font-size: 14px;">杂</a>
         </div>
     </div>
 
@@ -565,7 +575,7 @@ Java堆: 所以线程共享，几乎所有的对象实例都存在这里(有些�
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">links</h3>
+        <h3 class="widget-title">liens</h3>
         <div class="widget">
             <ul>
                 
