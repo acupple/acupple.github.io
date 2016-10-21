@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Acupple's Blog">
 <meta property="og:description" content="Shipyard是一个高效的Docker容器管理工具，下面简单介绍一下利用docker-machine创建swarm集群的步骤
 利用Docker machine创建3个Node前提要安装Docker tool box和VirtualBox123docker-machine create --driver virtualbox masterdocker-machine create --driver">
-<meta property="og:updated_time" content="2016-10-21T10:04:51.000Z">
+<meta property="og:updated_time" content="2016-10-21T10:09:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shipyard Docker management">
 <meta name="twitter:description" content="Shipyard是一个高效的Docker容器管理工具，下面简单介绍一下利用docker-machine创建swarm集群的步骤
@@ -64,20 +64,20 @@
                         <ul id="main-nav">
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/">Accueil</a>
+                                    <a class="main-nav-list-link" href="/">Inicio</a>
                                 </li>
                             
                                         
                                     
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/about">À propos</a>
+                                    <a class="main-nav-list-link" href="/about">Acerca de</a>
                                 </li>
                             
                         </ul>
                         <nav id="sub-nav">
                             <div id="search-form-wrap">
 
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Rechercher"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Buscar"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
 
 </div>
                         </nav>
@@ -94,7 +94,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    Aucune catégorie
+    Sin categoría
     </h1>
 </div>
                         <div class="main-body-content">
@@ -122,7 +122,7 @@
         <div class="article-entry" itemprop="articleBody">
             <p><a href="http://shipyard-project.com/" target="_blank" rel="external">Shipyard</a>是一个高效的Docker容器管理工具，<br>下面简单介绍一下利用docker-machine创建swarm集群的步骤</p>
 <h2 id="利用Docker-machine创建3个Node"><a href="#利用Docker-machine创建3个Node" class="headerlink" title="利用Docker machine创建3个Node"></a>利用Docker machine创建3个Node</h2><p>前提要安装Docker tool box和VirtualBox<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">docker-machine create --driver virtualbox master</div><div class="line">docker-machine create --driver virtualbox slave</div><div class="line">docker-machine create --driver virtualbox standby</div></pre></td></tr></table></figure></p>
-<p>查看一下容器的环境变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">docker-machine env master</div><div class="line">export DOCKER_TLS_VERIFY=&quot;1&quot;</div><div class="line">export DOCKER_HOST=&quot;tcp://192.168.99.104:2376&quot;</div><div class="line">export DOCKER_CERT_PATH=&quot;/Users/yuanwangcheng/.docker/machine/machines/master&quot;</div><div class="line">export DOCKER_MACHINE_NAME=&quot;master&quot;</div><div class="line"># Run this command to configure your shell:</div><div class="line"># eval $(docker-machine env master)</div></pre></td></tr></table></figure></p>
+<p>查看一下容器的环境变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">docker-machine env master</div><div class="line">export DOCKER_TLS_VERIFY=&quot;1&quot;</div><div class="line">export DOCKER_HOST=&quot;tcp://192.168.99.104:2376&quot;</div><div class="line">export DOCKER_CERT_PATH=&quot;/Users/acupple/.docker/machine/machines/master&quot;</div><div class="line">export DOCKER_MACHINE_NAME=&quot;master&quot;</div><div class="line"># Run this command to configure your shell:</div><div class="line"># eval $(docker-machine env master)</div></pre></td></tr></table></figure></p>
 <p>可以看出master这个虚拟机的IP为：192.168.99.104</p>
 <h2 id="安装Shipyard-contrlller（UI）"><a href="#安装Shipyard-contrlller（UI）" class="headerlink" title="安装Shipyard contrlller（UI）"></a>安装Shipyard contrlller（UI）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker-machine ssh master</div><div class="line">mkdir shipyard</div><div class="line">cd shipyard</div><div class="line">touch start-manager.sh</div></pre></td></tr></table></figure>
 <p>start-manager.sh文件内容如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line"># Must have root to run Shipyard.</div><div class="line">if [[ $EUID -ne 0 ]]</div><div class="line">then</div><div class="line">   echo &quot;This script must be run as root.&quot;</div><div class="line">   exit 1</div><div class="line">fi</div><div class="line"></div><div class="line"># Download Shipyard deployment script if it isn&apos;t already downloaded.</div><div class="line">if [ ! -f deploy ]</div><div class="line">then</div><div class="line">    wget https://shipyard-project.com/deploy</div><div class="line">    chmod +x deploy</div><div class="line">fi</div><div class="line"></div><div class="line"># Start Shipyard manager.</div><div class="line">ACTION=deploy</div><div class="line"># 重要，指定container用的IP, 默认用eth0 ip, 虚拟机的话是宿主机的IP</div><div class="line">IP=192.168.99.104</div><div class="line">. deploy</div></pre></td></tr></table></figure></p>
@@ -228,7 +228,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                     <aside id="sidebar">
     <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
     <div class="sidebar-top">
-        <p>suivre:</p>
+        <p>seguir:</p>
         <ul class="social-links">
             
                 
@@ -271,7 +271,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     
     
         <a href="/2016/10/01/Dockerfile命令/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">- récent</strong>
+        <strong class="article-nav-caption">antiguo</strong>
         <p class="article-nav-title">Dockerfile命令</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
@@ -284,7 +284,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
             
                 
     <div class="widget-wrap">
-        <h3 class="widget-title">récents</h3>
+        <h3 class="widget-title">recientes</h3>
         <div class="widget">
             <ul id="recent-post" class="no-thumbnail">
                 
@@ -343,7 +343,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">archives</h3>
+        <h3 class="widget-title">archivos</h3>
         <div class="widget">
             <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">9</span></li></ul>
         </div>
@@ -353,7 +353,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">tags</h3>
+        <h3 class="widget-title">etiquetas</h3>
         <div class="widget">
             <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据，分布式/">大数据，分布式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a><span class="tag-list-count">3</span></li></ul>
         </div>
@@ -363,7 +363,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
             
                 
     <div class="widget-wrap widget-float">
-        <h3 class="widget-title">tag cloud</h3>
+        <h3 class="widget-title">etiqueta cloud</h3>
         <div class="widget tagcloud">
             <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Go/" style="font-size: 18px;">Go</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/分布式/" style="font-size: 12px;">分布式</a> <a href="/tags/大数据/" style="font-size: 16px;">大数据</a> <a href="/tags/大数据，分布式/" style="font-size: 10px;">大数据，分布式</a> <a href="/tags/数据库/" style="font-size: 14px;">数据库</a> <a href="/tags/机器学习/" style="font-size: 12px;">机器学习</a> <a href="/tags/杂/" style="font-size: 14px;">杂</a>
         </div>
@@ -373,7 +373,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
             
                 
     <div class="widget-wrap widget-list">
-        <h3 class="widget-title">liens</h3>
+        <h3 class="widget-title">links</h3>
         <div class="widget">
             <ul>
                 
