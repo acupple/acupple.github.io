@@ -3,24 +3,21 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Shipyard Docker management | Acupple&#39;s Blog</title>
+    <title>MySQL锁机制总结 | Acupple&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="Go" />
+        <meta name="keywords" content="数据库" />
     
-    <meta name="description" content="Shipyard是一个高效的Docker容器管理工具，下面简单介绍一下利用docker-machine创建swarm集群的步骤
-利用Docker machine创建3个Node前提要安装Docker tool box和VirtualBox123docker-machine create --driver virtualbox masterdocker-machine create --driver">
+    <meta name="description" content="实现的是基于多版本的并发控制协议——MVCC (Multi-Version Concurrency Control) (注：与MVCC相对的，是基于锁的并发控制，Lock-Based Concurrency Control)。MVCC最大的好处，相信也是耳熟能详：读不加锁，读写不冲突。在读多写少的OLTP应用中，读写不冲突是非常重要的，极大的增加了系统的并发性能，这也是为什么现阶段，几乎所有的RD">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Shipyard Docker management">
-<meta property="og:url" content="http://yoursite.com/2016/10/21/Shipyard-Docker-management/index.html">
+<meta property="og:title" content="MySQL锁机制总结">
+<meta property="og:url" content="http://yoursite.com/2016/12/28/mysql锁机制/index.html">
 <meta property="og:site_name" content="Acupple's Blog">
-<meta property="og:description" content="Shipyard是一个高效的Docker容器管理工具，下面简单介绍一下利用docker-machine创建swarm集群的步骤
-利用Docker machine创建3个Node前提要安装Docker tool box和VirtualBox123docker-machine create --driver virtualbox masterdocker-machine create --driver">
-<meta property="og:updated_time" content="2016-10-21T10:09:24.000Z">
+<meta property="og:description" content="实现的是基于多版本的并发控制协议——MVCC (Multi-Version Concurrency Control) (注：与MVCC相对的，是基于锁的并发控制，Lock-Based Concurrency Control)。MVCC最大的好处，相信也是耳熟能详：读不加锁，读写不冲突。在读多写少的OLTP应用中，读写不冲突是非常重要的，极大的增加了系统的并发性能，这也是为什么现阶段，几乎所有的RD">
+<meta property="og:updated_time" content="2016-12-28T08:15:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shipyard Docker management">
-<meta name="twitter:description" content="Shipyard是一个高效的Docker容器管理工具，下面简单介绍一下利用docker-machine创建swarm集群的步骤
-利用Docker machine创建3个Node前提要安装Docker tool box和VirtualBox123docker-machine create --driver virtualbox masterdocker-machine create --driver">
+<meta name="twitter:title" content="MySQL锁机制总结">
+<meta name="twitter:description" content="实现的是基于多版本的并发控制协议——MVCC (Multi-Version Concurrency Control) (注：与MVCC相对的，是基于锁的并发控制，Lock-Based Concurrency Control)。MVCC最大的好处，相信也是耳熟能详：读不加锁，读写不冲突。在读多写少的OLTP应用中，读写不冲突是非常重要的，极大的增加了系统的并发性能，这也是为什么现阶段，几乎所有的RD">
     
 
     
@@ -98,40 +95,157 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-Shipyard-Docker-management" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-mysql锁机制" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Shipyard Docker management
+        MySQL锁机制总结
         </h1>
     
 
             </header>
         
         <div class="article-subtitle">
-            <a href="/2016/10/21/Shipyard-Docker-management/" class="article-date">
-    <time datetime="2016-10-21T09:28:07.000Z" itemprop="datePublished">2016-10-21</time>
+            <a href="/2016/12/28/mysql锁机制/" class="article-date">
+    <time datetime="2016-12-28T08:11:22.000Z" itemprop="datePublished">2016-12-28</time>
 </a>
             
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/">Go</a></li></ul>
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
 
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p><a href="http://shipyard-project.com/" target="_blank" rel="external">Shipyard</a>是一个高效的Docker容器管理工具，<br>下面简单介绍一下利用docker-machine创建swarm集群的步骤</p>
-<h2 id="利用Docker-machine创建3个Node"><a href="#利用Docker-machine创建3个Node" class="headerlink" title="利用Docker machine创建3个Node"></a>利用Docker machine创建3个Node</h2><p>前提要安装Docker tool box和VirtualBox<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">docker-machine create --driver virtualbox master</div><div class="line">docker-machine create --driver virtualbox slave</div><div class="line">docker-machine create --driver virtualbox standby</div></pre></td></tr></table></figure></p>
-<p>查看一下容器的环境变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">docker-machine env master</div><div class="line">export DOCKER_TLS_VERIFY=&quot;1&quot;</div><div class="line">export DOCKER_HOST=&quot;tcp://192.168.99.104:2376&quot;</div><div class="line">export DOCKER_CERT_PATH=&quot;/Users/acupple/.docker/machine/machines/master&quot;</div><div class="line">export DOCKER_MACHINE_NAME=&quot;master&quot;</div><div class="line"># Run this command to configure your shell:</div><div class="line"># eval $(docker-machine env master)</div></pre></td></tr></table></figure></p>
-<p>可以看出master这个虚拟机的IP为：192.168.99.104</p>
-<h2 id="安装Shipyard-contrlller（UI）"><a href="#安装Shipyard-contrlller（UI）" class="headerlink" title="安装Shipyard contrlller（UI）"></a>安装Shipyard contrlller（UI）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker-machine ssh master</div><div class="line">mkdir shipyard</div><div class="line">cd shipyard</div><div class="line">touch start-manager.sh</div></pre></td></tr></table></figure>
-<p>start-manager.sh文件内容如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line"># Must have root to run Shipyard.</div><div class="line">if [[ $EUID -ne 0 ]]</div><div class="line">then</div><div class="line">   echo &quot;This script must be run as root.&quot;</div><div class="line">   exit 1</div><div class="line">fi</div><div class="line"></div><div class="line"># Download Shipyard deployment script if it isn&apos;t already downloaded.</div><div class="line">if [ ! -f deploy ]</div><div class="line">then</div><div class="line">    wget https://shipyard-project.com/deploy</div><div class="line">    chmod +x deploy</div><div class="line">fi</div><div class="line"></div><div class="line"># Start Shipyard manager.</div><div class="line">ACTION=deploy</div><div class="line"># 重要，指定container用的IP, 默认用eth0 ip, 虚拟机的话是宿主机的IP</div><div class="line">IP=192.168.99.104</div><div class="line">. deploy</div></pre></td></tr></table></figure></p>
-<p>然后运行该脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./start-manager.sh</div></pre></td></tr></table></figure></p>
-<p>成功的话会输出UI的访问地址: <a href="http://192.168.99.104:8080" target="_blank" rel="external">http://192.168.99.104:8080</a></p>
-<h2 id="添加一个node"><a href="#添加一个node" class="headerlink" title="添加一个node"></a>添加一个node</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker-machine ssh node-slave</div><div class="line">mkdir shipyard</div><div class="line">cd shipyard</div><div class="line">touch start-node.sh</div></pre></td></tr></table></figure>
-<p>启动脚本如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line"># Exit upon errors.</div><div class="line">set -e</div><div class="line"></div><div class="line"># Must have root to run Shipyard.</div><div class="line">if [[ $EUID -ne 0 ]]</div><div class="line">then</div><div class="line">   echo &quot;This script must be run as root.&quot;</div><div class="line">   exit 1</div><div class="line">fi</div><div class="line"></div><div class="line"># Download Shipyard deployment script if it isn&apos;t already downloaded.</div><div class="line">if [ ! -f deploy ]</div><div class="line">then</div><div class="line">    wget https://shipyard-project.com/deploy</div><div class="line">    chmod +x deploy</div><div class="line">fi</div><div class="line"></div><div class="line"># Start Shipyard node.</div><div class="line">ACTION=node</div><div class="line"># IMPORTANT! Change this IP address to the IP address where your Shipyard manager runs.</div><div class="line">DISCOVERY=etcd://192.168.99.104:4001</div><div class="line"># 指定该node的ip地址，默认用eth0 ip</div><div class="line">IP=192.168.99.105</div><div class="line">. deploy</div></pre></td></tr></table></figure></p>
-<p>运行该脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./start-node.sh</div></pre></td></tr></table></figure></p>
-<p>完成后，会提示该node已经加入到swarm集群中了，这里最好核对一下IP地址对不对。</p>
+            <p>实现的是基于多版本的并发控制协议——MVCC (Multi-Version Concurrency Control) (注：与MVCC相对的，是基于锁的并发控制，Lock-Based Concurrency Control)。<br>MVCC最大的好处，相信也是耳熟能详：读不加锁，读写不冲突。<br>在读多写少的OLTP应用中，读写不冲突是非常重要的，极大的增加了系统的并发性能，这也是为什么现阶段，几乎所有的RDBMS，都支持了MVCC。</p>
+<p>在MVCC并发控制中，读操作可以分成两类：</p>
+<ol>
+<li>快照读: 读到的是记录的可见版本，不用加锁。</li>
+<li>当前读: 读取的是记录的最新版本，并且，当前读返回的记录，都会加上锁，保证不会被其他记录修改。</li>
+</ol>
+<p>对于大部分的SELECT语句，InnnerDB用的是快照读，因此不用加锁。也有例外， 比如事务隔离级别为”Serializable”。<br>其他的情况，比如:</p>
+<ul>
+<li>Select * from Table Where for update</li>
+<li>Select * from Table Where ? lock in share mode</li>
+<li>Update * from Table Where ?</li>
+<li>Delete from Table Where ?</li>
+<li>Insert into Table Values(?)<br>这些都是当前读</li>
+</ul>
+<h2 id="影响一个事务或者SQL语句锁类型和锁机制的因素"><a href="#影响一个事务或者SQL语句锁类型和锁机制的因素" class="headerlink" title="影响一个事务或者SQL语句锁类型和锁机制的因素"></a>影响一个事务或者SQL语句锁类型和锁机制的因素</h2><ol>
+<li>数据库存储引擎(InnerDB, MyISAM和MEMORY, BDB)</li>
+<li>数据库事务隔离级别</li>
+</ol>
+<ul>
+<li>Read Uncommited: 事务A可以看到其他事务没有Commit的修改， 但是这些commit可能会被回滚，从而导致”脏读”。<br>  这种情况基本上不太会使用</li>
+<li>Read Commited: 事务A只能看到其他事务已经commit的修改，会有两次读到的结果不一致的情况， 出现”不可重复度”。<br>  只保证对读到的记录加锁，存在”幻想读”的问题</li>
+<li>Repeatable Read: 事务A对其他事务的修改(commited/uncommited)都不可见，从而保证A事务的可重复度。<br>但是A提交事务的时候，记录可能已经被修改</li>
+<li>Serializable: 所有的读操作均为当前读，读加读锁 (S锁)，写加写锁 (X锁)。读的时候不能写，写的时候不能读。<br>重用的隔离级别：RC和RR</li>
+</ul>
+<ol>
+<li>Where子句是否包含包含主键，如果是只需要加对主键索引加X锁就可以了。（RC,RR）</li>
+<li>Where子句是否包含唯一类型的索引，如果是需要对记录本上加X锁, 然后对应的主键索引也要加X锁。(RC, RR)</li>
+<li>Where子句是否包含非唯一类型的索引，如果是需要加Gap锁，锁住两条记录的”间隙”，防止被插入。<blockquote>
+<p>注: RC级别的隔离，不会加Gap锁</p>
+</blockquote>
+</li>
+<li>Where子句没有用到索引，即”全表扫”，这个时候默认对全表的记录加锁，并且所有”间隙”加Gap锁。<blockquote>
+<p>注: RC级别的隔离，不会加Gap锁</p>
+<p>这个情况下，MySQL也做了一些优化，就是所谓的semi-consistent read。<br>semi-consistent read开启的情况下，同事事务隔离级别必须为RC或者RR，对于不满足查询条件的记录，MySQL会提前放锁。</p>
+</blockquote>
+</li>
+<li>4和5混合的情况，这种情况需要结合4，5的处理规则具体情况分析。<h1 id="锁类型"><a href="#锁类型" class="headerlink" title="锁类型"></a>锁类型</h1><h2 id="意向锁"><a href="#意向锁" class="headerlink" title="意向锁"></a>意向锁</h2>意向锁是表级别的锁，主要是为了解决行锁和表锁之间的冲突，不会阻塞全表扫描之外的其他操作。<br>鉴于平时表级操作特别少，因此分析加锁过程的时候，可以忽略意向锁。</li>
+</ol>
+<h2 id="行锁"><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h2><ol>
+<li>Record Lock：单个行记录上的锁。这种类型的锁加在主键索引上的</li>
+<li>Gap Lock：间隙锁，锁定一个范围，但不包括记录本身。GAP锁的目的，是为了防止同一事务的两次当前读，出现幻读的情况。</li>
+<li>Next-Key Lock：1+2，锁定一个范围，并且锁定记录本身。对于行的查询，都是采用该方法，主要目的是解决幻读的问题。这种锁加载行记录上。</li>
+</ol>
+<h2 id="插入意向锁"><a href="#插入意向锁" class="headerlink" title="插入意向锁"></a>插入意向锁</h2><p>对于已经获得Next-Key Lock的事务执行插入操作，需要请求插入意向锁(Insert intention lock)<br>插入意向锁和Gap Lock是不兼容的，必须等待其他事务释放间隙锁。</p>
+<h1 id="Unique查询，对应三种加锁策略"><a href="#Unique查询，对应三种加锁策略" class="headerlink" title="Unique查询，对应三种加锁策略"></a>Unique查询，对应三种加锁策略</h1><ol>
+<li>找到满足条件的记录，并且记录有效，则对记录加X锁，No Gap锁(lock_mode X locks rec but not gap)</li>
+<li>找到满足条件的记录，但是记录无效(标识为删除的记录)，则对记录加next key锁(同时锁住记录本身，以及记录之前的Gap：lock_mode X)</li>
+<li>未找到满足条件的记录，则对第一个不满足条件的记录加Gap锁，保证没有满足条件的记录插入(locks gap before rec)<br>这种策略可能不容易理解，但是在下面的实例中就很容易理解了</li>
+</ol>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><h2 id="表结构"><a href="#表结构" class="headerlink" title="表结构"></a>表结构</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`t`</span> (</div><div class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">250</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>),</div><div class="line">  <span class="keyword">KEY</span> <span class="string">`idx_b`</span> (<span class="string">`stage`</span>)</div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8</div></pre></td></tr></table></figure>
+<h2 id="表数据"><a href="#表数据" class="headerlink" title="表数据"></a>表数据</h2><table>
+<thead>
+<tr>
+<th>id</th>
+<th>stage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>a</td>
+</tr>
+<tr>
+<td>4</td>
+<td>b</td>
+</tr>
+<tr>
+<td>9</td>
+<td>c</td>
+</tr>
+<tr>
+<td>15</td>
+<td>d</td>
+</tr>
+</tbody>
+</table>
+<h2 id="事务执行时序"><a href="#事务执行时序" class="headerlink" title="事务执行时序"></a>事务执行时序</h2><table>
+<thead>
+<tr>
+<th>T1(41121)</th>
+<th>T1(41122)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>begin;</td>
+<td>begin;</td>
+</tr>
+<tr>
+<td>select * from t where stage = ‘b’ for update;</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>select * from t where stage = ‘c’ for update;</td>
+</tr>
+<tr>
+<td>insert INTO t values (6, e)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>insert INTO t values (7, f)</td>
+</tr>
+<tr>
+<td></td>
+<td>’Deadlock found when trying to get lock; try restarting transaction’</td>
+</tr>
+<tr>
+<td>Query OK, 1 row affected</td>
+</tr>
+</tbody>
+</table>
+<h3 id="T1的加锁情况"><a href="#T1的加锁情况" class="headerlink" title="T1的加锁情况"></a>T1的加锁情况</h3><ol>
+<li>表意向排他锁(IX)</li>
+<li>Record Lock, 记录行锁(id=4)</li>
+<li>Next-Key Lock， (a, b]， 闭区间表示(stage=b)</li>
+<li>Gap Lock, (b, c)</li>
+<li>插入意向锁(等待)<h3 id="T2的加锁情况-insert语句之前的位置"><a href="#T2的加锁情况-insert语句之前的位置" class="headerlink" title="T2的加锁情况(insert语句之前的位置)"></a>T2的加锁情况(insert语句之前的位置)</h3></li>
+<li>表意向排他锁(IX)</li>
+<li>Record Lock, 记录行锁(id=9)</li>
+<li>Next-Key Lock， (b, c]， 闭区间表示(stage=c)</li>
+<li>Gap Lock, (c, d)</li>
+</ol>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
+<li>T1 Insert的时候申请在(b,c)位置的插入意向锁，此时T2持有(b, c]上的Next-Key Lock，进入等待</li>
+<li>T2 Insert的时候申请在(b,c)位置的插入意向锁，此时T1持有(b, c)上的Gap Lock， 进入等待</li>
+</ol>
+<p>死锁发生，根据事务的优先级，T2会被回滚。</p>
 
         </div>
         <footer class="article-footer">
@@ -181,7 +295,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2016/10/21/Shipyard-Docker-management/" data-title="Shipyard Docker management" data-url="http://yoursite.com/2016/10/21/Shipyard-Docker-management/"></div>
+    <div class="ds-thread" data-thread-key="2016/12/28/mysql锁机制/" data-title="MySQL锁机制总结" data-url="http://yoursite.com/2016/12/28/mysql锁机制/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
@@ -269,20 +383,10 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         
 <nav id="article-nav">
     
-        <a href="/2016/12/19/排序去重/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">+ récent</strong>
-        <p class="article-nav-title">
-        
-            排序去重
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2016/10/01/Dockerfile命令/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/12/26/spring-rabbitmq-protobuf/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">- récent</strong>
-        <p class="article-nav-title">Dockerfile命令</p>
+        <p class="article-nav-title">spring+rabbitmq+protobuf</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
