@@ -332,20 +332,19 @@
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2016/02/25/Hexo + Github搭建自己的博客/">Hexo + Github搭建自己的博客</a>
+        <a href="/2016/02/25/K-近临算法/">K-近临算法</a>
         </h1>
     
 
         <p class="article-excerpt">
-            之前试过wordpress，博客园等，都觉得不是很爽
+            K-近临算法，有叫KNN算法，机器学习常用的一种算法，用于对多个维度的信息进行归类，打标签, 指纹识别，手写数字识别，人脸识别等。算法的特点是简单易懂， 适用数据范围是数值型和标称型，缺点是效率不高。
+基本思路如下:
 
-wordpress.com国内被墙，wordpress.org又需要自己部署
-博客园个人感觉又比较丑。。。。
-其次基于程序猿喜欢折腾的本性，hexo + github感觉更高大上一些，其次可以方便的在github上放一些自己的代码，作为以后做项目的一些参考。
-
-前期准备
-安装git client 1brew install git
-创建Gih
+遍历样本中的每一条信息，并计算与当前待分类信息的距离。这里利用的是欧氏距离公式。
+按照距离递增次序排序
+选取与当前点距离最小的K个点
+确定前K个点所在类别的出现频率
+返回前N个点出
         </p>
     </div>
 </article>
@@ -371,19 +370,20 @@ wordpress.com国内被墙，wordpress.org又需要自己部署
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2016/02/25/K-近临算法/">K-近临算法</a>
+        <a href="/2016/02/25/Hexo + Github搭建自己的博客/">Hexo + Github搭建自己的博客</a>
         </h1>
     
 
         <p class="article-excerpt">
-            K-近临算法，有叫KNN算法，机器学习常用的一种算法，用于对多个维度的信息进行归类，打标签, 指纹识别，手写数字识别，人脸识别等。算法的特点是简单易懂， 适用数据范围是数值型和标称型，缺点是效率不高。
-基本思路如下:
+            之前试过wordpress，博客园等，都觉得不是很爽
 
-遍历样本中的每一条信息，并计算与当前待分类信息的距离。这里利用的是欧氏距离公式。
-按照距离递增次序排序
-选取与当前点距离最小的K个点
-确定前K个点所在类别的出现频率
-返回前N个点出
+wordpress.com国内被墙，wordpress.org又需要自己部署
+博客园个人感觉又比较丑。。。。
+其次基于程序猿喜欢折腾的本性，hexo + github感觉更高大上一些，其次可以方便的在github上放一些自己的代码，作为以后做项目的一些参考。
+
+前期准备
+安装git client 1brew install git
+创建Gih
         </p>
     </div>
 </article>
@@ -452,6 +452,15 @@ wordpress.com国内被墙，wordpress.org又需要自己部署
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/03/03/分布式事务-两阶-三阶段提交/" class="title">分布式事务-两阶-三阶段提交</a></p>
+                            <p class="item-date"><time datetime="2017-03-03T08:37:49.000Z" itemprop="datePublished">2017-03-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
                             <p class="item-title"><a href="/2017/03/03/锁在Java虚拟机中的实现和优化/" class="title">锁在Java虚拟机中的实现和优化</a></p>
                             <p class="item-date"><time datetime="2017-03-03T02:39:22.000Z" itemprop="datePublished">2017-03-03</time></p>
                         </div>
@@ -484,15 +493,6 @@ wordpress.com国内被墙，wordpress.org又需要自己部署
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/12/19/排序去重/" class="title">排序去重</a></p>
-                            <p class="item-date"><time datetime="2016-12-19T09:01:22.000Z" itemprop="datePublished">2016-12-19</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -505,7 +505,7 @@ wordpress.com国内被墙，wordpress.org又需要自己部署
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">9</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">9</span></li></ul>
         </div>
     </div>
 
@@ -515,7 +515,7 @@ wordpress.com国内被墙，wordpress.org又需要自己部署
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a><span class="tag-list-count">3</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a><span class="tag-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -525,7 +525,7 @@ wordpress.com国内被墙，wordpress.org又需要自己部署
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Go/" style="font-size: 18.33px;">Go</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/分布式/" style="font-size: 11.67px;">分布式</a> <a href="/tags/大数据/" style="font-size: 16.67px;">大数据</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/机器学习/" style="font-size: 11.67px;">机器学习</a> <a href="/tags/杂/" style="font-size: 13.33px;">杂</a>
+            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Go/" style="font-size: 18.33px;">Go</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/分布式/" style="font-size: 13.33px;">分布式</a> <a href="/tags/大数据/" style="font-size: 16.67px;">大数据</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/机器学习/" style="font-size: 11.67px;">机器学习</a> <a href="/tags/杂/" style="font-size: 13.33px;">杂</a>
         </div>
     </div>
 
