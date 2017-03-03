@@ -3,39 +3,21 @@
 <head>
     <meta charset="utf-8">
     
-    <title>SOA的基本概念和原理 | Acupple&#39;s Blog</title>
+    <title>锁在Java虚拟机中的实现和优化 | Acupple&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="分布式" />
+        <meta name="keywords" content="Java" />
     
-    <meta name="description" content="SOA是一种面相服务的软件架构模型，往往和微服务一起用来解决应用(主要是WEB应用或者服务)的复杂性，对应用进行解耦，从而便于管理和维护。一般会将大的应用根据功能模块进行拆分，拆成小的独立的服务，服务之间通过定义好的接口或者契约关联起来，从而比较好的适应scrum的敏捷软件开发过程。一般包含如下几个关键部分：
-
-服务注册，分为自动注册和手动注册。
-服务发现
-服务治理
-容灾
-负载均衡， 根据服务发现">
+    <meta name="description" content="理解锁在Java虚拟机中的实现和优化之前，我们需要知道对象头和锁的关系。在Java虚拟机的实现中每个对象都有一个对象头，用于保存对象的系统信息。对象头中有一个称为Mark Word的部分，它是实现锁的关键，在32位系统中，Mark Word为32个比特位，64位系统中，为64个比特位。它是一个多功能的数据区，可以存放对象的哈希值，对象的年龄，锁的指针等信息，一个对象是否占用锁，占用哪个锁，就记录在">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SOA的基本概念和原理">
-<meta property="og:url" content="http://yoursite.com/2016/04/29/SOA的基本概念和原理/index.html">
+<meta property="og:title" content="锁在Java虚拟机中的实现和优化">
+<meta property="og:url" content="http://yoursite.com/2017/03/03/锁在Java虚拟机中的实现和优化/index.html">
 <meta property="og:site_name" content="Acupple's Blog">
-<meta property="og:description" content="SOA是一种面相服务的软件架构模型，往往和微服务一起用来解决应用(主要是WEB应用或者服务)的复杂性，对应用进行解耦，从而便于管理和维护。一般会将大的应用根据功能模块进行拆分，拆成小的独立的服务，服务之间通过定义好的接口或者契约关联起来，从而比较好的适应scrum的敏捷软件开发过程。一般包含如下几个关键部分：
-
-服务注册，分为自动注册和手动注册。
-服务发现
-服务治理
-容灾
-负载均衡， 根据服务发现">
-<meta property="og:updated_time" content="2016-07-09T10:56:21.000Z">
+<meta property="og:description" content="理解锁在Java虚拟机中的实现和优化之前，我们需要知道对象头和锁的关系。在Java虚拟机的实现中每个对象都有一个对象头，用于保存对象的系统信息。对象头中有一个称为Mark Word的部分，它是实现锁的关键，在32位系统中，Mark Word为32个比特位，64位系统中，为64个比特位。它是一个多功能的数据区，可以存放对象的哈希值，对象的年龄，锁的指针等信息，一个对象是否占用锁，占用哪个锁，就记录在">
+<meta property="og:updated_time" content="2017-03-03T03:33:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SOA的基本概念和原理">
-<meta name="twitter:description" content="SOA是一种面相服务的软件架构模型，往往和微服务一起用来解决应用(主要是WEB应用或者服务)的复杂性，对应用进行解耦，从而便于管理和维护。一般会将大的应用根据功能模块进行拆分，拆成小的独立的服务，服务之间通过定义好的接口或者契约关联起来，从而比较好的适应scrum的敏捷软件开发过程。一般包含如下几个关键部分：
-
-服务注册，分为自动注册和手动注册。
-服务发现
-服务治理
-容灾
-负载均衡， 根据服务发现">
+<meta name="twitter:title" content="锁在Java虚拟机中的实现和优化">
+<meta name="twitter:description" content="理解锁在Java虚拟机中的实现和优化之前，我们需要知道对象头和锁的关系。在Java虚拟机的实现中每个对象都有一个对象头，用于保存对象的系统信息。对象头中有一个称为Mark Word的部分，它是实现锁的关键，在32位系统中，Mark Word为32个比特位，64位系统中，为64个比特位。它是一个多功能的数据区，可以存放对象的哈希值，对象的年龄，锁的指针等信息，一个对象是否占用锁，占用哪个锁，就记录在">
     
 
     
@@ -113,38 +95,52 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-SOA的基本概念和原理" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-锁在Java虚拟机中的实现和优化" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        SOA的基本概念和原理
+        锁在Java虚拟机中的实现和优化
         </h1>
     
 
             </header>
         
         <div class="article-subtitle">
-            <a href="/2016/04/29/SOA的基本概念和原理/" class="article-date">
-    <time datetime="2016-04-29T13:23:27.000Z" itemprop="datePublished">2016-04-29</time>
+            <a href="/2017/03/03/锁在Java虚拟机中的实现和优化/" class="article-date">
+    <time datetime="2017-03-03T02:39:22.000Z" itemprop="datePublished">2017-03-03</time>
 </a>
             
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式/">分布式</a></li></ul>
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
 
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p>SOA是一种面相服务的软件架构模型，往往和微服务一起用来解决应用(主要是WEB应用或者服务)的复杂性，对应用进行解耦，从而便于管理和维护。一般会将大的应用根据功能模块进行拆分，拆成小的独立的服务，服务之间通过定义好的接口或者契约关联起来，从而比较好的适应scrum的敏捷软件开发过程。一般包含如下几个关键部分：</p>
+            <p>理解锁在Java虚拟机中的实现和优化之前，我们需要知道对象头和锁的关系。<br>在Java虚拟机的实现中每个对象都有一个对象头，用于保存对象的系统信息。对象头中有一个称为Mark Word的部分，<br>它是实现锁的关键，在32位系统中，Mark Word为32个比特位，64位系统中，为64个比特位。它是一个多功能的数据区，<br>可以存放对象的哈希值，对象的年龄，锁的指针等信息，一个对象是否占用锁，占用哪个锁，就记录在这个Mark Word中。<br>以32位系统为例，普通对象的对象头如下所示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hash:25 -----------------&gt;| age:4   biased_lock:1 lock:2</div></pre></td></tr></table></figure></p>
+<p>它表示Mark Word中有25个比特位表示对象的哈希值，4个比特位表示对象年龄，1个比特位表示是否为“偏向锁”，2个比特位表示锁的信息。</p>
+<h3 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h3><p>偏向锁是JDK 1.6 提出的一种锁优化方式。其核心思想是，如果程序没有竞争，则取消之前已经取得锁的线程同步操作。<br>也就说，若某一锁被线程获取后，便进入偏向模式，当线程再次请求这个锁时，无需进行相关的同步操作，从而节省了操作时间。<br>如果在此之前有其他线程进行了锁请求，则锁退出偏向模式。<br>在JVM中使用-XX:+UseBiasedLocking可以设置启用偏向锁。</p>
+<p>当锁对象处于偏向模式时，对象头会记录获取锁的线程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[JavaThread* | epoch | age | 1 | 10]</div></pre></td></tr></table></figure></p>
+<p>前23位表示持有偏向锁的线程，后续2位表示偏向锁的时间戳，4个比特位表示对象年龄，<br>年龄后1位固定为1， 表示偏向锁，最后2位表示可偏向/未锁定。</p>
+<p>这样，当该线程再次尝试获得锁时，通过Mark Word的线程信息就可以判断当前线程是否持有偏向锁。<br>偏向锁在锁竞争激烈的场合没有太强的优化效果，因为大量的竞争会导致持有锁的线程不停地切换，锁也很难一直保持在偏向模式，<br>此时，使用锁偏向不仅得不到性能的优化，反而有可能降低系统性能。</p>
+<h3 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a>轻量级锁</h3><p>如果偏向锁失败，Java虚拟机会让线程申请轻量级锁。<br>轻量级锁在虚拟机内部，使用一个称谓BasicObjectLock的对象实现，这个对象内部由一个BasicLock对象和一个持有该锁的Java对象指针组成。<br>BasicObjectLock对象放置在Java栈的栈帧中。在BasicLock对象内部还维护者displaced_header字段，他用于备份对象头部的Mark Word。<br>当一个线程持有一个对象的锁时，对象头部Mark Word如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[prt         | 00] locked</div></pre></td></tr></table></figure></p>
+<p>末尾两位比特为00，整个Mark Word为指向BasicLock对象的指针。<br>由于BasicObjectLock对象在线程栈中，因此该指针必然指向持有该锁的线程栈空间。<br>当需要判断某一线程是否持有该对象锁时，也只需简单的判断对象头的指针是否在当前线程的栈地址范围即可。<br>同时，BasicLock对象的displaced_header字段，备份了元对象的Mark Word内存。BasicObjectLock对象的obj字段则指向该对象。</p>
+<p>在虚拟机的实现中，有关轻量级加锁的代码实现可读性较好，这里给出其核心实现代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">markOop mark = obj-&gt;mark();</div><div class="line">lock-&gt;set_displaced_header(mark)</div><div class="line">if (mark == (markOop) Atomic::cmpxchg_ptr(lock, _addr(), mark))&#123;</div><div class="line">   TEVENT (slow_enter: release stacklock);</div><div class="line">   return; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>首先， BasicLock通过set_displaced_header()方法备份了元对象的Mark Word。 接着使用CAS操作，尝试将BasicLock的地址复制到对象头的Mark Word。<br>如果复制成功，那么加锁成功，否则认为加锁失败。如果加锁失败，那么轻量级锁就有可能被膨胀为重量级锁。</p>
+<h3 id="锁膨胀"><a href="#锁膨胀" class="headerlink" title="锁膨胀"></a>锁膨胀</h3><p>当轻量级锁失败，虚拟机就会使用重量级锁。在使用重量级锁时，对象的Mark Word如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[prt         | 10] monitor</div></pre></td></tr></table></figure></p>
+<p>末尾的2比特标记位被置为10。整个Mark Word表示指向monitor对象的指针。<br>在轻量级锁处理失败后，虚拟机会执行以下操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">lock-&gt;set_displaced_header(markOopDesc::unused_mark());</div><div class="line">ObjectSynchronizer::inflate(THREAD, obj()) -enter(THREAD);</div></pre></td></tr></table></figure></p>
+<p>第一步是废弃前面BasicLock备份的对象头信息，第二步则正式启用重量级锁。启用过程分为两步：</p>
 <ol>
-<li>服务注册，分为自动注册和手动注册。</li>
-<li>服务发现</li>
-<li>服务治理</li>
-<li>容灾</li>
-<li>负载均衡， 根据服务发现的实现不同，有客户端均衡和服务端均衡两种</li>
-<li>服务接口或者契约</li>
-<li>服务监控</li>
+<li>通过inflate方法进行锁膨胀，其目的是获得对象的ObjectMonitor</li>
+<li>然后使用enter()方法尝试进入该锁<br>在enter()方法的调用中，线程很可能会在操作系统层面被挂起。如果这样，线程间切换和调度的成本就会比较高。<h3 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h3>锁膨胀后，进入ObjectMonitor的enter()，线程很可能会在操作系统层面被挂起，这样线程上下文切换的性能损失就比较大。<br>因此，在锁膨胀后，虚拟机会做最后的争取，希望线程可以尽快进入临界区而避免被操作系统挂起。<br>一种较为有效的手段就是使用自旋锁。</li>
 </ol>
+<p>自旋锁可以使线程在没有取得锁时，不被挂起，而转而去执行一个空循环(即所谓的自旋)，<br>在若干个空循环后，线程如果可以获得锁，则继续执行。若线程依然不能获得锁，才会被挂起。</p>
+<p>使用自旋锁后，线程被挂起的几率相对减少，线程执行的连贯性相对加强。<br>因此，对于那些锁竞争不是很激烈，锁占用时间很短的并发线程，具有一定的积极意义，<br>但对于锁竞争激烈，单线程锁占用时间长的并发程序，自旋锁在自旋等待后，往往依然无法获得对应的锁，<br>不仅仅白白浪费了CPU时间，最终还是免不了执行被挂起的操作，反而浪费了系统资源。</p>
+<p>在JDK 1.6 中，Java虚拟机提供-XX:+UseSpinning参数来开启自旋锁，使用-XX:PreBlockSpin参数来设置自旋锁的等待次数。<br>在JDK 1.7中，自旋锁的参数被取消，虚拟机不再支持由用户配置自旋锁。自旋锁总是会执行，自旋次数也由虚拟机自行调整。</p>
+<h3 id="锁消除"><a href="#锁消除" class="headerlink" title="锁消除"></a>锁消除</h3><p>锁消除是Java虚拟机在JIT编译时，通过对运行上下文的扫描，去除不可能存在共享资源竞争的锁。通过锁消除，可以节省毫无意义的请求锁时间。</p>
+<p>锁消除主要针对在Java开发过程中，开发人员必然会使用一些JDK内置的API, 必然StringBuffer, Vector等。<br>这些常用的工具类可能会被大面积使用。虽然这些工具类本上可能有对应的非线程安全版本，必然StringBuilder, ArrayList等，<br>但是开发人员也很可能在完全没有多少线程竞争的场合中使用它们。</p>
+<p>在这种情况下，这些工具类内部的同步方法就是不必要的。虚拟机可以在运行时，基于逃逸分析技术，捕获这些不可能存在竞争，却有申请锁的代码段，<br>并消除这些不必要的锁，从而提高系统性能。</p>
+<p>逃逸分析和锁消除分别可以使用参数-XX:+DoEscapeAnalysis和-XX:+EliminateLocks开启（锁消除必须工作在-server模式下）</p>
 
         </div>
         <footer class="article-footer">
@@ -194,7 +190,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2016/04/29/SOA的基本概念和原理/" data-title="SOA的基本概念和原理" data-url="http://yoursite.com/2016/04/29/SOA的基本概念和原理/"></div>
+    <div class="ds-thread" data-thread-key="2017/03/03/锁在Java虚拟机中的实现和优化/" data-title="锁在Java虚拟机中的实现和优化" data-url="http://yoursite.com/2017/03/03/锁在Java虚拟机中的实现和优化/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
@@ -282,20 +278,10 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         
 <nav id="article-nav">
     
-        <a href="/2016/05/13/centos安装最新版本git/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            centos安装最新版本git
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2016/04/26/git使用/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/12/28/mysql锁机制/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">git使用</p>
+        <p class="article-nav-title">MySQL锁机制总结</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
