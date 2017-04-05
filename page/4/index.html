@@ -112,6 +112,35 @@
             <p class="category">
             
             </p>
+            <p class="date"><time datetime="2016-04-20T02:01:45.000Z" itemprop="datePublished">2016-04-20</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2016/04/20/Kafka为什么如此的快/">Kafka为什么如此的快</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            Kafka是分布式的消息系统，需要处理海量的消息，Kafka的设计初衷是把所有消息都写入速度低容量大的硬盘，以此来换取更强的存储能力，但是实际上，使用硬盘并没有带来过性能的损失，这究竟为何？
+Kafka主要使用以下几种方式实现了超高吞吐率的
+顺序读写Kafka的消息是不断追加到文件中的，这个特性使它可以充分利用磁盘的顺序读写能力。顺序读写降低了硬盘磁头的寻道时间，只需要很少的扇区旋转时间，所以速度
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <p class="category">
+            
+            </p>
             <p class="date"><time datetime="2016-04-08T03:18:40.000Z" itemprop="datePublished">2016-04-08</time></p>
         </div>
         
@@ -129,10 +158,14 @@
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -158,14 +191,10 @@
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -191,10 +220,14 @@ Channels and Buffers: 和标准的基于字节流或者字符流的标准IO API�
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -219,14 +252,10 @@ Channels and Buffers: 和标准的基于字节流或者字符流的标准IO API�
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -250,10 +279,14 @@ Channels and Buffers: 和标准的基于字节流或者字符流的标准IO API�
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -285,14 +318,10 @@ Java进程消耗CPU过高
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -316,10 +345,14 @@ Java进程消耗CPU过高
     </div>
 </article>
     
+        </div>
+    
 
     
     
     
+    
+        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -354,14 +387,10 @@ Java进程消耗CPU过高
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -382,38 +411,6 @@ Java进程消耗CPU过高
         <p class="article-excerpt">
             如何使用ThreadLocal在系统中任意一个适合的位置定义个ThreadLocal变量，可以定义为public static类型（直接new出来一个ThreadLocal对象），要向里面放入数据就使用set(Object)，要获取数据就用get()操作，删除元素就用remove()，其余的方法是非public的方法，不推荐使用。
 下面是一个简单例子（代码片段1）：1234567891011121
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2016-03-22T09:42:31.000Z" itemprop="datePublished">2016-03-22</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2016/03/22/volitile/">volitile关键字</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            volatile关键字的两层语义一旦一个共享变量（类的成员变量、类的静态成员变量）被volatile修饰之后，那么就具备了两层语义
-
-保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。
-禁止进行指令重排序。
-
-先看一段代码，假如线程1先执行，线程2后执行：12345678//线程1boolean stop = false;while(!st
         </p>
     </div>
 </article>
@@ -487,6 +484,15 @@ Java进程消耗CPU过高
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/04/05/一致性hash/" class="title">一致性hash</a></p>
+                            <p class="item-date"><time datetime="2017-04-05T08:23:16.000Z" itemprop="datePublished">2017-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
                             <p class="item-title"><a href="/2017/04/05/A给B转100元/" class="title">A给B转100元</a></p>
                             <p class="item-date"><time datetime="2017-04-05T03:07:00.000Z" itemprop="datePublished">2017-04-05</time></p>
                         </div>
@@ -519,15 +525,6 @@ Java进程消耗CPU过高
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/12/26/spring-rabbitmq-protobuf/" class="title">spring+rabbitmq+protobuf</a></p>
-                            <p class="item-date"><time datetime="2016-12-26T08:08:45.000Z" itemprop="datePublished">2016-12-26</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -540,7 +537,7 @@ Java进程消耗CPU过高
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">9</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">9</span></li></ul>
         </div>
     </div>
 
@@ -550,7 +547,7 @@ Java进程消耗CPU过高
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式，Java/">分布式，Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a><span class="tag-list-count">3</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式，Java/">分布式，Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a><span class="tag-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -560,7 +557,7 @@ Java进程消耗CPU过高
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Go/" style="font-size: 18.33px;">Go</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/分布式/" style="font-size: 13.33px;">分布式</a> <a href="/tags/分布式，Java/" style="font-size: 10px;">分布式，Java</a> <a href="/tags/大数据/" style="font-size: 16.67px;">大数据</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/机器学习/" style="font-size: 11.67px;">机器学习</a> <a href="/tags/杂/" style="font-size: 13.33px;">杂</a>
+            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Go/" style="font-size: 18.33px;">Go</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/分布式/" style="font-size: 15px;">分布式</a> <a href="/tags/分布式，Java/" style="font-size: 10px;">分布式，Java</a> <a href="/tags/大数据/" style="font-size: 16.67px;">大数据</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/机器学习/" style="font-size: 11.67px;">机器学习</a> <a href="/tags/杂/" style="font-size: 13.33px;">杂</a>
         </div>
     </div>
 

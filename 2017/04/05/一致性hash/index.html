@@ -3,22 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>ES优化 | Acupple&#39;s Blog</title>
+    <title>一致性hash | Acupple&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="大数据" />
+        <meta name="keywords" content="分布式" />
     
-    <meta name="description" content="内存和打开的文件数如果你的elasticsearch运行在专用服务器上，经验值是分配一半内存给elasticsearch。另一半用于系统缓存，这东西也很重要的。 你可以通过修改ES_HEAP_SIZE环境变量来改变这个设定。在启动elasticsearch之前把这个变量改到你的预期值。 另一个选择上球该elasticsearch的ES_JAVA_OPTS变量，这个变量是在启动脚本(elastics">
-<meta name="keywords" content="大数据">
+    <meta name="description" content="一致性哈希算法是分布式系统中常用的算法。比如，一个分布式的存储系统，要将数据存储到具体的节点上，如果采用普通的hash方法，将数据映射到具体的节点上，如key%N，key是数据的key，N是机器节点数，如果有一个机器加入或退出这个集群，则所有的数据映射都无效了，如果是持久化存储则要做数据迁移，如果是分布式缓存，则其他缓存就失效了。 因此引入了一致性hash算法 把数据用hash函数（如MD5），映">
+<meta name="keywords" content="分布式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ES优化">
-<meta property="og:url" content="http://yoursite.com/2016/03/17/ES优化/index.html">
+<meta property="og:title" content="一致性hash">
+<meta property="og:url" content="http://yoursite.com/2017/04/05/一致性hash/index.html">
 <meta property="og:site_name" content="Acupple's Blog">
-<meta property="og:description" content="内存和打开的文件数如果你的elasticsearch运行在专用服务器上，经验值是分配一半内存给elasticsearch。另一半用于系统缓存，这东西也很重要的。 你可以通过修改ES_HEAP_SIZE环境变量来改变这个设定。在启动elasticsearch之前把这个变量改到你的预期值。 另一个选择上球该elasticsearch的ES_JAVA_OPTS变量，这个变量是在启动脚本(elastics">
-<meta property="og:updated_time" content="2016-07-09T10:56:21.000Z">
+<meta property="og:description" content="一致性哈希算法是分布式系统中常用的算法。比如，一个分布式的存储系统，要将数据存储到具体的节点上，如果采用普通的hash方法，将数据映射到具体的节点上，如key%N，key是数据的key，N是机器节点数，如果有一个机器加入或退出这个集群，则所有的数据映射都无效了，如果是持久化存储则要做数据迁移，如果是分布式缓存，则其他缓存就失效了。 因此引入了一致性hash算法 把数据用hash函数（如MD5），映">
+<meta property="og:image" content="http://yoursite.com/gallery/ring_hash.png">
+<meta property="og:updated_time" content="2017-04-05T08:31:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ES优化">
-<meta name="twitter:description" content="内存和打开的文件数如果你的elasticsearch运行在专用服务器上，经验值是分配一半内存给elasticsearch。另一半用于系统缓存，这东西也很重要的。 你可以通过修改ES_HEAP_SIZE环境变量来改变这个设定。在启动elasticsearch之前把这个变量改到你的预期值。 另一个选择上球该elasticsearch的ES_JAVA_OPTS变量，这个变量是在启动脚本(elastics">
+<meta name="twitter:title" content="一致性hash">
+<meta name="twitter:description" content="一致性哈希算法是分布式系统中常用的算法。比如，一个分布式的存储系统，要将数据存储到具体的节点上，如果采用普通的hash方法，将数据映射到具体的节点上，如key%N，key是数据的key，N是机器节点数，如果有一个机器加入或退出这个集群，则所有的数据映射都无效了，如果是持久化存储则要做数据迁移，如果是分布式缓存，则其他缓存就失效了。 因此引入了一致性hash算法 把数据用hash函数（如MD5），映">
+<meta name="twitter:image" content="http://yoursite.com/gallery/ring_hash.png">
     
 
     
@@ -96,59 +98,36 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-ES优化" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-一致性hash" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        ES优化
+        一致性hash
         </h1>
     
 
             </header>
         
         <div class="article-subtitle">
-            <a href="/2016/03/17/ES优化/" class="article-date">
-    <time datetime="2016-03-17T06:31:44.000Z" itemprop="datePublished">2016-03-17</time>
+            <a href="/2017/04/05/一致性hash/" class="article-date">
+    <time datetime="2017-04-05T08:23:16.000Z" itemprop="datePublished">2017-04-05</time>
 </a>
             
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式/">分布式</a></li></ul>
 
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <h2 id="内存和打开的文件数"><a href="#内存和打开的文件数" class="headerlink" title="内存和打开的文件数"></a>内存和打开的文件数</h2><p>如果你的elasticsearch运行在专用服务器上，经验值是分配一半内存给elasticsearch。另一半用于系统缓存，这东西也很重要的。</p>
-<p>你可以通过修改ES_HEAP_SIZE环境变量来改变这个设定。在启动elasticsearch之前把这个变量改到你的预期值。</p>
-<p>另一个选择上球该elasticsearch的ES_JAVA_OPTS变量，这个变量是在启动脚本(elasticsearch.sh或elasticsearch.bat)里传递的。你必须找到-Xms和-Xmx参数，他们是分配给进程的最小和最大内存。建议设置成相同大小，ES_HEAP_SIZE其实就是干的这个作用。你必须确认文件描述符限制对你的elasticsearch足够大，建议值是32000到64000之间。</p>
-<h2 id="目录数"><a href="#目录数" class="headerlink" title="目录数"></a>目录数</h2><p>一个可选的做法是把所有日志存在一个索引里，然后用ttl field来确保就日志被删除掉了。不过当你日志量够大的时候，这可能就是一个问题了，因为用TTL会增加开销，优化这个巨大且唯一的索引需要太长的时间，而且这些操作都是资源密集型的。</p>
-<p>建议的办法是基于时间做目录。比如，目录名可以是YYYY-MM-DD的时间格式。时间间隔完全取决于你打算保留多久日志。如果你要保留一周，那一天一个目录就很不错。如果你要保留一年，那一个月一个目录可能更好点。目录不要太多，因为全文搜索的时候开销相应的也会变大。</p>
-<p>如果你选择了根据时间存储你的目录，你也可以缩小你的搜索范围到相关的目录上。比如，如果你的大多数搜索都是关于最近的日志的，那么你可以在自己的界面上提供一个”快速搜索”的选项只检索最近的目录。</p>
-<h2 id="轮转和优化"><a href="#轮转和优化" class="headerlink" title="轮转和优化"></a>轮转和优化</h2><p>移除旧日志在有基于时间的目录后变得异常简单：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -XDELETE <span class="string">'http://localhost:9200/old-index-name/'</span></div></pre></td></tr></table></figure></p>
-<p>这个操作的速度非常快，和删除大小差不多的少量文件速度接近。你可以放进crontab里半夜来做。</p>
-<p><a href="http://www.elasticsearch.org/guide/reference/api/admin-indices-optimize.html" target="_blank" rel="external">Optimizing indices</a>是在非高峰时间可以做的一件很不错的事情。因为它可以提高你的搜索速度。尤其是在你是基于时间做目录的情况下，更建议去做了。因为除了当前的目录外，其他都不会再改，你只需要对这些旧目录优化一次就一劳永逸了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -XPOST <span class="string">'http://localhost:9200/old-index-name/_optimize'</span></div></pre></td></tr></table></figure></p>
-<h2 id="分片和复制"><a href="#分片和复制" class="headerlink" title="分片和复制"></a>分片和复制</h2><p>通过elasticsearch.yml或者使用REST API，你可以给每个目录配置自己的设定。具体细节参见<a href="http://www.elasticsearch.org/guide/reference/setup/configuration.html" target="_blank" rel="external">链接</a>。</p>
-<p>有趣的是分片和复制的数量。默认情况下，每个目录都被分割成5个分片。如果集群中有一个以上节点存在，每个分片会有一个复制。也就是说每个目录有一共10个分片。当往集群里添加新节点的时候，分片会自动均衡。所以如果你有一个默认目录和11台服务器在集群里的时候，其中一台会不存储任何数据。</p>
-<p>每个分片都是一个Lucene索引，所以分片越小，elasticsearch能放进分片新数据越少。如果你把目录分割成更多的分片，插入速度更快。请注意如果你用的是基于时间的目录，你只在当前目录里插入日志，其他旧目录是不会被改变的。</p>
-<p>太多的分片带来一定的困难——在空间使用率和搜索时间方面。所以你要找到一个平衡点，你的插入量、搜索频率和使用的硬件条件。</p>
-<p>另一方面，复制帮助你的集群在部分节点宕机的时候依然可以运行。复制越多，必须在线运行的节点数就可以越小。复制在搜索的时候也有用——更多的复制带来更快的搜索，同时却增加创建索引的时间。因为对猪分片的修改，需要传递到更多的复制。</p>
-<h2 id="映射-source和-all"><a href="#映射-source和-all" class="headerlink" title="映射_source和_all"></a>映射_source和_all</h2><p><a href="http://www.elasticsearch.org/guide/reference/mapping/" target="_blank" rel="external">Mappings</a>定义了你的文档如何被索引和存储。你可以，比如说，定义每个字段的类型——比如你的syslog里，消息肯定是字符串，严重性可以是整数。怎么定义映射参见<a href="http://www.elasticsearch.org/guide/reference/api/admin-indices-put-mapping.html" target="_blank" rel="external">链接</a>。</p>
-<p>映射有着合理的默认值，字段的类型会在新目录的第一条文档插入的时候被自动的检测出来。不过你或许会想自己来调控这点。比如，可能新目录的第一条记录的message字段里只有一个数字，于是被检测为长整型。当接下来99%的日志里肯定都是字符串型的，这样Elasticsearch就没法索引他们，只会记录一个错误日志说字段类型不对。这时候就需要显式的手动映射”message” : {“type” : “string”}。如何注册一个特殊的映射详见<a href="http://www.elasticsearch.org/guide/reference/api/admin-indices-put-mapping.html" target="_blank" rel="external">链接</a>。</p>
-<p>当你使用基于时间的目录名时，在配置文件里创建索引模板可能更适合一点。详见<a href="http://www.elasticsearch.org/guide/reference/api/admin-indices-templates.html" target="_blank" rel="external">链接</a>。除去你的映射，你海可以定义其他目录属性，比如分片数等等。</p>
-<p>在映射中，你可以选择压缩文档的_source。这实际上就是整行日志——所以开启压缩可以减小索引大小，而且依赖你的设定，提高性能。经验值是当你被内存大小和磁盘速度限制的时候，压缩源文件可以明显提高速度，相反的，如果受限的是CPU计算能力就不行了。更多关于source字段的细节详见<a href="http://www.elasticsearch.org/guide/reference/mapping/source-field.html" target="_blank" rel="external">链接</a>。</p>
-<p>默认情况下，除了给你所有的字段分别创建索引，elasticsearch还会把他们一起放进一个叫_all的新字段里做索引。好处是你可以在_all里搜索那些你不在乎在哪个字段找到的东西。另一面是在创建索引和增大索引大小的时候会使用额外更多的CPU。所以如果你不用这个特性的话，关掉它。即使你用，最好也考虑一下定义清楚限定哪些字段包含进_all里。详见<a href="http://www.elasticsearch.org/guide/reference/mapping/all-field.html" target="_blank" rel="external">链接</a>。</p>
-<h2 id="刷新间隔"><a href="#刷新间隔" class="headerlink" title="刷新间隔"></a>刷新间隔</h2><p>在文档被索引后，Elasticsearch某种意义上是近乎实时的。在你搜索查找文档之前，索引必须被刷新。默认情况下，目录是每秒钟自动异步刷新的。</p>
-<p>刷新是一个非常昂贵的操作，所以如果你稍微增大一些这个值，你会看到非常明显提高的插入速率。具体增大多少取决于你的用户可以接受到什么程度。</p>
-<p>你可以在你的<a href="http://www.elasticsearch.org/guide/reference/api/admin-indices-templates.html" target="_blank" rel="external">index template</a>里保存期望的刷新间隔值。或者保存在elasticsearch.yml配置文件里，或者通过(REST API)[<a href="http://www.elasticsearch.org/guide/reference/api/admin-indices-update-settings.html]升级索引设定。" target="_blank" rel="external">http://www.elasticsearch.org/guide/reference/api/admin-indices-update-settings.html]升级索引设定。</a></p>
-<p>另一个处理办法是禁用掉自动刷新，办法是设为-1。然后用<a href="http://www.elasticsearch.org/guide/reference/api/admin-indices-refresh.html" target="_blank" rel="external">REST API</a>手动的刷新。当你要一口气插入海量日志的时候非常有效。不过通常情况下，你一般会采用的就是两个办法：在每次bulk插入后刷新或者在每次搜索前刷新。这都会推迟他们自己本身的操作响应。</p>
-<h2 id="Thrift"><a href="#Thrift" class="headerlink" title="Thrift"></a>Thrift</h2><p>通常时，REST接口是通过HTTP协议的，不过你可以用更快的Thrift替代它。你需要安装<a href="https://github.com/elasticsearch/elasticsearch-transport-thrift" target="_blank" rel="external">transport-thrift plugin</a>同时保证客户端支持这点。比如，如果你用的是pyes Python client，只需要把连接端口从默认支持HTTP的9200改到默认支持Thrift的9500就好了。</p>
-<h2 id="异步复制"><a href="#异步复制" class="headerlink" title="异步复制"></a>异步复制</h2><p>通常，一个索引操作会在所有分片(包括复制的)都完成对文档的索引后才返回。你可以通过<a href="http://www.elasticsearch.org/guide/reference/api/index_.html" target="_blank" rel="external">index API</a>设置复制为异步的来让复制操作在后台运行。你可以直接使用这个API，也可以使用现成的客户端(比如pyes或者rsyslog的omelasticsearch)，都会支持这个。</p>
-<h2 id="用过滤器替代请求"><a href="#用过滤器替代请求" class="headerlink" title="用过滤器替代请求"></a>用过滤器替代请求</h2><p>通常，当你搜索日志的时候，你感兴趣的是通过时间序列做排序而不是评分。这种使用场景下评分是很无关紧要的功能。所以用过滤器来查找日志比用请求更适宜。因为过滤器里不会执行评分而且可以被自动缓存。两者的更多细节参见<a href="http://www.elasticsearch.org/guide/reference/query-dsl/" target="_blank" rel="external">链接</a>。</p>
-<h2 id="批量索引"><a href="#批量索引" class="headerlink" title="批量索引"></a>批量索引</h2><p>建议使用<a href="http://www.elasticsearch.org/guide/reference/api/bulk.html" target="_blank" rel="external">bulk API</a>来创建索引它比你一次给一条日志创建一次索引快多了。<br>主要要考虑两个事情：</p>
-<ul>
-<li>最佳的批量大小。它取决于很多你的设定。如果要说起始值的话，可以参考一下pyes里的默认值，即400。</li>
-<li>给批量操作设定时器。如果你添加日志到缓冲，然后等待它的大小触发限制以启动批量插入，千万确定还要有一个超时限制作为大小限制的补充。否则，如果你的日志量不大的话，你可能看到从日志发布到出现在elasticsearch里有一个巨大的延时。</li>
-</ul>
+            <p>一致性哈希算法是分布式系统中常用的算法。比如，一个分布式的存储系统，要将数据存储到具体的节点上，如果采用普通的hash方法，将数据映射到具体的节点上，如key%N，key是数据的key，N是机器节点数，如果有一个机器加入或退出这个集群，则所有的数据映射都无效了，如果是持久化存储则要做数据迁移，如果是分布式缓存，则其他缓存就失效了。</p>
+<p>因此引入了一致性hash算法<br><img src="/../../gallery/ring_hash.png" alt="image"></p>
+<p>把数据用hash函数（如MD5），映射到一个很大的空间里，如图所示。数据的存储时，先得到一个hash值，对应到这个环中的每个位置，如k1对应到了图中所示的位置，然后沿顺时针找到一个机器节点B，将k1存储到B这个节点中。</p>
+<p>如果B节点宕机了，则B上的数据就会落到C节点上，如下图所示：<br><img src="/../../gallery/ring_hash-v.png" alt="image"></p>
+<p>这样，只会影响C节点，对其他的节点A，D的数据不会造成影响。然而，这又会造成一个“雪崩”的情况，即C节点由于承担了B节点的数据，所以C节点的负载会变高，C节点很容易也宕机，这样依次下去，这样造成整个集群都挂了。</p>
+<p>为此，引入了“虚拟节点”的概念：即把想象在这个环上有很多“虚拟节点”，数据的存储是沿着环的顺时针方向找一个虚拟节点，每个虚拟节点都会关联到一个真实节点，如下图所使用：<br><img src="/../../gallery/ring_hash-v2.png" alt="image"></p>
+<p>图中的A1、A2、B1、B2、C1、C2、D1、D2都是虚拟节点，机器A负载存储A1、A2的数据，机器B负载存储B1、B2的数据，机器C负载存储C1、C2的数据。由于这些虚拟节点数量很多，均匀分布，因此不会造成“雪崩”现象。</p>
+<p>Java实现<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">S类封装了机器节点的信息 ，如name、password、ip、port等   </div><div class="line">**/</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Shard</span>&lt;<span class="title">S</span>&gt; </span>&#123;</div><div class="line">    <span class="comment">// 虚拟节点 </span></div><div class="line">    <span class="keyword">private</span> TreeMap&lt;Long, S&gt; nodes;</div><div class="line">    <span class="comment">// 真实机器节点 </span></div><div class="line">    <span class="keyword">private</span> List&lt;S&gt; shards;</div><div class="line">    <span class="comment">// 每个机器节点关联的虚拟节点个数   </span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> NODE_NUM = <span class="number">100</span>;   </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Shard</span><span class="params">(List&lt;S&gt; shards)</span> </span>&#123;  </div><div class="line">        <span class="keyword">super</span>();  </div><div class="line">        <span class="keyword">this</span>.shards = shards;  </div><div class="line">        init();  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="comment">//初始化一致性hash环   </span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</div><div class="line">        nodes = <span class="keyword">new</span> TreeMap&lt;Long, S&gt;();</div><div class="line">        <span class="comment">// 每个真实机器节点都需要关联虚拟节点</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != shards.size(); ++i) &#123; </div><div class="line">            <span class="keyword">final</span> S shardInfo = shards.get(i);  </div><div class="line">  </div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n &lt; NODE_NUM; n++)  </div><div class="line">                <span class="comment">// 一个真实机器节点关联NODE_NUM个虚拟节点   </span></div><div class="line">                nodes.put(hash(<span class="string">"SHARD-"</span> + i + <span class="string">"-NODE-"</span> + n), shardInfo);  </div><div class="line">  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> S <span class="title">getShardInfo</span><span class="params">(String key)</span> </span>&#123;</div><div class="line">        <span class="comment">// 沿环的顺时针找到一个虚拟节点</span></div><div class="line">        SortedMap&lt;Long, S&gt; tail = nodes.tailMap(hash(key)); </div><div class="line">        <span class="keyword">if</span> (tail.size() == <span class="number">0</span>) &#123;  </div><div class="line">            <span class="keyword">return</span> nodes.get(nodes.firstKey());  </div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 返回该虚拟节点对应的真实机器节点的信息</span></div><div class="line">        <span class="keyword">return</span> tail.get(tail.firstKey()); </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="comment">/** </span></div><div class="line">     *  MurMurHash算法，是非加密HASH算法，性能很高， </div><div class="line">     *  比传统的CRC32,MD5，SHA-1（这两个算法都是加密HASH算法，</div><div class="line">     *  复杂度本身就很高，带来的性能上的损害也不可避免） </div><div class="line">     *  等HASH算法要快很多，而且据说这个算法的碰撞率很低. </div><div class="line">     *  http://murmurhash.googlepages.com/ </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">private</span> Long <span class="title">hash</span><span class="params">(String key)</span> </span>&#123;  </div><div class="line">          </div><div class="line">        ByteBuffer buf = ByteBuffer.wrap(key.getBytes());  </div><div class="line">        <span class="keyword">int</span> seed = <span class="number">0x1234ABCD</span>;  </div><div class="line">          </div><div class="line">        ByteOrder byteOrder = buf.order();  </div><div class="line">        buf.order(ByteOrder.LITTLE_ENDIAN);  </div><div class="line">  </div><div class="line">        <span class="keyword">long</span> m = <span class="number">0xc6a4a7935bd1e995L</span>;  </div><div class="line">        <span class="keyword">int</span> r = <span class="number">47</span>;  </div><div class="line">  </div><div class="line">        <span class="keyword">long</span> h = seed ^ (buf.remaining() * m);  </div><div class="line">  </div><div class="line">        <span class="keyword">long</span> k;  </div><div class="line">        <span class="keyword">while</span> (buf.remaining() &gt;= <span class="number">8</span>) &#123;  </div><div class="line">            k = buf.getLong();  </div><div class="line">  </div><div class="line">            k *= m;  </div><div class="line">            k ^= k &gt;&gt;&gt; r;  </div><div class="line">            k *= m;  </div><div class="line">  </div><div class="line">            h ^= k;  </div><div class="line">            h *= m;  </div><div class="line">        &#125;  </div><div class="line">  </div><div class="line">        <span class="keyword">if</span> (buf.remaining() &gt; <span class="number">0</span>) &#123;  </div><div class="line">            ByteBuffer finish = ByteBuffer.allocate(<span class="number">8</span>).order(  </div><div class="line">                    ByteOrder.LITTLE_ENDIAN);  </div><div class="line">            <span class="comment">// for big-endian version, do this first:   </span></div><div class="line">            <span class="comment">// finish.position(8-buf.remaining());   </span></div><div class="line">            finish.put(buf).rewind();  </div><div class="line">            h ^= finish.getLong();  </div><div class="line">            h *= m;  </div><div class="line">        &#125;  </div><div class="line">  </div><div class="line">        h ^= h &gt;&gt;&gt; r;  </div><div class="line">        h *= m;  </div><div class="line">        h ^= h &gt;&gt;&gt; r;  </div><div class="line">  </div><div class="line">        buf.order(byteOrder);  </div><div class="line">        <span class="keyword">return</span> h;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
         </div>
         <footer class="article-footer">
@@ -198,7 +177,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2016/03/17/ES优化/" data-title="ES优化" data-url="http://yoursite.com/2016/03/17/ES优化/"></div>
+    <div class="ds-thread" data-thread-key="2017/04/05/一致性hash/" data-title="一致性hash" data-url="http://yoursite.com/2017/04/05/一致性hash/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
@@ -286,22 +265,16 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         
 <nav id="article-nav">
     
-        <a href="/2016/03/16/CDH-5-X-CentOS安装/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2017/04/05/A给B转100元/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
-            CDH_5.X_CentOS安装
+            A给B转100元
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
-    
-        <a href="/2016/03/19/Java内存管理机制笔记/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">Java内存管理机制笔记</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
     
 </nav>
 
