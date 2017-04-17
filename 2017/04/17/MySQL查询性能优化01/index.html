@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>MySQL查询性能优化 | Acupple&#39;s Blog</title>
+    <title>MySQL查询性能优化（一） | Acupple&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
         <meta name="keywords" content="数据库" />
@@ -11,13 +11,13 @@
     <meta name="description" content="MySQL查询性能的优化涉及多个方面，其中包括库表结构、建立合理的索引、设计合理的查询。库表结构包括如何设计表之间的关联、表字段的数据类型等。这需要依据具体的场景进行设计。如下我们从数据库的索引和查询语句的设计两个角度介绍如何提高MySQL查询性能。 数据库索引索引是存储引擎中用于快速找到记录的一种数据结构。索引有多种分类方式:   按照存储方式可以分为：聚簇索引和非聚簇索引 按照数据的唯一性可以">
 <meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL查询性能优化">
-<meta property="og:url" content="http://yoursite.com/2017/04/17/MySQL查询性能优化/index.html">
+<meta property="og:title" content="MySQL查询性能优化（一）">
+<meta property="og:url" content="http://yoursite.com/2017/04/17/MySQL查询性能优化01/index.html">
 <meta property="og:site_name" content="Acupple's Blog">
 <meta property="og:description" content="MySQL查询性能的优化涉及多个方面，其中包括库表结构、建立合理的索引、设计合理的查询。库表结构包括如何设计表之间的关联、表字段的数据类型等。这需要依据具体的场景进行设计。如下我们从数据库的索引和查询语句的设计两个角度介绍如何提高MySQL查询性能。 数据库索引索引是存储引擎中用于快速找到记录的一种数据结构。索引有多种分类方式:   按照存储方式可以分为：聚簇索引和非聚簇索引 按照数据的唯一性可以">
-<meta property="og:updated_time" content="2017-04-17T08:27:42.000Z">
+<meta property="og:updated_time" content="2017-04-17T09:13:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL查询性能优化">
+<meta name="twitter:title" content="MySQL查询性能优化（一）">
 <meta name="twitter:description" content="MySQL查询性能的优化涉及多个方面，其中包括库表结构、建立合理的索引、设计合理的查询。库表结构包括如何设计表之间的关联、表字段的数据类型等。这需要依据具体的场景进行设计。如下我们从数据库的索引和查询语句的设计两个角度介绍如何提高MySQL查询性能。 数据库索引索引是存储引擎中用于快速找到记录的一种数据结构。索引有多种分类方式:   按照存储方式可以分为：聚簇索引和非聚簇索引 按照数据的唯一性可以">
     
 
@@ -96,21 +96,21 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-MySQL查询性能优化" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-MySQL查询性能优化01" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        MySQL查询性能优化
+        MySQL查询性能优化（一）
         </h1>
     
 
             </header>
         
         <div class="article-subtitle">
-            <a href="/2017/04/17/MySQL查询性能优化/" class="article-date">
+            <a href="/2017/04/17/MySQL查询性能优化01/" class="article-date">
     <time datetime="2017-04-17T03:47:18.000Z" itemprop="datePublished">2017-04-17</time>
 </a>
             
@@ -233,7 +233,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2017/04/17/MySQL查询性能优化/" data-title="MySQL查询性能优化" data-url="http://yoursite.com/2017/04/17/MySQL查询性能优化/"></div>
+    <div class="ds-thread" data-thread-key="2017/04/17/MySQL查询性能优化01/" data-title="MySQL查询性能优化（一）" data-url="http://yoursite.com/2017/04/17/MySQL查询性能优化01/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
@@ -332,6 +332,12 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     </a>
     
     
+        <a href="/2017/04/17/MySQL查询性能优化02/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">MySQL查询性能优化（二）</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
 </nav>
 
     
@@ -348,7 +354,16 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/04/17/MySQL查询性能优化/" class="title">MySQL查询性能优化</a></p>
+                            <p class="item-title"><a href="/2017/04/17/MySQL查询性能优化02/" class="title">MySQL查询性能优化（二）</a></p>
+                            <p class="item-date"><time datetime="2017-04-17T09:13:58.000Z" itemprop="datePublished">2017-04-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/04/17/MySQL查询性能优化01/" class="title">MySQL查询性能优化（一）</a></p>
                             <p class="item-date"><time datetime="2017-04-17T03:47:18.000Z" itemprop="datePublished">2017-04-17</time></p>
                         </div>
                     </li>
@@ -380,15 +395,6 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/03/03/锁在Java虚拟机中的实现和优化/" class="title">锁在Java虚拟机中的实现和优化</a></p>
-                            <p class="item-date"><time datetime="2017-03-03T02:39:22.000Z" itemprop="datePublished">2017-03-03</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -401,7 +407,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">9</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">9</span></li></ul>
         </div>
     </div>
 
@@ -411,7 +417,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式，Java/">分布式，Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a><span class="tag-list-count">3</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式，Java/">分布式，Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大数据/">大数据</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a><span class="tag-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -489,5 +495,38 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 <script src="/js/main.js"></script>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
 </body>
 </html>
